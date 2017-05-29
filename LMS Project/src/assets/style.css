@@ -1,0 +1,52 @@
+.navbar-login {
+height: 80px;
+}
+    #loginbox {
+                width: 40%;
+                margin: auto;
+                top: 80px;
+                border: 2px solid #686868;
+                background-color: #CCC;
+                float: none;
+                text-align: center;
+                -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+    -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+    box-shadow: 3px 5px 4px rgba(0, 0, 0, .5);
+            }
+            #loginbox .form-control {
+                width: 50%;
+                display: inline;
+                margin-left: 25px;
+                margin-top: 10px;
+            }
+     .panel-forgot {
+            float:right;
+            position: relative;
+            top: -15px;
+            }
+            .panel-forgot a{
+            color: #fff;
+            }
+            .form-fields {
+                margin-bottom: 25px;
+            }
+            .btn-fields {
+                margin-top: 25px;
+            }
+            .form-bttom{
+            border-top: 1px solid#888;
+            padding-top:15px;
+            font-size:85%;
+            }
+
+  footer {
+    position: fixed;
+    height: 15%;
+    bottom: 0;
+    width: 100%;
+    background-color: #000000;
+}
+footer p{
+    padding: 30px;
+    color: #fff;
+}

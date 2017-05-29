@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PLLMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Designation">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="designationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Designation" FromRole="Designation" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Leave_Approval_Matrix">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userId" Type="Int32" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="daysCount" Type="Int32" Nullable="false" />
+    <Property Name="reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="approverId" Type="Int32" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LeaveTypeId" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="User" Relationship="Self.FK_AppliedUser" FromRole="Leave_Approval_Matrix" ToRole="Users" />
+    <NavigationProperty Name="User1" Relationship="Self.FK_ApproverUser" FromRole="Leave_Approval_Matrix" ToRole="Users" />
+    <NavigationProperty Name="LeaveType" Relationship="Self.FK_UserLeaveType" FromRole="Leave_Approval_Matrix" ToRole="LeaveType" />
+  </EntityType>
+  <EntityType Name="LeaveType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeaveType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Leave_Approval_Matrix" Relationship="Self.FK_UserLeaveType" FromRole="LeaveType" ToRole="Leave_Approval_Matrix" />
+    <NavigationProperty Name="TotalLeaveCounts" Relationship="Self.FK_LeaveType" FromRole="LeaveType" ToRole="TotalLeaveCount" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TotalLeaveCount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LeaveTypeId" Type="Int32" Nullable="false" />
+    <Property Name="Count" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="LeaveType" Relationship="Self.FK_LeaveType" FromRole="TotalLeaveCount" ToRole="LeaveType" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="designationTypeId" Type="Int32" Nullable="false" />
+    <Property Name="reportingToUserId" Type="Int32" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Designation" Relationship="Self.FK_Users_Designation" FromRole="Users" ToRole="Designation" />
+    <NavigationProperty Name="Leave_Approval_Matrix" Relationship="Self.FK_AppliedUser" FromRole="Users" ToRole="Leave_Approval_Matrix" />
+    <NavigationProperty Name="Leave_Approval_Matrix1" Relationship="Self.FK_ApproverUser" FromRole="Users" ToRole="Leave_Approval_Matrix" />
+  </EntityType>
+  <Association Name="FK_Users_Designation">
+    <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+    <End Role="Users" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Designation">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Users">
+        <PropertyRef Name="designationTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AppliedUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leave_Approval_Matrix">
+        <PropertyRef Name="userId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ApproverUser">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leave_Approval_Matrix">
+        <PropertyRef Name="approverId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLeaveType">
+    <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+    <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaveType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Leave_Approval_Matrix">
+        <PropertyRef Name="LeaveTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LeaveType">
+    <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+    <End Role="TotalLeaveCount" Type="Self.TotalLeaveCount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LeaveType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TotalLeaveCount">
+        <PropertyRef Name="LeaveTypeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PLLMSEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Designations" EntityType="Self.Designation" />
+    <EntitySet Name="Leave_Approval_Matrix" EntityType="Self.Leave_Approval_Matrix" />
+    <EntitySet Name="LeaveTypes" EntityType="Self.LeaveType" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TotalLeaveCounts" EntityType="Self.TotalLeaveCount" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_Users_Designation" Association="Self.FK_Users_Designation">
+      <End Role="Designation" EntitySet="Designations" />
+      <End Role="Users" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AppliedUser" Association="Self.FK_AppliedUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ApproverUser" Association="Self.FK_ApproverUser">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLeaveType" Association="Self.FK_UserLeaveType">
+      <End Role="LeaveType" EntitySet="LeaveTypes" />
+      <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LeaveType" Association="Self.FK_LeaveType">
+      <End Role="LeaveType" EntitySet="LeaveTypes" />
+      <End Role="TotalLeaveCount" EntitySet="TotalLeaveCounts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

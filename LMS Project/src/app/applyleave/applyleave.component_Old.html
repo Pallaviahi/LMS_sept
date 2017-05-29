@@ -1,0 +1,70 @@
+  <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Forms
+                        </h1>
+                        <ol class="breadcrumb">
+                            <li>
+                                <i class="fa fa-dashboard"></i>  <a href="index.html">Form</a>
+                            </li>
+                            <li class="active">
+                                <i class="fa fa-edit"></i> Forms
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+  <div class="row">
+                    <div class="col-lg-6">
+ 
+                        <form role="form">
+                            
+                            <!--<select>
+                                <option *ngFor="let country of countries" value= {{country.id}}>
+                                    {{country.name}}
+                                </option>
+                            </select>-->
+
+                             <div class="form-group">
+                                <label>Type Of Leave</label>
+                                <select class="form-control">
+                                    <option *ngFor="let leavetype of testTypes" value= {{leavetype.id}}>
+                                    {{leavetype.typeOfLeave}}
+                                </option>
+                                </select>
+                            </div>
+
+
+                            
+                                                                                                                <div class="form-group">
+                                <label>Reason</label>
+                                <textarea class="form-control" rows="4"></textarea>
+                            </div>
+                        </form>
+ 
+                    </div>
+                    <div class="col-lg-6">
+                                                                                <form role="form">
+                            <div class="form-group">
+                                <label>Apply To</label>
+                                <select class="form-control">
+                                   <option *ngFor="let aprrover of approvers" value= {{aprrover.id}}>
+                                    {{aprrover.firstName}}
+                                </option>
+                                </select>
+                            </div>
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker1'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                </div>
+            </div>
+               <button type="submit" class="btn btn-lg btn-success">Submit</button>
+                            <button type="reset" class="btn btn-lg btn-danger">Cancel</button>
+                                                                                </form>
+                    </div>
+                <!-- /.row -->
+                <!-- /.row -->
+
+            </div>

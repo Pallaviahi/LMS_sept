@@ -1,0 +1,110 @@
+<div class="container">
+  <!-- Page Heading -->
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">
+        Dashboard <small>Statistics Overview</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li class="active">
+          <i class="fa fa-dashboard"></i> Dashboard
+        </li>
+      </ol>
+    </div>
+  </div>
+  <!-- /.row -->
+  <div class="panel-group" id="accordion">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Leave Summary</a>
+        </h4>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="">
+            <ng2-smart-table style="font-size:15px" [source]="source" [settings]="LeaveSummarysettings"></ng2-smart-table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Applied Leave</a>
+        </h4>
+      </div>
+      <div id="collapse2" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="">
+            <ng2-smart-table style="font-size:15px" [source]="AppliedLeaves" [settings]="AppliedLeavesettings"></ng2-smart-table>
+          </div>
+          <!--<table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Start Date</th>
+                <th>Reason</th>
+                <th>Approver</th>
+                <th>Leave Category</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let appliedleaves of appliedLeave">
+                <td>{{appliedleaves.startDate}}</td>
+                <td>{{appliedleaves.reason}}</td>
+                <td>{{appliedleaves.Approver}}</td>
+                <td>{{appliedleaves.LeaveCategory}}</td>
+               
+                <td>{{appliedleaves.status}}</td>
+              </tr>
+            </tbody>
+          </table>-->
+        </div>
+      </div>
+    </div>
+    <div *ngIf="currentUser.designationTypeId != 5 || currentUser.designationTypeId != 4 " class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Leave Requests</a>
+        </h4>
+      </div>
+      <div id="collapse3" class="panel-collapse collapse">
+        <div class="panel-body">
+          <div class="">
+            <ng2-smart-table style="font-size:15px" [source]="LeaveRequests" [settings]="LeaveRequestSettings"></ng2-smart-table>
+          </div>
+          <!--<table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Date</th>
+                <th>Leave Type</th>
+                <th>Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let leaverequest of leaveRequests">
+                <td>{{leaverequest.name}}</td>
+                <td>{{leaverequest.email}}</td>
+                <td>{{leaverequest.startDate}}</td>
+                <td>{{leaverequest.LeaveCategory}}</td>
+                <td>{{leaverequest.reason}}</td>
+                <td>{{leaverequest.status}}</td>
+                <td><button (click)="openPopup('small', 'Hello Small Popup')" type="button" class="btn btn-xs btn-success">Success</button>
+                  <button type="button" class="btn btn-xs btn-danger">Reject</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>-->
+         
+        </div>
+      </div>
+    </div>
+    <!--Popup-->
+     <ngui-popup #popup>Hello Popup</ngui-popup>
+  </div>
+</div>

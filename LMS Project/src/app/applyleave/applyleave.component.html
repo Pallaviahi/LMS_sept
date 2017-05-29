@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">
+            Forms
+        </h1>
+        <ol class="breadcrumb">
+            <li>
+                <i class="fa fa-dashboard"></i> <a href="index.html">Form</a>
+            </li>
+            <li class="active">
+                <i class="fa fa-edit"></i> Forms
+            </li>
+        </ol>
+    </div>
+</div>
+<div class="row">
+    <form role="form" #f="ngForm" (ngSubmit)="f.form.valid && applyLeave()">
+        <div class="col-lg-6">
+            <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !leaveTypeId.valid }">
+                <label>Type Of Leave</label>
+                <select [(ngModel)]="model.leaveTypeId" name="leaveTypeId" #leaveTypeId="ngModel" class="form-control" required>
+         <option *ngFor="let leavetype of testTypes" [selected]="model.leaveTypeId" value= {{leavetype.id}}>
+            {{leavetype.typeOfLeave}}
+         </option>
+         </select>
+                <div *ngIf="f.submitted && !leaveTypeId.valid" class="help-block">Type of Leave is required
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !reason.valid }">
+                <label>Reason</label>
+                <textarea class="form-control" [(ngModel)]="model.reason" name="reason" #reason="ngModel" rows="4" required></textarea>
+                <div *ngIf="f.submitted && !reason.valid" class="alert btn-alert help-block">Reason is required
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !approverId.valid }">
+                <label>Apply To</label>
+                <select [(ngModel)]="model.approverId" name="approverId" #approverId="ngModel" class="form-control" required>
+                    <option *ngFor="let aprrover of approvers" value= {{aprrover.id}}>
+                        {{aprrover.firstName}}
+                    </option>
+                </select>
+                <div *ngIf="f.submitted && !approverId.valid" class="help-block">Approver is required
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !startDate.valid }">
+                <label>Start Date</label>
+                <div>
+                    <ng2-datepicker [options]="options" required name="startDate" #startDate="ngModel" [(ngModel)]="model.startDateModel"></ng2-datepicker>
+                </div>
+                <div *ngIf="f.submitted && !startDate.valid" class="help-block">Start Date is required
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !endDate.valid }">
+                <label>End Date</label>
+                <div>
+                    <ng2-datepicker [options]="options" name="endDate" #endDate="ngModel" [(ngModel)]="model.endDateModel" required></ng2-datepicker>
+                </div>
+                <div *ngIf="f.submitted && !endDate.valid" class="help-block">End Date is required
+                </div>
+            </div>
+            <button type="submit" class="btn btn-lg btn-success">Submit</button>
+            <button type="reset" class="btn btn-lg btn-danger">Cancel</button>
+            <!--<simple-notifications [options]="options"></simple-notifications>-->
+        </div>
+        <!-- /.row -->
+        <!-- /.row -->
+    </form>
+</div>

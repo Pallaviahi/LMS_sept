@@ -1,0 +1,245 @@
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe.config
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.rsp
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.exe
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.rsp
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\System.AppContext.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe.config
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.rsp
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe
+C:\Official\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+C:\Official\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll.config
+C:\Official\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\LMS Api.pdb
+C:\Official\New LMS API\LMS Api\LMS Api\bin\EntityFramework.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\EntityFramework.xml
+C:\Official\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.xml
+C:\Official\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Official\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.xml
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.xml
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.xml
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.xml
+C:\Official\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+C:\Official\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.dll
+C:\Official\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.pdb
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Cors.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.dll
+C:\Official\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe.config
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.rsp
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.exe
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.rsp
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\System.AppContext.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe.config
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.rsp
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll.config
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\LMS Api.pdb
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\EntityFramework.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Cors.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\EntityFramework.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.xml
+D:\LMS\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+D:\LMS\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.dll
+D:\LMS\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.pdb
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe.config
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.rsp
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.exe
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.rsp
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\System.AppContext.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe.config
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.rsp
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll.config
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\LMS Api.pdb
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\EntityFramework.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Cors.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\EntityFramework.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.xml
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.dll
+C:\Users\arun\Desktop\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.pdb
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe.config
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\csc.rsp
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.exe
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\csi.rsp
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\System.AppContext.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe.config
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\vbc.rsp
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll.config
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\LMS Api.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\LMS Api.pdb
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\EntityFramework.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Cors.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\EntityFramework.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.xml
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.dll
+C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.pdb
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\csc.exe.config
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\csc.rsp
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\csi.exe
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\csi.rsp
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\System.AppContext.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\vbc.exe.config
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\vbc.rsp
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\LMS Api.dll.config
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\LMS Api.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\LMS Api.pdb
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\EntityFramework.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Cors.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Http.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\EntityFramework.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\EntityFramework.SqlServer.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Http.Cors.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\Newtonsoft.Json.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Net.Http.Formatting.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Http.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\bin\System.Web.Http.WebHost.xml
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.dll
+C:\Official\Code LMS Current\LMS API\LMS Api\LMS Api\obj\Debug\LMS Api.pdb
