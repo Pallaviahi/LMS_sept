@@ -2,7 +2,7 @@
 
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
-
+import { GlobalService } from '../global';
 @Component({
     moduleId: module.id.toString(),
     templateUrl: 'home.component.html'
@@ -13,12 +13,14 @@ import { UserService } from '../_services/index';
 export class HomeComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
+     
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService,private globalVar:GlobalService) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
+        // this.globalVar.loading = true;
         this.loadAllUsers();
     }
 

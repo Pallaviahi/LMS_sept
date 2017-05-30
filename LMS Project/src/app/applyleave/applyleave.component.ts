@@ -6,6 +6,7 @@ import { types } from '../_models/index';
 import { applyLeaveModel } from '../_models/index';
 import { DatePickerOptions, DateModel } from 'ng2-datepicker';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { GlobalService } from '../global';
 
 @Component({
     moduleId: module.id.toString(),
@@ -25,7 +26,7 @@ export class ApplyLeaveComponent implements OnInit {
         firstWeekdaySunday: false,
     });
 
-    constructor(private router: Router, private userService: UserService, public toastr: ToastsManager, vcr: ViewContainerRef) {
+    constructor(private router: Router, private userService: UserService, public toastr: ToastsManager, vcr: ViewContainerRef,private globalVar:GlobalService) {
         this.options = new DatePickerOptions();
         this.toastr.setRootViewContainerRef(vcr);
     }
@@ -65,10 +66,14 @@ export class ApplyLeaveComponent implements OnInit {
         this.model.remarks = null;
         this.model.startDate = this.model.startDateModel.formatted;//this.model.startDate.momentObj.toDate();
         this.model.endDate = this.model.endDateModel.formatted;//this.model.endDate.momentObj.toDate();
+
+        this.globalVar.loading = true;
+
         this.userService.leaveApplication(this.model)
             .subscribe(
             data => {
                 if (data.status == 200) {
+                    this.globalVar.loading = false;
                     this.showSuccess();
                 }
             });

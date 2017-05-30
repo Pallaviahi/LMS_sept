@@ -2,8 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-
-// used to create fake backend
+ 
 import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -20,6 +19,7 @@ import { AdminComponent } from './admin/index';
 import { ApplyLeaveComponent } from './applyleave/index';
 import { RegisterComponent } from './register/index';
 import { ConfigService } from './config/apiconfig';
+import { GlobalService } from './global';
 import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 import { DatePickerModule } from 'ng2-datepicker';
@@ -35,6 +35,7 @@ import { ToastModule, ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 //import { NguiPopupComponent, NguiPopupModule } from '@ngui/popup';
 import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
+
 
 export class CustomOptions extends ToastOptions {
     animate = 'fade';
@@ -81,6 +82,7 @@ export class CustomOptions extends ToastOptions {
         AuthenticationService,
         UserService,
         ConfigService,
+        GlobalService,
         // providers used to create fake backend
         fakeBackendProvider,
         MockBackend,

@@ -58,7 +58,7 @@ private updateDb(){
         var errMessage = '';
         this.model.id = 3;
         this.model.status = 1;
-        this.model.reason = #textbox2;
+        this.model.reason = "hello";
         this.userService.updatedb(this.model)
             .subscribe(
             data => {

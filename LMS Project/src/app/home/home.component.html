@@ -1,46 +1,45 @@
-﻿<div class="navbar-inverse">
-        <div class="navbar-header">
-          <a href="../" class="navbar-brand">PLLMS</a>
-        </div>
-        <div class="navbar-collapse collapse" id="navbar-main">
-          <ul class="nav navbar-nav">
-          </ul>
-        <ul class="nav navbar-nav navbar-right">
-          </ul>
-           </div>
-      
+﻿<div>
+  <div class="navbar-inverse">
+    <div class="navbar-header">
+      <a href="../" class="navbar-brand">PLLMS</a>
     </div>
-<div class="navbar-header">
-               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+    <div class="navbar-collapse collapse" id="navbar-main">
+      <ul class="nav navbar-nav">
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      </ul>
+    </div>
+
+  </div>
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"></a>
-            </div>
-<div class="navbar navbar-inverse navbar-fixed-left">
-  <ul class="nav navbar-nav">
-  <!-- <li><a href="#"> <i class="fa fa-dashboard"></i> Dashboard</a></li>-->
-   <li><a [routerLink]="['/userdashboard']"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
-   <li><a [routerLink]="['/applyleave']"> <i class="fa fa-wpforms"></i> Apply Leave</a></li>
-   <li><a href="#"> <i class="fa fa-dashboard"></i> Leave Policy</a></li>
-   <li><a href="#"> <i class="fa fa-dashboard"></i> Holiday Calendar</a></li>
-   
-  </ul>
+    <a class="navbar-brand" href="index.html"></a>
+  </div>
+  <div class="navbar navbar-inverse navbar-fixed-left">
+    <ul class="nav navbar-nav">
+      <!-- <li><a href="#"> <i class="fa fa-dashboard"></i> Dashboard</a></li>-->
+      <li><a [routerLink]="['/userdashboard']"> <i class="fa fa-dashboard"></i> Dashboard</a></li>
+      <li><a [routerLink]="['/applyleave']"> <i class="fa fa-wpforms"></i> Apply Leave</a></li>
+      <li><a href="#"> <i class="fa fa-dashboard"></i> Leave Policy</a></li>
+      <li><a href="#"> <i class="fa fa-dashboard"></i> Holiday Calendar</a></li>
+
+    </ul>
+  </div>
+  <div class="container">
+    <div class="row">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
+<div *ngIf="globalVar.loading == true" class="loading">Loading..</div>
 
 
-
-<div class="container">
- <div class="row">
-   <router-outlet></router-outlet>
- </div>
-</div>
-
-
-
- <!--<div class="">
+<!--<div class="">
      <div>
         <nav class="navbar navbar-inverse">
   <div class="container-fluid">

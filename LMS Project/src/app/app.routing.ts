@@ -9,31 +9,35 @@ import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 
 const appRoutes: Routes = [
-    { path: '', component: HomeComponent, canActivate: [AuthGuard],
+    {
+        path: '', component: HomeComponent, canActivate: [AuthGuard],
         children: [
             {
                 path: 'applyleave',
-                component: ApplyLeaveComponent,                
+                component: ApplyLeaveComponent,
             },
-             {
+            {
                 path: 'userdashboard',
-                component: UserComponent,                
+                component: UserComponent,
             },
-        ]        
+        ]
     },
+    
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
-    { path: 'admin', component: AdminComponent,canActivate: [AuthGuard],
-children: [
+    {
+        path: 'admin', component: AdminComponent, canActivate: [AuthGuard],
+        children: [
             {
                 path: 'admindashboard',
-                component: AdminDashComponent,                
+                component: AdminDashComponent,
             }
-        ]    },
+        ]
+    },
     // { path: 'applyleave', component: ApplyLeaveComponent,canActivate: [AuthGuard]},
     // otherwise redirect to home
     { path: '**', redirectTo: '' }
-    
+
 ];
 
 export const routing = RouterModule.forRoot(appRoutes); 
