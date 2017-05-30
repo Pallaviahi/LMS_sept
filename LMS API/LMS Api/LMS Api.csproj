@@ -140,6 +140,7 @@
       <DependentUpon>LMS.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\appliedleave.cs" />
+    <Compile Include="Models\leaveapproved.cs" />
     <Compile Include="Models\leaverequests.cs" />
     <Compile Include="Models\leaveType.cs" />
     <Compile Include="Models\users.cs" />

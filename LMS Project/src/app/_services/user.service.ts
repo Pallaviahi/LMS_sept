@@ -1,7 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { User,types,applyLeaveModel } from '../_models/index';
+import { User,types,applyLeaveModel,approvedLeaveModel } from '../_models/index';
 import { ConfigService } from '../config/apiconfig';
 import {Observable} from 'rxjs/Observable';
  
@@ -104,6 +104,15 @@ export class UserService {
                 return leaverequests;
             });
     }   
+
+     updatedb(approvedleaveModel:approvedLeaveModel) {
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            let options = new RequestOptions({ headers: headers });      
+            return this.http.post(this._baseUrl +'/user/ApprovedLeave', approvedleaveModel,options)
+                .map((response: Response) => {
+                 //   console.log(response);
+            });
+    }    
     // private helper methods
 
     private jwt() {

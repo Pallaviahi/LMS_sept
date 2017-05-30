@@ -33,7 +33,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CustomFormsModule } from 'ng2-validation';
 import { ToastModule, ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NguiPopupComponent, NguiPopupModule } from '@ngui/popup';
+//import { NguiPopupComponent, NguiPopupModule } from '@ngui/popup';
+import { Ng2Bs3ModalModule } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 export class CustomOptions extends ToastOptions {
     animate = 'fade';
@@ -56,7 +57,8 @@ export class CustomOptions extends ToastOptions {
         CustomFormsModule,
         ToastModule.forRoot(),
         BrowserAnimationsModule,
-        NguiPopupModule
+        //NguiPopupModule,
+        Ng2Bs3ModalModule
     ],
     declarations: [
         AppComponent,
@@ -86,7 +88,7 @@ export class CustomOptions extends ToastOptions {
         { provide: ToastOptions, useClass: CustomOptions }
     ],
     bootstrap: [AppComponent],
-    entryComponents: [NguiPopupComponent]
+    //entryComponents: [NguiPopupComponent]
 })
 
 export class AppModule { }

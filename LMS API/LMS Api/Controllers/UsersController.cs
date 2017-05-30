@@ -264,6 +264,7 @@ namespace LMS_Api.Controllers
                                   where k.userId == userId
                                   select new
                                   {
+                                      id = k.Id,
                                       name = u.firstName + " " + u.lastName,
                                       email = u.email,
                                       date = k.startDate,
@@ -296,6 +297,35 @@ namespace LMS_Api.Controllers
             }
         }
 
+
+        //Leaveapproved
+        [HttpPost]
+        [Route("ApprovedLeave")]
+        public IHttpActionResult LeaveApproved(leaveapproved objApprovedLeaveMatrix)
+        {
+            try
+            {
+                Leave_Approval_Matrix objLeave_Approval_Matrix = new Leave_Approval_Matrix();
+                var approvedleave = db.Leave_Approval_Matrix.Where(x => x.Id == objApprovedLeaveMatrix.id);
+                if (approvedleave == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    objLeave_Approval_Matrix.reason = objApprovedLeaveMatrix.reason;
+                    objLeave_Approval_Matrix.status = objApprovedLeaveMatrix.status;
+                    // db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                    db.SaveChanges();
+                    return Ok("Saved");
+                }
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
 
         // PUT: api/Users/5
         [ResponseType(typeof(void))]
