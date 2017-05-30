@@ -23,12 +23,17 @@ import { ConfigService } from './config/apiconfig';
 import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 import { DatePickerModule } from 'ng2-datepicker';
-// import { SimpleNotificationsModule } from 'angular2-notifications';
+
+import { DataTableModule } from "angular2-datatable";
+import { DataFilterPipe } from './_helpers/data-filter.pipe';
+import { LeaveTypesFilterPipe } from './_helpers/LeaveTypesdata-filter.pipe';
+import { AppliedLeaveFilterPipe } from './_helpers/appliedLeave-filter.pipe';
+
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CustomFormsModule } from 'ng2-validation';
 import { ToastModule, ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {NguiPopupComponent, NguiPopupModule } from '@ngui/popup';
+import { NguiPopupComponent, NguiPopupModule } from '@ngui/popup';
 
 export class CustomOptions extends ToastOptions {
     animate = 'fade';
@@ -46,12 +51,12 @@ export class CustomOptions extends ToastOptions {
         HttpModule,
         routing,
         DatePickerModule,
-        // DataTableModule,
+        DataTableModule,
         Ng2SmartTableModule,
         CustomFormsModule,
         ToastModule.forRoot(),
         BrowserAnimationsModule,
-         NguiPopupModule
+        NguiPopupModule
     ],
     declarations: [
         AppComponent,
@@ -62,8 +67,11 @@ export class CustomOptions extends ToastOptions {
         AdminComponent,
         ApplyLeaveComponent,
         UserComponent,
-        AdminDashComponent
+        AdminDashComponent,
 
+        DataFilterPipe,
+        LeaveTypesFilterPipe,
+        AppliedLeaveFilterPipe
     ],
     providers: [
         AuthGuard,
@@ -78,7 +86,7 @@ export class CustomOptions extends ToastOptions {
         { provide: ToastOptions, useClass: CustomOptions }
     ],
     bootstrap: [AppComponent],
-    entryComponents:[NguiPopupComponent]
+    entryComponents: [NguiPopupComponent]
 })
 
 export class AppModule { }

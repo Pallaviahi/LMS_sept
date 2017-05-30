@@ -22,9 +22,41 @@
       </div>
       <div id="collapse1" class="panel-collapse collapse">
         <div class="panel-body">
-          <div class="">
-            <ng2-smart-table style="font-size:15px" [source]="source" [settings]="LeaveSummarysettings"></ng2-smart-table>
-          </div>
+          <table class="table table-striped" [mfData]="usersLeaves | LeaveTypesFilter : filterQuery" #mf2="mfDataTable" [mfRowsOnPage]="5">
+            <thead>
+              <tr>
+                <th colspan="5">
+                  Filter by Leave Type:
+                  <input class="form-control" [(ngModel)]="filterQuery" />
+                </th>
+              </tr>
+              <tr>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="LeaveType1">Leave Type</mfDefaultSorter>
+                </th>
+                <th style="width: 50%">
+                  <mfDefaultSorter by="Count">Alloted Types</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                  <mfDefaultSorter by="LeaveBalance">Balance Leave</mfDefaultSorter>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of mf2.data">
+                <td>{{item.LeaveType1}}</td>
+                <td>{{item.Count}}</td>
+                <td>{{item.LeaveBalance}}</td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </div>
@@ -36,34 +68,54 @@
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-          <div class="">
-            <ng2-smart-table style="font-size:15px" [source]="AppliedLeaves" [settings]="AppliedLeavesettings"></ng2-smart-table>
-          </div>
-          <!--<table class="table table-bordered">
+          <table class="table table-striped" [mfData]="appliedLeave | appliedLeavePipe : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
               <tr>
-                <th>Start Date</th>
-                <th>Reason</th>
-                <th>Approver</th>
-                <th>Leave Category</th>
-                <th>Status</th>
+                <th colspan="5">
+                  Filter by reason:
+                  <input class="form-control" [(ngModel)]="filterQuery" />
+                </th>
+              </tr>
+              <tr>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="startDate">Start Date</mfDefaultSorter>
+                </th>
+                <th style="width: 50%">
+                  <mfDefaultSorter by="reason">Reason</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                  <mfDefaultSorter by="Approver">Approver</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="LeaveCategory">Leave Category</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let appliedleaves of appliedLeave">
-                <td>{{appliedleaves.startDate}}</td>
-                <td>{{appliedleaves.reason}}</td>
-                <td>{{appliedleaves.Approver}}</td>
-                <td>{{appliedleaves.LeaveCategory}}</td>
-               
-                <td>{{appliedleaves.status}}</td>
+              <tr *ngFor="let item of mf.data">
+                <td>{{item.startDate}}</td>
+                <td>{{item.reason}}</td>
+                <td>{{item.Approver}}</td>
+                <td>{{item.LeaveCategory}}</td>
+                <td>{{item.status}}</td>
               </tr>
             </tbody>
-          </table>-->
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </div>
-    <div *ngIf="currentUser.designationTypeId != 5 || currentUser.designationTypeId != 4 " class="panel panel-default">
+    <div *ngIf="currentUser.designationTypeId == 1 || currentUser.designationTypeId == 2 || currentUser.designationTypeId == 3 "
+      class="panel panel-default">
       <div class="panel-heading">
         <h4 class="panel-title">
           <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Leave Requests</a>
@@ -71,40 +123,57 @@
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
-          <div class="">
-            <ng2-smart-table style="font-size:15px" [source]="LeaveRequests" [settings]="LeaveRequestSettings"></ng2-smart-table>
-          </div>
-          <!--<table class="table table-bordered">
+          <table class="table table-striped" [mfData]="leaveRequests | dataFilter : filterQuery" #mf3="mfDataTable" [mfRowsOnPage]="5">
             <thead>
               <tr>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Date</th>
-                <th>Leave Type</th>
-                <th>Reason</th>
-                <th>Status</th>
-                <th>Action</th>
+                <th colspan="5">
+                  Filter by reason:
+                  <input class="form-control" [(ngModel)]="filterQuery" />
+                </th>
+              </tr>
+              <tr>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                </th>
+                <th style="width: 50%">
+                  <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                </th>
+                <th style="width: 10%">
+                  <mfDefaultSorter by="startDate">Start Date</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="LeaveCategory">Leave Category</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="reason">Reason</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
+                  <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let leaverequest of leaveRequests">
-                <td>{{leaverequest.name}}</td>
-                <td>{{leaverequest.email}}</td>
-                <td>{{leaverequest.startDate}}</td>
-                <td>{{leaverequest.LeaveCategory}}</td>
-                <td>{{leaverequest.reason}}</td>
-                <td>{{leaverequest.status}}</td>
-                <td><button (click)="openPopup('small', 'Hello Small Popup')" type="button" class="btn btn-xs btn-success">Success</button>
-                  <button type="button" class="btn btn-xs btn-danger">Reject</button>
-                </td>
+              <tr *ngFor="let item of mf3.data">
+                <td>{{item.name}}</td>
+                <td>{{item.email}}</td>
+                <td>{{item.startDate}}</td>
+                <td>{{item.LeaveCategory}}</td>
+                <td>{{item.reason}}</td>
+                <td>{{item.status}}</td>
               </tr>
             </tbody>
-          </table>-->
-         
+            <tfoot>
+              <tr>
+                <td colspan="4">
+                  <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       </div>
     </div>
     <!--Popup-->
-     <ngui-popup #popup>Hello Popup</ngui-popup>
+    <ngui-popup #popup>Hello Popup</ngui-popup>
   </div>
 </div>

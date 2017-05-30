@@ -22,6 +22,7 @@
     "@ngui/popup": "^0.5.1",
     "@types/lodash": "^4.14.64",
     "angular-2-data-table": "^0.1.2",
+    "angular2-datatable": "^0.6.0",
     "angular2-notifications": "^0.7.4",
     "core-js": "^2.4.1",
     "lodash": "^4.17.4",

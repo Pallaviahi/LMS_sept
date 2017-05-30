@@ -10,18 +10,15 @@ import { NguiMessagePopupComponent, NguiPopupComponent } from '@ngui/popup';
     templateUrl: 'user.component.html'
 })
 
-
-
 export class UserComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
     usersLeaves: any[] = [];
-    public source = new LocalDataSource();
-    public AppliedLeaves = new LocalDataSource();
-    public LeaveRequests = new LocalDataSource();
+
     public appliedLeave: any[] = [];
     public testTypes: any[] = [];
     public leaveRequests: any[] = [];
+    public filterQuery = "";
     message: string;
     @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
 
@@ -35,7 +32,7 @@ export class UserComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        // 
     }
 
     deleteUser(id: number) {
@@ -51,7 +48,6 @@ export class UserComponent implements OnInit {
             for (var v of data) {
                 this.usersLeaves.push(v);
             }
-            this.source.load(this.usersLeaves);
         });
     }
 
@@ -63,7 +59,6 @@ export class UserComponent implements OnInit {
                 for (var v of data) {
                     this.testTypes.push(v);
                 }
-                console.log(data);
             });
     }
 
@@ -73,9 +68,11 @@ export class UserComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
+                    if (v.status == 0) { v.status = "Pending" }
+                    if (v.status == 1) { v.status = "Approved" }
+                    if (v.status == 2) { v.status = "Rejected" }
                     this.appliedLeave.push(v);
                 }
-                this.AppliedLeaves.load(this.appliedLeave);
             });
     }
 
@@ -85,18 +82,11 @@ export class UserComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
-                    if(v.status == 0){
-                        v.status = "Pending"
-                    }
-                    if(v.status == 1){
-                        v.status = "Approved"
-                    }
-                    if(v.status == 2){
-                        v.status = "Rejected"
-                    }
+                    if (v.status == 0) { v.status = "Pending" }
+                    if (v.status == 1) { v.status = "Approved" }
+                    if (v.status == 2) { v.status = "Rejected" }
                     this.leaveRequests.push(v);
                 }
-                this.LeaveRequests.load(this.leaveRequests);
             });
     }
 
@@ -113,78 +103,4 @@ export class UserComponent implements OnInit {
             }
         });
     }
-
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    LeaveSummarysettings = {
-        actions: false,
-        columns: {
-            LeaveType1: {
-                title: 'Leave Type'
-            },
-            Count: {
-                title: 'Alloted Types'
-            },
-            LeaveBalance: {
-                title: 'Balance Leave'
-            },
-        },
-        pager: {
-            display: true,
-            perPage: 5
-        }
-    };
-
-    AppliedLeavesettings = {
-        actions: false,
-        columns: {
-            startDate: {
-                title: 'Start Date'
-            },
-            reason: {
-                title: 'Reason'
-            },
-            Approver: {
-                title: 'Approver'
-            },
-            LeaveCategory: {
-                title: 'Leave Category'
-            },
-            status: {
-                title: 'status'
-            },
-        },
-        pager: {
-            display: true,
-            perPage: 5
-        }
-    };
-
-    LeaveRequestSettings = {
-        actions: false,
-        columns: {
-            name: {
-                title: 'Name'
-            },
-            email: {
-                title: 'Email'
-            },
-            startDate: {
-                title: 'Date'
-            },
-            LeaveCategory: {
-                title: 'Leave Type'
-            },
-            reason: {
-                title: 'Reason'
-            },
-            status: {
-                title: 'status'
-            },
-        },
-        pager: {
-            display: true,
-            perPage: 5
-        },
-    };
 }
