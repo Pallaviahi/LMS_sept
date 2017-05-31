@@ -75,7 +75,7 @@ export class UserComponent implements OnInit {
             },
             error => {
                    this.globalVar.loading = false;
-                   this.toastr.error('Something wrong !'); 
+                   this.toastr.error('Something went wrong !'); 
             });
 
 

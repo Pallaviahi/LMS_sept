@@ -71,7 +71,6 @@ export class CustomOptions extends ToastOptions {
         ApplyLeaveComponent,
         UserComponent,
         AdminDashComponent,
-
         DataFilterPipe,
         LeaveTypesFilterPipe,
         AppliedLeaveFilterPipe

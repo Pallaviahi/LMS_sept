@@ -16,7 +16,7 @@ import { GlobalService } from '../global';
 export class ApplyLeaveComponent implements OnInit {
 
     model: applyLeaveModel = new applyLeaveModel;
-     
+
     public testTypes: any[] = [];
     public approvers: any[] = [];
 
@@ -26,7 +26,7 @@ export class ApplyLeaveComponent implements OnInit {
         firstWeekdaySunday: false,
     });
 
-    constructor(private router: Router, private userService: UserService, public toastr: ToastsManager, vcr: ViewContainerRef,private globalVar:GlobalService) {
+    constructor(private router: Router, private userService: UserService, public toastr: ToastsManager, vcr: ViewContainerRef, private globalVar: GlobalService) {
         this.options = new DatePickerOptions();
         this.toastr.setRootViewContainerRef(vcr);
     }
@@ -76,6 +76,10 @@ export class ApplyLeaveComponent implements OnInit {
                     this.globalVar.loading = false;
                     this.showSuccess();
                 }
+            },
+            error => {
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
             });
     }
 
