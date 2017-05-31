@@ -188,12 +188,12 @@
          
         <div class="form-group">
             <label for="textbox">Remarks</label>
-            <textarea autofocus type="text"  [(ngModel)]="reason" class="form-control" id="textbox2"></textarea>
+            <textarea autofocus type="text"  [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
         </div> 
       </modal-body>
       <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)=" updateLeaveApplication(0)">Reject</button>
-        <button type="button" class="btn btn-primary" (click)=" updateLeaveApplication(1)">Accept</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(0)">Reject</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(1)">Accept</button>
       </modal-footer>
     </modal>
      

@@ -305,16 +305,16 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                Leave_Approval_Matrix objLeave_Approval_Matrix = new Leave_Approval_Matrix();
-                var approvedleave = db.Leave_Approval_Matrix.Where(x => x.Id == objApprovedLeaveMatrix.id);
+                //Leave_Approval_Matrix objLeave_Approval_Matrix = new Leave_Approval_Matrix();
+                var approvedleave = db.Leave_Approval_Matrix.Where(x => x.Id == objApprovedLeaveMatrix.id).FirstOrDefault();
                 if (approvedleave == null)
                 {
                     return NotFound();
                 }
                 else
                 {
-                    objLeave_Approval_Matrix.reason = objApprovedLeaveMatrix.reason;
-                    objLeave_Approval_Matrix.status = objApprovedLeaveMatrix.status;
+                    approvedleave.reason = objApprovedLeaveMatrix.remarks;
+                    approvedleave.status = objApprovedLeaveMatrix.status;
                     // db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
                     db.SaveChanges();
                     return Ok("Saved");

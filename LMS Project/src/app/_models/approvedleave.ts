@@ -1,5 +1,5 @@
 export class approvedLeaveModel{
-    reason:string;
+remarks:string;
     id:number;
     status:number;
 } 

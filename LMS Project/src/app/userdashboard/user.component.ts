@@ -7,6 +7,7 @@ import { NguiMessagePopupComponent, NguiPopupComponent } from '@ngui/popup';
 import { approvedLeaveModel } from '../_models/index';
 import { GlobalService } from '../global';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 @Component({
     moduleId: module.id.toString(),
@@ -14,6 +15,7 @@ import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 })
 
 export class UserComponent implements OnInit {
+    
     currentUser: User;
     users: User[] = [];
     usersLeaves: any[] = [];
@@ -22,6 +24,7 @@ export class UserComponent implements OnInit {
     public testTypes: any[] = [];
     public leaveRequests: any[] = [];
     public filterQuery = "";
+    modal: ModalComponent;
     message: string;
     @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
 
@@ -69,6 +72,10 @@ export class UserComponent implements OnInit {
             data => {
                 this.globalVar.loading = false;
                 this.toastr.success('Leave Application updated Successfully !');
+            },
+            error => {
+                   this.globalVar.loading = false;
+                   this.toastr.error('Something wrong !'); 
             });
 
 
