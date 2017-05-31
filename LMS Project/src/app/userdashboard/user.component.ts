@@ -72,6 +72,7 @@ export class UserComponent implements OnInit {
             data => {
                 this.globalVar.loading = false;
                 this.toastr.success('Leave Application updated Successfully !');
+                this.loadLeaveRequests();
             },
             error => {
                    this.globalVar.loading = false;
