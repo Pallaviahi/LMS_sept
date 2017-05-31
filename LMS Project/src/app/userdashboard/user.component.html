@@ -185,17 +185,18 @@
         <h4 class="modal-title">Leave Request</h4>
       </modal-header>
       <modal-body>
-        Hello World!
+         
         <div class="form-group">
-            <label for="textbox">Reason</label>
-            <input autofocus type="text" class="form-control" id="textbox2">
-            <button (click)="updateDb()"  type="button" class="btn btn-xs btn-success">Accept</button>
-             <button (click)="updateDb()"  type="button" class="btn btn-xs btn-success">Reject</button>
+            <label for="textbox">Remarks</label>
+            <textarea autofocus type="text"  [(ngModel)]="reason" class="form-control" id="textbox2"></textarea>
         </div> 
       </modal-body>
-      <modal-footer [show-default-buttons]="true"></modal-footer>
-      
+      <modal-footer>
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)=" updateLeaveApplication(0)">Reject</button>
+        <button type="button" class="btn btn-primary" (click)=" updateLeaveApplication(1)">Accept</button>
+      </modal-footer>
     </modal>
      
   </div>
 </div>
+<div *ngIf="globalVar.loading == true" class="loading">Loading..</div>

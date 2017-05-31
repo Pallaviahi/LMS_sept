@@ -1,10 +1,12 @@
 
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 import { LocalDataSource } from 'ng2-smart-table';
 import { NguiMessagePopupComponent, NguiPopupComponent } from '@ngui/popup';
-import {approvedLeaveModel} from '../_models/index';
+import { approvedLeaveModel } from '../_models/index';
+import { GlobalService } from '../global';
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
 
 @Component({
     moduleId: module.id.toString(),
@@ -15,7 +17,7 @@ export class UserComponent implements OnInit {
     currentUser: User;
     users: User[] = [];
     usersLeaves: any[] = [];
-    model: approvedLeaveModel = new approvedLeaveModel;
+    model: approvedLeaveModel = new approvedLeaveModel;
     public appliedLeave: any[] = [];
     public testTypes: any[] = [];
     public leaveRequests: any[] = [];
@@ -23,13 +25,14 @@ export class UserComponent implements OnInit {
     message: string;
     @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
 
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private globalVar: GlobalService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.loadAllUsers();
         this.loadUserLeaves();
         this.loadAppliedLeave();
         this.loadLeaveTypes();
         this.loadLeaveRequests();
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
@@ -52,21 +55,24 @@ export class UserComponent implements OnInit {
         });
     }
 
-private updateDb(){
-   // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
-        //setting the required properties;
-        var errMessage = '';
-        this.model.id = 3;
-        this.model.status = 1;
-        this.model.reason = "hello";
-        this.userService.updatedb(this.model)
-            .subscribe(
-            data => {
-                console.log("Saved");
-            });
+    private updateLeaveApplication(LeaveStatus: number) {
+        // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
+        //setting the required properties;  
+        var errMessage = '';
+        this.model.id = 3;
+        this.model.status = LeaveStatus;
 
-        console.log("I am approving Leave");
-}
+        this.globalVar.loading = true;
+
+        this.userService.updateLeaveApplicationService(this.model)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                this.toastr.success('Leave Application updated Successfully !');
+            });
+
+
+    }
 
     loadLeaveTypes() {
         //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
@@ -107,20 +113,20 @@ private updateDb(){
             });
     }
 
-   /* openPopup(size: number) {
-        this.popup.open(NguiMessagePopupComponent, {
-            classNames: size,
-            title: "Hello Small Popup",
-            message: "This is message given using popup.open()",
-            buttons: {
-                CANCEL: () => {
-                    this.message = "Cancel button is pressed";
-                    this.popup.close();
-                },
-                OK: () => {
-                    this.message = "Ok button is pressed";
-                },
-            }
-        });
-    }*/
+    /* openPopup(size: number) {
+         this.popup.open(NguiMessagePopupComponent, {
+             classNames: size,
+             title: "Hello Small Popup",
+             message: "This is message given using popup.open()",
+             buttons: {
+                 CANCEL: () => {
+                     this.message = "Cancel button is pressed";
+                     this.popup.close();
+                 },
+                 OK: () => {
+                     this.message = "Ok button is pressed";
+                 },
+             }
+         });
+     }*/
 }

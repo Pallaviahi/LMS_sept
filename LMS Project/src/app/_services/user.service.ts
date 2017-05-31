@@ -105,7 +105,7 @@ export class UserService {
             });
     }   
 
-     updatedb(approvedleaveModel:approvedLeaveModel) {
+    updateLeaveApplicationService(approvedleaveModel:approvedLeaveModel) {
             let headers = new Headers({ 'Content-Type': 'application/json' });
             let options = new RequestOptions({ headers: headers });      
             return this.http.post(this._baseUrl +'/user/ApprovedLeave', approvedleaveModel,options)
