@@ -313,7 +313,7 @@ namespace LMS_Api.Controllers
                 }
                 else
                 {
-                    approvedleave.reason = objApprovedLeaveMatrix.remarks;
+                    approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
                     approvedleave.status = objApprovedLeaveMatrix.status;
                     // db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
                     db.SaveChanges();
