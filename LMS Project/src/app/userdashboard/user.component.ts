@@ -15,7 +15,7 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 })
 
 export class UserComponent implements OnInit {
-    
+
     currentUser: User;
     users: User[] = [];
     usersLeaves: any[] = [];
@@ -75,11 +75,9 @@ export class UserComponent implements OnInit {
                 this.loadLeaveRequests();
             },
             error => {
-                   this.globalVar.loading = false;
-                   this.toastr.error('Something went wrong !'); 
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
             });
-
-
     }
 
     loadLeaveTypes() {
@@ -102,6 +100,7 @@ export class UserComponent implements OnInit {
                     if (v.status == 0) { v.status = "Pending" }
                     if (v.status == 1) { v.status = "Approved" }
                     if (v.status == 2) { v.status = "Rejected" }
+                    if (v.status == 3) { v.status = "1st Level Approved" }
                     this.appliedLeave.push(v);
                 }
             });
@@ -116,6 +115,7 @@ export class UserComponent implements OnInit {
                     if (v.status == 0) { v.status = "Pending" }
                     if (v.status == 1) { v.status = "Approved" }
                     if (v.status == 2) { v.status = "Rejected" }
+                    if (v.status == 3) { v.status = "1st Level Approved" }
                     this.leaveRequests.push(v);
                 }
             });

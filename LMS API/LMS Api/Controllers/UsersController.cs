@@ -12,6 +12,7 @@ using LMS_Api;
 using LMS_Api.Models;
 using System.Data.Entity.Core.Objects;
 using System.Net.Mail;
+using System.IO;
 
 namespace LMS_Api.Controllers
 {
@@ -83,7 +84,7 @@ namespace LMS_Api.Controllers
             }
         }
 
-        
+
         //Leaveapplication
         [HttpPost]
         [Route("LeaveApplication")]
@@ -110,37 +111,21 @@ namespace LMS_Api.Controllers
 
                 //////////////////////Sending Mail////////////////////////////
                 var approver_email = db.Users.Find(objLeaveMatrix.approverId).email;
-                string smtpAddress = "smtp.office365.com";
-                int portNumber = 587;
-                bool enableSSL = true;
-
-                string emailFrom = "qurratulain.saleem@premierlogic.com";
-                string password = "Aftab1968@@";
-                string emailTo = approver_email;
-                string subject = "Hello";
-                string body = "Hello, I'm just writing this to say Hi!";
 
                 using (MailMessage mail = new MailMessage())
                 {
-                    mail.From = new MailAddress(emailFrom);
-                    mail.To.Add(emailTo);
-                    mail.Subject = subject;
-                    mail.Body = body;
-                    mail.IsBodyHtml = false;
-                    // Can set to false, if you are sending pure text.
-
-                    //mail.Attachments.Add(new Attachment("C:\\SomeFile.txt"));
-                    //mail.Attachments.Add(new Attachment("C:\\SomeZip.zip"));
-
-                    using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                    mail.From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailFrom"]);
+                    mail.To.Add(approver_email);
+                    mail.Subject = System.Configuration.ConfigurationManager.AppSettings["leaveRequestsubject"] + " " + "from" + " " + db.Users.Where(x => x.Id == objLeaveMatrix.userId).FirstOrDefault().firstName + " " + db.Users.Where(x => x.Id == objLeaveMatrix.userId).FirstOrDefault().lastName; 
+                    mail.Body = replaceLeaveApplicationContentHTML(objLeaveMatrix);
+                    mail.IsBodyHtml = true;
+                    
+                    using (SmtpClient smtp = new SmtpClient(System.Configuration.ConfigurationManager.AppSettings["smtpAddress"], Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["portNumber"])))
                     {
-                        smtp.Credentials = new NetworkCredential(emailFrom, password);
-                        smtp.EnableSsl = enableSSL;
+                        smtp.Credentials = new NetworkCredential(mail.From.ToString(), System.Configuration.ConfigurationManager.AppSettings["password"]);
+                        smtp.EnableSsl = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["enableSSL"]);
                         smtp.Send(mail);
                     }
-
-
-
                     return Ok("Saved");
                 }
             }
@@ -150,8 +135,8 @@ namespace LMS_Api.Controllers
 
             }
         }
-               
-        
+
+
 
 
 
@@ -327,84 +312,108 @@ namespace LMS_Api.Controllers
             }
         }
 
-        // PUT: api/Users/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutUser(int id, User user)
+        public string replaceLeaveApplicationContentHTML(appliedleave objLeaveMatrix)
         {
-            if (!ModelState.IsValid)
+            string body = string.Empty;
+            //using streamreader for reading my htmltemplate   
+
+            using (StreamReader reader = new StreamReader(System.Web.Hosting.HostingEnvironment.MapPath("~/HtmlTemplate/Email_HTML.html")))
             {
-                return BadRequest(ModelState);
+                body = reader.ReadToEnd();
             }
 
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
+            body = body.Replace("{ApporverFirst name}", db.Users.FirstOrDefault(x => x.Id == objLeaveMatrix.approverId).firstName); //replacing the required things  
 
-            db.Entry(user).State = EntityState.Modified;
+            body = body.Replace("{ApporverLast Name}", db.Users.FirstOrDefault(x => x.Id == objLeaveMatrix.approverId).lastName);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            body = body.Replace("{requesterFirst Name}", db.Users.FirstOrDefault(x => x.Id == objLeaveMatrix.userId).firstName);
 
-            return StatusCode(HttpStatusCode.NoContent);
+            body = body.Replace("{requesterLast Name}", db.Users.FirstOrDefault(x => x.Id == objLeaveMatrix.userId).lastName);
+
+            body = body.Replace("{reason}", objLeaveMatrix.reason);
+
+            return body;
+
         }
 
-        // POST: api/Users
-        [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        //// PUT: api/Users/5
+        //[ResponseType(typeof(void))]
+        //public IHttpActionResult PutUser(int id, User user)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-            db.Users.Add(user);
-            db.SaveChanges();
+        //    if (id != user.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
-        }
+        //    db.Entry(user).State = EntityState.Modified;
 
-        // DELETE: api/Users/5
-        [ResponseType(typeof(User))]
-        public IHttpActionResult DeleteUser(int id)
-        {
-            User user = db.Users.Find(id);
-            if (user == null)
-            {
-                return NotFound();
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!UserExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            db.Users.Remove(user);
-            db.SaveChanges();
+        //    return StatusCode(HttpStatusCode.NoContent);
+        //}
 
-            return Ok(user);
-        }
+        //// POST: api/Users
+        //[ResponseType(typeof(User))]
+        //public IHttpActionResult PostUser(User user)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //    db.Users.Add(user);
+        //    db.SaveChanges();
 
-        private bool UserExists(int id)
-        {
-            return db.Users.Count(e => e.Id == id) > 0;
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+        //}
+
+        //// DELETE: api/Users/5
+        //[ResponseType(typeof(User))]
+        //public IHttpActionResult DeleteUser(int id)
+        //{
+        //    User user = db.Users.Find(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    db.Users.Remove(user);
+        //    db.SaveChanges();
+
+        //    return Ok(user);
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
+
+        //private bool UserExists(int id)
+        //{
+        //    return db.Users.Count(e => e.Id == id) > 0;
+        //}
     }
 }
