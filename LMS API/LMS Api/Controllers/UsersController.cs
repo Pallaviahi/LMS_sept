@@ -246,7 +246,7 @@ namespace LMS_Api.Controllers
             var leaaverequests = (from k in db.Leave_Approval_Matrix
                                   join lt in db.LeaveTypes on k.LeaveTypeId equals lt.Id
                                   join u in db.Users on k.userId equals u.Id
-                                  where k.userId == userId
+                                  where k.approverId == userId
                                   select new
                                   {
                                       id = k.Id,
