@@ -269,6 +269,7 @@ namespace LMS_Api.Controllers
                 foreach (var item in leaaverequests)
                 {
                     leaverequests objleaveMatrix = new Models.leaverequests();
+                    objleaveMatrix.id = item.id;
                     objleaveMatrix.name = item.name;
                     objleaveMatrix.email = item.email;
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");

@@ -163,7 +163,7 @@
                 <td>{{item.reason}}</td>
                 <td>{{item.status}}</td>
                 <td>
-                  <button (click)="modal.open()" class="btn btn-info">Take Action</button>
+                  <button (click)="open(item.id)" class="btn btn-info">Take Action</button>
                 </td>
               </tr>
             </tbody>
@@ -180,7 +180,7 @@
     </div>
     <!--Popup-->
     <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
-    <modal #modal>
+    <modal #myModal>
       <modal-header [show-close]="true">
         <h4 class="modal-title">Leave Request</h4>
       </modal-header>

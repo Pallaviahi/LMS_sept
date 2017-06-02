@@ -8,6 +8,7 @@ namespace LMS_Api.Models
 
     public class leaverequests
     {
+        public int id { get; set; }
         public string name { get; set; }
         public string email { get; set; }
         public string startDate { get; set; }

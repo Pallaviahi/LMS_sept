@@ -3,7 +3,6 @@ import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { User } from '../_models/index';
 import { UserService } from '../_services/index';
 import { LocalDataSource } from 'ng2-smart-table';
-import { NguiMessagePopupComponent, NguiPopupComponent } from '@ngui/popup';
 import { approvedLeaveModel } from '../_models/index';
 import { GlobalService } from '../global';
 import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
@@ -24,9 +23,12 @@ export class UserComponent implements OnInit {
     public testTypes: any[] = [];
     public leaveRequests: any[] = [];
     public filterQuery = "";
-    modal: ModalComponent;
+    leaveRequestId: number;
+
     message: string;
-    @ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
+    @ViewChild('myModal') modal: ModalComponent;
+
+    //@ViewChild(NguiPopupComponent) popup: NguiPopupComponent;
 
     constructor(private userService: UserService, private globalVar: GlobalService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -40,6 +42,11 @@ export class UserComponent implements OnInit {
 
     ngOnInit() {
         // 
+    }
+
+    open(recordId: number) {
+        this.modal.open();
+        this.leaveRequestId = recordId;
     }
 
     deleteUser(id: number) {
@@ -62,7 +69,7 @@ export class UserComponent implements OnInit {
         // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
         //setting the required properties;  
         var errMessage = '';
-        this.model.id = 3;
+        this.model.id = this.leaveRequestId;
         this.model.status = LeaveStatus;
 
         this.globalVar.loading = true;
