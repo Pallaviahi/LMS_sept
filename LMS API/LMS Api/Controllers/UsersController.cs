@@ -97,11 +97,11 @@ namespace LMS_Api.Controllers
                 objLeave_Approval_Matrix.userId = objLeaveMatrix.userId;
                 objLeave_Approval_Matrix.startDate = Convert.ToDateTime(objLeaveMatrix.startDate);
                 objLeave_Approval_Matrix.endDate = Convert.ToDateTime(objLeaveMatrix.endDate);
-                objLeave_Approval_Matrix.daysCount = (objLeave_Approval_Matrix.endDate - objLeave_Approval_Matrix.startDate).Days;
+                objLeave_Approval_Matrix.daysCount = (objLeave_Approval_Matrix.endDate - objLeave_Approval_Matrix.startDate).Days + 1;
                 objLeave_Approval_Matrix.reason = objLeaveMatrix.reason;
-                objLeave_Approval_Matrix.status = 0;
+                objLeave_Approval_Matrix.status = 1;
                 objLeave_Approval_Matrix.approverId = objLeaveMatrix.approverId;
-                //  objLeave_Approval_Matrix.Remarks = objLeaveMatrix.Remarks;
+                objLeave_Approval_Matrix.LevelId = 1;
                 objLeave_Approval_Matrix.LeaveTypeId = objLeaveMatrix.LeaveTypeId;
                 objLeave_Approval_Matrix.createdDate = DateTime.Now;
                 objLeave_Approval_Matrix.updateDate = DateTime.Now;
@@ -116,10 +116,10 @@ namespace LMS_Api.Controllers
                 {
                     mail.From = new MailAddress(System.Configuration.ConfigurationManager.AppSettings["emailFrom"]);
                     mail.To.Add(approver_email);
-                    mail.Subject = System.Configuration.ConfigurationManager.AppSettings["leaveRequestsubject"] + " " + "from" + " " + db.Users.Where(x => x.Id == objLeaveMatrix.userId).FirstOrDefault().firstName + " " + db.Users.Where(x => x.Id == objLeaveMatrix.userId).FirstOrDefault().lastName; 
+                    mail.Subject = System.Configuration.ConfigurationManager.AppSettings["leaveRequestsubject"] + " " + "from" + " " + db.Users.Where(x => x.Id == objLeaveMatrix.userId).FirstOrDefault().firstName + " " + db.Users.Where(x => x.Id == objLeaveMatrix.userId).FirstOrDefault().lastName;
                     mail.Body = replaceLeaveApplicationContentHTML(objLeaveMatrix);
                     mail.IsBodyHtml = true;
-                    
+
                     using (SmtpClient smtp = new SmtpClient(System.Configuration.ConfigurationManager.AppSettings["smtpAddress"], Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["portNumber"])))
                     {
                         smtp.Credentials = new NetworkCredential(mail.From.ToString(), System.Configuration.ConfigurationManager.AppSettings["password"]);
@@ -157,7 +157,18 @@ namespace LMS_Api.Controllers
                                       g.Key.Count,
                                       LeaveBalance = g.Key.Count - g.Sum(x => x.daysCount)
                                   };
-
+            if (availableLeaves.Count() == 0)
+            {
+                var avaliableLeave = from tlc in db.TotalLeaveCounts
+                                     join lt in db.LeaveTypes on tlc.LeaveTypeId equals lt.Id into g
+                                     select new
+                                     {
+                                         LeaveType1 = tlc.LeaveType.LeaveType1,
+                                         Count = tlc.Count,
+                                         LeaveBalance = tlc.Count
+                                     };
+                return Ok(avaliableLeave);
+            }
 
             return Ok(availableLeaves);
         }
@@ -200,15 +211,19 @@ namespace LMS_Api.Controllers
             var appliedleave = (from k in db.Leave_Approval_Matrix
                                 join lt in db.LeaveTypes on k.LeaveTypeId equals lt.Id
                                 join u in db.Users on k.userId equals u.Id
+                                join ls in db.LeaveStatus on k.status equals ls.Id
+                                join al in db.ApprovalLevels on k.LevelId equals al.Id
                                 where k.userId == userId
                                 select new
                                 {
                                     date = k.startDate,
                                     leaveCategory = lt.LeaveType1,
-                                    approver = u.firstName + " " + u.lastName,
+                                    approver = "",//u.firstName + " " + u.lastName,
                                     reason = k.reason,
-                                    status = k.status
+                                    status = ls.Status + " with " + al.Approver,
+                                    approverId = k.approverId
                                 }).ToList();
+
 
             if (appliedleave == null)
             {
@@ -224,9 +239,12 @@ namespace LMS_Api.Controllers
                     //objleaveMatrix.userId = item.userId;
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");
                     objleaveMatrix.reason = item.reason;
-                    objleaveMatrix.Approver = item.approver;
+
+                    var user = db.Users.Where(x => x.Id == item.approverId).FirstOrDefault();
+                    objleaveMatrix.Approver = user.firstName + " " + user.lastName;
+
                     objleaveMatrix.LeaveCategory = item.leaveCategory;
-                    objleaveMatrix.status = item.status;
+                    objleaveMatrix.leaveStatus = item.status;
                     listofAppliedLeave.Add(objleaveMatrix);
                 }
 
@@ -243,21 +261,27 @@ namespace LMS_Api.Controllers
         {
             //var appliedleave = db.Leave_Approval_Matrix.Where(x => x.userId == userId).ToList();
 
-            var leaaverequests = (from k in db.Leave_Approval_Matrix
-                                  join lt in db.LeaveTypes on k.LeaveTypeId equals lt.Id
-                                  join u in db.Users on k.userId equals u.Id
-                                  where k.approverId == userId
-                                  select new
-                                  {
-                                      id = k.Id,
-                                      name = u.firstName + " " + u.lastName,
-                                      email = u.email,
-                                      date = k.startDate,
-                                      leavetype = lt.LeaveType1,
-                                      reason = k.reason,
-                                      status = k.status,
-                                      // action = 
-                                  }).ToList();
+            List<appliedleave> leaaverequests = (from k in db.Leave_Approval_Matrix
+                                                 join lt in db.LeaveTypes on k.LeaveTypeId equals lt.Id
+                                                 join u in db.Users on k.userId equals u.Id
+                                                 join ls in db.LeaveStatus on k.status equals ls.Id
+                                                 join al in db.ApprovalLevels on k.LevelId equals al.Id
+                                                 where k.approverId == userId
+                                                 select new appliedleave
+                                                 {
+                                                     id = k.Id,
+                                                     name = u.firstName + " " + u.lastName,
+                                                     email = u.email,
+                                                     date = k.startDate,
+                                                     leavetype = lt.LeaveType1,
+                                                     reason = k.reason,
+                                                     //status = k.status,
+                                                     approverId = k.approverId,
+                                                     leaveStatus = ls.Status + " with " + al.Approver,
+                                                     // action = 
+                                                 }).ToList();
+
+
 
             if (leaaverequests == null)
             {
@@ -275,7 +299,7 @@ namespace LMS_Api.Controllers
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");
                     objleaveMatrix.reason = item.reason;
                     objleaveMatrix.LeaveCategory = item.leavetype;
-                    objleaveMatrix.status = item.status;
+                    objleaveMatrix.leaveStatus = item.leaveStatus;
                     listofLeaveRequests.Add(objleaveMatrix);
                 }
 
@@ -300,8 +324,9 @@ namespace LMS_Api.Controllers
                 else
                 {
                     approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
+                    if (objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
                     approvedleave.status = objApprovedLeaveMatrix.status;
-                    // db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+
                     db.SaveChanges();
                     return Ok("Saved");
                 }

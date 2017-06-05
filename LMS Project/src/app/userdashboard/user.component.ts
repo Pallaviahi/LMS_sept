@@ -71,7 +71,6 @@ export class UserComponent implements OnInit {
         var errMessage = '';
         this.model.id = this.leaveRequestId;
         this.model.status = LeaveStatus;
-
         this.globalVar.loading = true;
 
         this.userService.updateLeaveApplicationService(this.model)
@@ -104,10 +103,10 @@ export class UserComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
-                    if (v.status == 0) { v.status = "Pending" }
-                    if (v.status == 1) { v.status = "Approved" }
-                    if (v.status == 2) { v.status = "Rejected" }
-                    if (v.status == 3) { v.status = "1st Level Approved" }
+                    // if (v.status == 0) { v.status = "Pending" }
+                    // if (v.status == 1) { v.status = "Approved" }
+                    // if (v.status == 2) { v.status = "Rejected" }
+                    // if (v.status == 3) { v.status = "1st Level Approved" }
                     this.appliedLeave.push(v);
                 }
             });
@@ -119,10 +118,10 @@ export class UserComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
-                    if (v.status == 0) { v.status = "Pending" }
-                    if (v.status == 1) { v.status = "Approved" }
-                    if (v.status == 2) { v.status = "Rejected" }
-                    if (v.status == 3) { v.status = "1st Level Approved" }
+                    // if (v.status == 0) { v.status = "Pending" }
+                    // if (v.status == 1) { v.status = "Approved" }
+                    // if (v.status == 2) { v.status = "Rejected" }
+                    // if (v.status == 3) { v.status = "1st Level Approved" }
                     this.leaveRequests.push(v);
                 }
             });

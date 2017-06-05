@@ -35,7 +35,7 @@
                   <mfDefaultSorter by="LeaveType1">Leave Type</mfDefaultSorter>
                 </th>
                 <th style="width: 50%">
-                  <mfDefaultSorter by="Count">Alloted Types</mfDefaultSorter>
+                  <mfDefaultSorter by="Count">Alloted Leaves</mfDefaultSorter>
                 </th>
                 <th style="width: 10%">
                   <mfDefaultSorter by="LeaveBalance">Balance Leave</mfDefaultSorter>
@@ -80,10 +80,10 @@
                 <th style="width: 20%">
                   <mfDefaultSorter by="startDate">Start Date</mfDefaultSorter>
                 </th>
-                <th style="width: 50%">
+                <th style="width: 20%">
                   <mfDefaultSorter by="reason">Reason</mfDefaultSorter>
                 </th>
-                <th style="width: 10%">
+                <th style="width: 20%">
                   <mfDefaultSorter by="Approver">Approver</mfDefaultSorter>
                 </th>
                 <th style="width: 20%">
@@ -100,7 +100,7 @@
                 <td>{{item.reason}}</td>
                 <td>{{item.Approver}}</td>
                 <td>{{item.LeaveCategory}}</td>
-                <td>{{item.status}}</td>
+                <td>{{item.leaveStatus}}</td>
               </tr>
             </tbody>
             <tfoot>
@@ -136,13 +136,13 @@
                 <th style="width: 20%">
                   <mfDefaultSorter by="name">Name</mfDefaultSorter>
                 </th>
-                <th style="width: 50%">
+                <th style="width: 20%">
                   <mfDefaultSorter by="email">Email</mfDefaultSorter>
                 </th>
-                <th style="width: 10%">
+                <th style="width: 20%">
                   <mfDefaultSorter by="startDate">Start Date</mfDefaultSorter>
                 </th>
-                <th style="width: 20%">
+                <th style="width: 10%">
                   <mfDefaultSorter by="LeaveCategory">Leave Category</mfDefaultSorter>
                 </th>
                 <th style="width: 20%">
@@ -161,7 +161,7 @@
                 <td>{{item.startDate}}</td>
                 <td>{{item.LeaveCategory}}</td>
                 <td>{{item.reason}}</td>
-                <td>{{item.status}}</td>
+                <td>{{item.leaveStatus}}</td>
                 <td>
                   <button (click)="open(item.id)" class="btn btn-info">Take Action</button>
                 </td>
@@ -193,7 +193,7 @@
       </modal-body>
       <modal-footer>
         <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
-        <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(3)">Accept</button>
+        <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(4)">Accept</button>
       </modal-footer>
     </modal>
      
