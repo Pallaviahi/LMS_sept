@@ -87,7 +87,7 @@ export class UserComponent implements OnInit {
     }
 
     loadLeaveTypes() {
-        //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
+        //var test = this.use   rService.leaveTypes().subscribe(res => this.testTypes = res);
         this.userService.leaveTypes()
             .subscribe(
             data => {
@@ -103,10 +103,10 @@ export class UserComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
-                    // if (v.status == 0) { v.status = "Pending" }
-                    // if (v.status == 1) { v.status = "Approved" }
-                    // if (v.status == 2) { v.status = "Rejected" }
-                    // if (v.status == 3) { v.status = "1st Level Approved" }
+                    if (v.status == 1) { v.status = "Pending" }
+                    if (v.status == 2) { v.status = "Approved" }
+                    if (v.status == 3) { v.status = "Rejected" }
+                    if (v.status == 4) { v.status = "1st Level Approved" }
                     this.appliedLeave.push(v);
                 }
             });
@@ -118,10 +118,11 @@ export class UserComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
-                    // if (v.status == 0) { v.status = "Pending" }
-                    // if (v.status == 1) { v.status = "Approved" }
-                    // if (v.status == 2) { v.status = "Rejected" }
-                    // if (v.status == 3) { v.status = "1st Level Approved" }
+                    if (v.status == 1) { v.status = "Pending" }
+                    if (v.status == 2) { v.status = "Approved" }
+                    if (v.status == 3) { v.status = "Rejected" }
+                    if (v.status == 4) { v.status = "1st Level Approved" }
+                    this.leaveRequests = [];
                     this.leaveRequests.push(v);
                 }
             });

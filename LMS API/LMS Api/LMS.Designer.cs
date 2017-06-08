@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Official\Code LMS Current\New LMS API\LMS Api\LMS Api\LMS.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Official\Code LMS Current\LMS API\LMS Api\LMS.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

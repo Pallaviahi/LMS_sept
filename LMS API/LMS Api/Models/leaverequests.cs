@@ -14,6 +14,7 @@ namespace LMS_Api.Models
         public string startDate { get; set; }
         public string reason { get; set; }
         public int status { get; set; }
+        //public string leaveStatus { get; set; }
         //   public int approverId { get; set; } 
         //   public int LeaveTypeId { get; set; } 
         public string LeaveCategory { get; set; }

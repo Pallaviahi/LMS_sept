@@ -13,10 +13,10 @@ namespace LMS_Api
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class PLLMSEntities1 : DbContext
+    public partial class Entities : DbContext
     {
-        public PLLMSEntities1()
-            : base("name=PLLMSEntities1")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,8 +25,11 @@ namespace LMS_Api
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ApprovalLevel> ApprovalLevels { get; set; }
         public virtual DbSet<Designation> Designations { get; set; }
         public virtual DbSet<Leave_Approval_Matrix> Leave_Approval_Matrix { get; set; }
+        public virtual DbSet<LeaveRemark> LeaveRemarks { get; set; }
+        public virtual DbSet<LeaveStatu> LeaveStatus { get; set; }
         public virtual DbSet<LeaveType> LeaveTypes { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TotalLeaveCount> TotalLeaveCounts { get; set; }

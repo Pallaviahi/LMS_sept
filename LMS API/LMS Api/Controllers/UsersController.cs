@@ -19,7 +19,7 @@ namespace LMS_Api.Controllers
     [RoutePrefix("api/user")]
     public class UsersController : ApiController
     {
-        private PLLMSEntities1 db = new PLLMSEntities1();
+        private Entities db = new Entities();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()
@@ -40,20 +40,27 @@ namespace LMS_Api.Controllers
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(UserModel userCredentails)
         {
-            User user = db.Users.Where(x => x.email == userCredentails.email && x.password == userCredentails.password).FirstOrDefault();
-            if (user == null)
+            try
             {
-                return NotFound();
+                User user = db.Users.Where(x => x.email == userCredentails.email && x.password == userCredentails.password).FirstOrDefault();
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    UserModel usermodel = new UserModel();
+                    usermodel.id = user.Id;
+                    usermodel.email = user.email;
+                    usermodel.designationTypeId = user.designationTypeId;
+                    usermodel.lastName = user.lastName;
+                    usermodel.reportingToUserId = user.reportingToUserId;
+                    return Ok(usermodel);
+                }
             }
-            else
+            catch (Exception  e)
             {
-                UserModel usermodel = new UserModel();
-                usermodel.id = user.Id;
-                usermodel.email = user.email;
-                usermodel.designationTypeId = user.designationTypeId;
-                usermodel.lastName = user.lastName;
-                usermodel.reportingToUserId = user.reportingToUserId;
-                return Ok(usermodel);
+                throw;
             }
         }
 
@@ -211,7 +218,7 @@ namespace LMS_Api.Controllers
             var appliedleave = (from k in db.Leave_Approval_Matrix
                                 join lt in db.LeaveTypes on k.LeaveTypeId equals lt.Id
                                 join u in db.Users on k.userId equals u.Id
-                                join ls in db.LeaveStatus on k.status equals ls.Id
+                                //join ls in db.LeaveStatus on k.status equals ls.Id
                                 join al in db.ApprovalLevels on k.LevelId equals al.Id
                                 where k.userId == userId
                                 select new
@@ -220,7 +227,7 @@ namespace LMS_Api.Controllers
                                     leaveCategory = lt.LeaveType1,
                                     approver = "",//u.firstName + " " + u.lastName,
                                     reason = k.reason,
-                                    status = ls.Status + " with " + al.Approver,
+                                    status = k.status,
                                     approverId = k.approverId
                                 }).ToList();
 
@@ -244,7 +251,7 @@ namespace LMS_Api.Controllers
                     objleaveMatrix.Approver = user.firstName + " " + user.lastName;
 
                     objleaveMatrix.LeaveCategory = item.leaveCategory;
-                    objleaveMatrix.leaveStatus = item.status;
+                    objleaveMatrix.status = item.status;
                     listofAppliedLeave.Add(objleaveMatrix);
                 }
 
@@ -264,7 +271,7 @@ namespace LMS_Api.Controllers
             List<appliedleave> leaaverequests = (from k in db.Leave_Approval_Matrix
                                                  join lt in db.LeaveTypes on k.LeaveTypeId equals lt.Id
                                                  join u in db.Users on k.userId equals u.Id
-                                                 join ls in db.LeaveStatus on k.status equals ls.Id
+                                                 //join ls in db.LeaveStatus on k.status equals ls.Id
                                                  join al in db.ApprovalLevels on k.LevelId equals al.Id
                                                  where k.approverId == userId
                                                  select new appliedleave
@@ -275,9 +282,9 @@ namespace LMS_Api.Controllers
                                                      date = k.startDate,
                                                      leavetype = lt.LeaveType1,
                                                      reason = k.reason,
-                                                     //status = k.status,
+                                                     status = k.status,
                                                      approverId = k.approverId,
-                                                     leaveStatus = ls.Status + " with " + al.Approver,
+                                                     //leaveStatus = ls.Status + " with " + al.Approver,
                                                      // action = 
                                                  }).ToList();
 
@@ -299,7 +306,7 @@ namespace LMS_Api.Controllers
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");
                     objleaveMatrix.reason = item.reason;
                     objleaveMatrix.LeaveCategory = item.leavetype;
-                    objleaveMatrix.leaveStatus = item.leaveStatus;
+                    objleaveMatrix.status = item.status;
                     listofLeaveRequests.Add(objleaveMatrix);
                 }
 
@@ -323,7 +330,7 @@ namespace LMS_Api.Controllers
                 }
                 else
                 {
-                    approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
+                    //approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
                     if (objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
                     approvedleave.status = objApprovedLeaveMatrix.status;
 

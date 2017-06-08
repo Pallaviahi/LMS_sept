@@ -22,13 +22,16 @@ namespace LMS_Api
         public string reason { get; set; }
         public int status { get; set; }
         public int approverId { get; set; }
-        public string Remarks { get; set; }
         public int LeaveTypeId { get; set; }
+        public Nullable<int> LevelId { get; set; }
+        public int LeaveRemarksId { get; set; }
         public System.DateTime createdDate { get; set; }
         public System.DateTime updateDate { get; set; }
     
+        public virtual ApprovalLevel ApprovalLevel { get; set; }
         public virtual User User { get; set; }
         public virtual User User1 { get; set; }
+        public virtual LeaveStatu LeaveStatu { get; set; }
         public virtual LeaveType LeaveType { get; set; }
     }
 }

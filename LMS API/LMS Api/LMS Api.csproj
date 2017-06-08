@@ -95,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="HtmlTemplate\Email_HTML.html" />
     <Content Include="LMS.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>LMS.edmx</DependentUpon>
@@ -110,6 +111,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApprovalLevel.cs">
+      <DependentUpon>LMS.tt</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Designation.cs">
@@ -117,6 +121,12 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveRemark.cs">
+      <DependentUpon>LMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveStatu.cs">
+      <DependentUpon>LMS.tt</DependentUpon>
     </Compile>
     <Compile Include="LeaveType.cs">
       <DependentUpon>LMS.tt</DependentUpon>
