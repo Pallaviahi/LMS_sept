@@ -42,9 +42,9 @@ export class AdminDashComponent implements OnInit {
             data => {
                 for (var v of data) {
                     if (v.status == 1) { v.status = "Pending" }
-                    if (v.status == 2) { v.status = "Approved" }
-                    if (v.status == 3) { v.status = "Rejected" }
-                    if (v.status == 4) { v.status = "1st Level Approved" } 
+                    if (v.status == 2) { v.status = "Rejected" }
+                    if (v.status == 3) { v.status = "Approved" }
+                    if (v.status == 4) { v.status = "1st Level Approved" }
                     this.leaveRequests.push(v);
                 }
                 console.log('these are leave requests');
