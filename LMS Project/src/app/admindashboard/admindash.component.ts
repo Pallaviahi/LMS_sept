@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+import { AdminService, } from '../_services/index';
 import { ApplyLeaveComponent } from '../applyleave/index';
+import { approvedLeaveModel } from '../_models/index';
+import { GlobalService } from '../global';
+import { ToastsManager, ToastOptions } from 'ng2-toastr/ng2-toastr';
+import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 //import { ApplyLeaveComponent } from '../applyleave/applyleave.component';
 //import {NG2DataTableModule} from 'angular2-datatable-pagination';
 @Component({
@@ -13,77 +17,60 @@ import { ApplyLeaveComponent } from '../applyleave/index';
 
 export class AdminDashComponent implements OnInit {
     currentUser: User;
-    users: User[] = [];
-    public appliedLeave: any[] = [];
-    public testTypes: any[] = [];
+    // users: User[] = [];
+    model: approvedLeaveModel = new approvedLeaveModel;
+    // public appliedLeave: any[] = [];
+    // public testTypes: any[] = [];
     public leaveRequests: any[] = [];
-    public usersLeaves: any[] = [];
+    // public usersLeaves: any[] = [];
+    public filterQuery = "";
 
-    constructor(private userService: UserService) {
+    constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 
     ngOnInit() {
-        this.loadAllUsers();
-        this.loadAppliedLeave();
-        this.loadLeaveTypes();
         this.loadLeaveRequests();
-        this.loadUserLeaves();
     }
 
-    loadLeaveTypes() {
-        //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
-        this.userService.leaveTypes()
-            .subscribe(
-            data  =>  {
-                for (var  v  of  data) {
-                    this.testTypes.push(v);
-                }
-                console.log(data);
-            });
-    }
 
-    loadAppliedLeave() {
-        //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
-        this.userService.AppliedLeave(this.currentUser.id)
-            .subscribe(
-            data  =>  {
-                for (var  v  of  data) {
-                    this.appliedLeave.push(v);
-                }
-            });
-    }
 
     loadLeaveRequests() {
         //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
-        this.userService.LeaveRequests(this.currentUser.id)
+        this.adminService.LeaveRequests()
             .subscribe(
-            data  =>  {
-                for (var  v  of  data) {
+            data => {
+                for (var v of data) {
+                    if (v.status == 1) { v.status = "Pending" }
+                    if (v.status == 2) { v.status = "Approved" }
+                    if (v.status == 3) { v.status = "Rejected" }
+                    if (v.status == 4) { v.status = "1st Level Approved" } 
                     this.leaveRequests.push(v);
                 }
+                console.log('these are leave requests');
+                console.log(this.leaveRequests);
             });
     }
 
+    // private updateLeaveApplication(LeaveStatus: number) {
+    //     // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
+    //     //setting the required properties;  
+    //     var errMessage = '';
+    //     this.model.id = 15;
+    //     this.model.status = LeaveStatus;
 
-    private  loadUserLeaves() {
-        this.userService.loadUserLeaves(this.currentUser.id).subscribe(data  =>  {
-            for  (var  v  of  data) {
-                this.usersLeaves.push(v);
-            }
-            console.log(this.usersLeaves);
-            console.log('helloapprover');
-        });
-        console.log('Leave Types');
-        console.log(this.loadUserLeaves);
-    }
+    //     this.globalVar.loading = true;
 
-
-    deleteUser(id: number) {
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
-    }
-
-    private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
+    //     this.userService.updateLeaveApplicationService(this.model)
+    //         .subscribe(
+    //         data => {
+    //             this.globalVar.loading = false;
+    //             this.toastr.success('Leave Application Approved!');
+    //             this.loadLeaveRequests();
+    //         },
+    //         error => {
+    //             this.globalVar.loading = false;
+    //             this.toastr.error('Something went wrong !');
+    //         });
+    // }
 }

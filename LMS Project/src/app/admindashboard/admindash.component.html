@@ -1,1 +1,102 @@
-<p>hello admin</p>
+<div class="">
+    <!-- Page Heading -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Dashboard <small>Statistics Overview</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li class="active">
+                    <i class="fa fa-dashboard"></i> Dashboard
+                </li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="panel-group" id="accordion">
+        <div *ngIf="currentUser.designationTypeId == 1 || currentUser.designationTypeId == 2 || currentUser.designationTypeId == 3 "
+            class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Leave Requests</a>
+                </h4>
+            </div>
+            <div id="collapse3" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table table-striped" [mfData]="leaveRequests" #mf="mfDataTable" [mfRowsOnPage]="5">
+                        <thead>
+                            <tr>
+                                <th colspan="5">
+                                    Filter by reason:
+                                    <input class="form-control" [(ngModel)]="filterQuery" />
+                                </th>
+                            </tr>
+                            <tr>
+
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                                </th>
+                                <th style="width: 50%">
+                                    <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                </th>
+                                <th style="width: 10%">
+                                    <mfDefaultSorter by="startDate">Start Date</mfDefaultSorter>
+                                </th>
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="LeaveCategory">Leave Category</mfDefaultSorter>
+                                </th>
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="reason">Reason</mfDefaultSorter>
+                                </th>
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="status">Status</mfDefaultSorter>
+                                </th>
+                                <th style="width: 10%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of mf.data">
+                                <td>{{item.name}}</td>
+                                <td>{{item.email}}</td>
+                                <td>{{item.startDate}}</td>
+                                <td>{{item.LeaveCategory}}</td>
+                                <td>{{item.reason}}</td>
+                                <td>{{item.status}}</td>
+                                <td>
+                                    <button (click)="modal.open()" class="btn btn-info">Take Action</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--Popup-->
+        <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
+        <modal #modal>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Leave Request</h4>
+            </modal-header>
+            <modal-body>
+
+                <div class="form-group">
+                    <label for="textbox">Remarks</label>
+                    <textarea autofocus type="text" [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
+                <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(4)">Accept</button>
+            </modal-footer>
+        </modal>
+
+    </div>
+</div>
+<div *ngIf="globalVar.loading == true" class="loading">Loading..</div>

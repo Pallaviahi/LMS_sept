@@ -32,7 +32,7 @@ export class UserComponent implements OnInit {
 
     constructor(private userService: UserService, private globalVar: GlobalService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.loadAllUsers();
+        //this.loadAllUsers();
         this.loadUserLeaves();
         this.loadAppliedLeave();
         this.loadLeaveTypes();
@@ -49,13 +49,13 @@ export class UserComponent implements OnInit {
         this.leaveRequestId = recordId;
     }
 
-    deleteUser(id: number) {
-        this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
-    }
+    // deleteUser(id: number) {
+    //     this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
+    // }
 
-    private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
-    }
+    // private loadAllUsers() {
+    //     this.userService.getAll().subscribe(users => { this.users = users; });
+    // }
 
     private loadUserLeaves() {
         this.userService.loadUserLeaves(this.currentUser.id).subscribe(data => {
