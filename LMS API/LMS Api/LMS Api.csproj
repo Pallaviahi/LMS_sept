@@ -115,6 +115,7 @@
       <DependentUpon>LMS.tt</DependentUpon>
     </Compile>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Designation.cs">
       <DependentUpon>LMS.tt</DependentUpon>
