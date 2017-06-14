@@ -331,7 +331,7 @@ namespace LMS_Api.Controllers
                 else
                 {
                     //approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
-                    if (objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
+                    if (objApprovedLeaveMatrix.status == 5) { approvedleave.LevelId = 2; }
                     approvedleave.status = objApprovedLeaveMatrix.status;
 
                     //adding approver comments to remarks table

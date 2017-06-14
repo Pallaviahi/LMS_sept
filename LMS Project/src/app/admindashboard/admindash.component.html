@@ -63,7 +63,7 @@
                                 <td>{{item.reason}}</td>
                                 <td>{{item.status}}</td>
                                 <td>
-                                    <button (click)="modal.open()" class="btn btn-info">Take Action</button>
+                                    <button (click)="open(item.id)" class="btn btn-info">Take Action</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -80,7 +80,7 @@
         </div>
         <!--Popup-->
         <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
-        <modal #modal>
+        <modal #myModal>
             <modal-header [show-close]="true">
                 <h4 class="modal-title">Leave Request</h4>
             </modal-header>
@@ -93,7 +93,7 @@
             </modal-body>
             <modal-footer>
                 <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
-                <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(4)">Accept</button>
+                <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(3)">Accept</button>
             </modal-footer>
         </modal>
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { User } from '../_models/index';
 import { AdminService, } from '../_services/index';
 import { ApplyLeaveComponent } from '../applyleave/index';
@@ -24,6 +24,8 @@ export class AdminDashComponent implements OnInit {
     public leaveRequests: any[] = [];
     // public usersLeaves: any[] = [];
     public filterQuery = "";
+    leaveRequestId: number;
+     @ViewChild('myModal') modal: ModalComponent;
 
     constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -31,6 +33,11 @@ export class AdminDashComponent implements OnInit {
 
     ngOnInit() {
         this.loadLeaveRequests();
+    }
+
+    open(recordId: number) {
+        this.modal.open();
+        this.leaveRequestId = recordId;
     }
 
 
@@ -42,9 +49,11 @@ export class AdminDashComponent implements OnInit {
             data => {
                 for (var v of data) {
                     if (v.status == 1) { v.status = "Pending" }
-                    if (v.status == 2) { v.status = "Rejected" }
+                    if (v.status == 2) { v.status = "Rejected " }
                     if (v.status == 3) { v.status = "Approved" }
                     if (v.status == 4) { v.status = "1st Level Approved" }
+                    if (v.status == 5) { v.status = "Ist Level Rejected" }
+                    this.leaveRequests = [];
                     this.leaveRequests.push(v);
                 }
                 console.log('these are leave requests');
@@ -52,25 +61,24 @@ export class AdminDashComponent implements OnInit {
             });
     }
 
-    // private updateLeaveApplication(LeaveStatus: number) {
-    //     // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
-    //     //setting the required properties;  
-    //     var errMessage = '';
-    //     this.model.id = 15;
-    //     this.model.status = LeaveStatus;
+    private updateLeaveApplication(LeaveStatus: number) {
+        // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
+        //setting the required properties;  
+        var errMessage = '';
+        this.model.id = this.leaveRequestId;
+        this.model.status = LeaveStatus;
+        this.globalVar.loading = true;
 
-    //     this.globalVar.loading = true;
-
-    //     this.userService.updateLeaveApplicationService(this.model)
-    //         .subscribe(
-    //         data => {
-    //             this.globalVar.loading = false;
-    //             this.toastr.success('Leave Application Approved!');
-    //             this.loadLeaveRequests();
-    //         },
-    //         error => {
-    //             this.globalVar.loading = false;
-    //             this.toastr.error('Something went wrong !');
-    //         });
-    // }
+        this.adminService.updateLeaveApplicationService(this.model)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                this.toastr.success('Leave Application updated Successfully !');
+                this.loadLeaveRequests();
+            },
+            error => {
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
+            });
+    }
 }

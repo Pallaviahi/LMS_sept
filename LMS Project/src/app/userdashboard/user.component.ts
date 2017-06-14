@@ -107,6 +107,7 @@ export class UserComponent implements OnInit {
                     if (v.status == 2) { v.status = "Rejected" }
                     if (v.status == 3) { v.status = "Approved" }
                     if (v.status == 4) { v.status = "1st Level Approved" }
+                    if (v.status == 5) { v.status = "Ist Level Rejected" }
                     this.appliedLeave.push(v);
                 }
             });
@@ -122,6 +123,7 @@ export class UserComponent implements OnInit {
                     if (v.status == 2) { v.status = "Rejected" }
                     if (v.status == 3) { v.status = "Approved" }
                     if (v.status == 4) { v.status = "1st Level Approved" }
+                     if (v.status == 5) { v.status = "Ist Level Rejected" }
                     this.leaveRequests = [];
                     this.leaveRequests.push(v);
                 }

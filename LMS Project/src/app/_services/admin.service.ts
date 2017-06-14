@@ -24,6 +24,16 @@ export class AdminService{
             });
     }   
 
+
+     updateLeaveApplicationService(approvedleaveModel:approvedLeaveModel) {
+            let headers = new Headers({ 'Content-Type': 'application/json' });
+            let options = new RequestOptions({ headers: headers });      
+            return this.http.post(this._baseUrl +'/admin/ApprovedLeave', approvedleaveModel,options)
+                .map((response: Response) => {
+                 //   console.log(response);
+            });
+    }    
+
     // private helper methods
     private jwt() {
         // create authorization header with jwt token
