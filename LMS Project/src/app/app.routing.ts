@@ -7,6 +7,8 @@ import { AdminComponent } from './admin/index';
 import { ApplyLeaveComponent } from './applyleave/index';
 import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
+import { AdminSettingsComponent } from './adminsettings/index';
+import { AdminAddUserComponent } from './AdminAddUser/index';
 
 const appRoutes: Routes = [
     {
@@ -22,7 +24,7 @@ const appRoutes: Routes = [
             },
         ]
     },
-    
+
     { path: 'login', component: LoginComponent },
     { path: 'register', component: RegisterComponent },
     {
@@ -31,6 +33,14 @@ const appRoutes: Routes = [
             {
                 path: 'admindashboard',
                 component: AdminDashComponent,
+            },
+            {
+                path: 'adminsettings',
+                component: AdminSettingsComponent,
+            },
+             {
+                path: 'AdminAddUser',
+                component: AdminAddUserComponent,
             }
         ]
     },

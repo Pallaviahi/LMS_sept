@@ -22,8 +22,10 @@ import { ConfigService } from './config/apiconfig';
 import { GlobalService } from './global';
 import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
+import { AdminSettingsComponent } from './adminsettings/index';
 import { DatePickerModule } from 'ng2-datepicker';
 
+import { AdminAddUserComponent } from './AdminAddUser/index';
 import { DataTableModule } from "angular2-datatable";
 import { DataFilterPipe } from './_helpers/data-filter.pipe';
 import { LeaveTypesFilterPipe } from './_helpers/LeaveTypesdata-filter.pipe';
@@ -72,8 +74,10 @@ export class CustomOptions extends ToastOptions {
         UserComponent,
         AdminDashComponent,
         DataFilterPipe,
+        AdminSettingsComponent,
         LeaveTypesFilterPipe,
-        AppliedLeaveFilterPipe
+        AppliedLeaveFilterPipe,
+        AdminAddUserComponent
     ],
     providers: [
         AuthGuard,

@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from '../_models/index';
 import { AdminService, } from '../_services/index';
 import { ApplyLeaveComponent } from '../applyleave/index';
@@ -17,15 +17,14 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
 
 export class AdminDashComponent implements OnInit {
     currentUser: User;
-    // users: User[] = [];
+
     model: approvedLeaveModel = new approvedLeaveModel;
-    // public appliedLeave: any[] = [];
-    // public testTypes: any[] = [];
+
     public leaveRequests: any[] = [];
-    // public usersLeaves: any[] = [];
+    public adminUsers: any[] = [];
     public filterQuery = "";
     leaveRequestId: number;
-     @ViewChild('myModal') modal: ModalComponent;
+    @ViewChild('myModal') modal: ModalComponent;
 
     constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -33,6 +32,7 @@ export class AdminDashComponent implements OnInit {
 
     ngOnInit() {
         this.loadLeaveRequests();
+        this.LoadusersForAdmin();
     }
 
     open(recordId: number) {
@@ -40,6 +40,18 @@ export class AdminDashComponent implements OnInit {
         this.leaveRequestId = recordId;
     }
 
+
+
+    LoadusersForAdmin() {
+        //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
+        this.adminService.LoadusersForAdmin()
+            .subscribe(
+            data => {
+                for (var v of data) {
+                    this.adminUsers.push(v);
+                }
+            });
+    }
 
 
     loadLeaveRequests() {

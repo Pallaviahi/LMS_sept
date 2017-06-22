@@ -86,7 +86,7 @@ namespace LMS_Api.Controllers
                 {
                     //approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
                     if (objApprovedLeaveMatrix.status == 3 || objApprovedLeaveMatrix.status == 2)
-                    approvedleave.status = objApprovedLeaveMatrix.status;
+                        approvedleave.status = objApprovedLeaveMatrix.status;
 
                     //adding approver comments to remarks table
                     LeaveRemark objLeaveRemark = new LeaveRemark();
@@ -105,5 +105,64 @@ namespace LMS_Api.Controllers
             }
         }
 
+        [HttpPost]
+        [Route("UpdateAdminSettings")]
+        public IHttpActionResult UpdateAdminSettings(adminsettings objadminsettings)
+        {
+            try
+            {
+                bool IsAdminPermissionRequiredForLeaveApproval = db.AdminSettings.FirstOrDefault(x => x.Id == objadminsettings.id).SettingValue;
+                IsAdminPermissionRequiredForLeaveApproval = objadminsettings.IsAdminPermissionRequiredForLeaveApproval;
+                return Ok("Updated");
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("LoadAdminSettings")]
+        public IHttpActionResult GetAdminSetting()
+        {
+            try
+            {
+                return Ok(db.AdminSettings.ToList());
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("LoadUsersForAdmin")]
+        public IHttpActionResult LoadUsersForAdmin()
+        {
+            try
+            {
+                var users = db.Users.ToList();
+
+                List<Models.UserModel> listofUsers = new List<Models.UserModel>();
+                foreach (var item in users)
+                {
+                    UserModel objuser = new UserModel();
+                    objuser.id = item.Id;
+                    objuser.firstName = item.firstName;
+                    objuser.lastName = item.lastName;
+                    objuser.email = item.email;
+                    listofUsers.Add(objuser);
+                }
+
+                return Ok(listofUsers);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
     }
 }

@@ -78,25 +78,73 @@
                 </div>
             </div>
         </div>
-        <!--Popup-->
-        <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
-        <modal #myModal>
-            <modal-header [show-close]="true">
-                <h4 class="modal-title">Leave Request</h4>
-            </modal-header>
-            <modal-body>
 
-                <div class="form-group">
-                    <label for="textbox">Remarks</label>
-                    <textarea autofocus type="text" [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
+       <div class="panel-group" id="users">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#users" href="#collapse4">Users</a>
+                </h4>
+            </div>
+            <div id="collapse4" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <table class="table table-striped" [mfData]="adminUsers" #mf="mfDataTable" [mfRowsOnPage]="5">
+                        <thead>
+                            <tr>
+                                <th colspan="5">
+                                    Filter by reason:
+                                    <input class="form-control" [(ngModel)]="filterQuery" />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th style="width: 20%">
+                                    <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                                </th>
+                                <th style="width: 50%">
+                                    <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of mf.data">
+                                <td>{{item.firstName}} {{item.lastName}}</td>
+                                <td>{{item.email}}</td>
+                                <td>
+                                    <button (click)="open(item.id)" class="btn btn-info">Update</button>
+                                    <button (click)="open(item.id)" class="btn btn-info">Remove</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="4">
+                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-            </modal-body>
-            <modal-footer>
-                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
-                <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(3)">Accept</button>
-            </modal-footer>
-        </modal>
+            </div>
+        </div>     
 
     </div>
+    <!--Popup-->
+    <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
+    <modal #myModal>
+        <modal-header [show-close]="true">
+            <h4 class="modal-title">Leave Request</h4>
+        </modal-header>
+        <modal-body>
+
+            <div class="form-group">
+                <label for="textbox">Remarks</label>
+                <textarea autofocus type="text" [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
+            </div>
+        </modal-body>
+        <modal-footer>
+            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
+            <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(3)">Accept</button>
+        </modal-footer>
+    </modal>
 </div>
 <div *ngIf="globalVar.loading == true" class="loading">Loading..</div>
