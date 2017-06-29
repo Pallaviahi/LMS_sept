@@ -20,5 +20,9 @@ namespace LMS_Api.Models
         public int designationId { get; set; }
 
         public int? reportingToId { get; set; }
+
+        public DateTime DateOfJoining { get; set; }
+
+        public string Gender { get; set; }
     }
 }

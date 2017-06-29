@@ -17,6 +17,7 @@ export class AdminAddUserComponent implements OnInit {
     currentUser: User;
     public ReportingLeadsList: any[] = [];
     public DesignationList: any[] = [];
+    public GenderArray : any[] = [] ;
     model: User = new User;
 
     @ViewChild('myModal') modal: ModalComponent;
@@ -29,7 +30,8 @@ export class AdminAddUserComponent implements OnInit {
     }
 
     ngOnInit() {
-
+        this.GenderArray.push("Male");
+        this.GenderArray.push("Female");
     }
 
     LoadReportingLeads() {
@@ -56,6 +58,7 @@ export class AdminAddUserComponent implements OnInit {
 
     register() {
         this.globalVar.loading = true;
+        this.model.DateOfJoining = this.model.DateOfJoining.formatted;
         this.adminService.RegisterUser(this.model)
             .subscribe(
             data => {

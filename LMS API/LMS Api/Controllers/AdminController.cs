@@ -286,6 +286,8 @@ namespace LMS_Api.Controllers
                     newUser.password = objUser.password;
                     newUser.designationTypeId = objUser.designationId;
                     newUser.reportingToUserId = objUser.reportingToId;
+                    newUser.DateOfJoining = objUser.DateOfJoining;
+                    newUser.Gender = objUser.Gender[0].ToString();
                     newUser.createdDate = DateTime.Now;
                     newUser.updatedDate = DateTime.Now;
 
