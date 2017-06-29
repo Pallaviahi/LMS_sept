@@ -99,6 +99,25 @@ namespace LMS_Api.Controllers
             }
         }
 
+
+        // GET: api/Users/5
+        [HttpGet]
+        [Route("DeleteUser/{empId}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int empId)
+        {
+            try
+            {
+                db.Users.Where(x => x.Id == empId).FirstOrDefault().IsDeleted = true;
+                db.SaveChanges();
+                return Ok("true");
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         //Leaveapproved
         [HttpPost]
         [Route("ApprovedLeave")]
@@ -173,7 +192,7 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                var users = db.Users.ToList();
+                var users = db.Users.Where(x => x.IsDeleted != true).ToList();
 
                 List<Models.UserModel> listofUsers = new List<Models.UserModel>();
                 foreach (var item in users)

@@ -13,13 +13,11 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
     templateUrl: 'admindash.component.html'
 })
 
-
-
 export class AdminDashComponent implements OnInit {
     currentUser: User;
 
     model: approvedLeaveModel = new approvedLeaveModel;
-    userModel : User = new User;
+    userModel: User = new User;
     public leaveRequests: any[] = [];
     public adminUsers: any[] = [];
     public ReportingLeadsList: any[] = [];
@@ -27,8 +25,10 @@ export class AdminDashComponent implements OnInit {
     public filterQuery = "";
     leaveRequestId: number;
     userToUpdateId: number;
+    userToDeleteId: number;
     @ViewChild('myModal') modal: ModalComponent;
     @ViewChild('updateUser') updateUser: ModalComponent;
+    @ViewChild('DeleteUserPopup') DeleteUserPopup: ModalComponent;
 
     constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -45,6 +45,11 @@ export class AdminDashComponent implements OnInit {
         this.leaveRequestId = recordId;
     }
 
+    OpenDeleteUserModal(empId: number) {
+        this.DeleteUserPopup.open();
+        this.userToDeleteId = empId;
+    }
+
     openUserUpdateModel(empId: number) {
         this.updateUser.open();
         this.userToUpdateId = empId;
@@ -54,7 +59,7 @@ export class AdminDashComponent implements OnInit {
     }
 
 
-    LoadUpdateUserDetails(){
+    LoadUpdateUserDetails() {
         this.adminService.LoadUpdateUserDetails(this.userToUpdateId)
             .subscribe(
             data => {
@@ -74,7 +79,7 @@ export class AdminDashComponent implements OnInit {
             });
     }
 
-     LoadReportingLeads() {
+    LoadReportingLeads() {
         this.ReportingLeadsList = [];
 
         this.adminService.LoadReportingLeads()
@@ -151,6 +156,27 @@ export class AdminDashComponent implements OnInit {
                     this.toastr.success("User Already Exists");
                 }
                 //this.loadLeaveRequests();
+            },
+            error => {
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
+            });
+    }
+
+    deleteUser() {
+        this.globalVar.loading = true;
+        this.adminService.DeleteUser(this.userToDeleteId)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                if (data.text() == "true") {
+                    this.toastr.success('User Deleted Successfully !');
+                }
+                else {
+                    this.toastr.success("Something went wrong");
+                }
+                this.adminUsers = [];
+                this.LoadusersForAdmin();
             },
             error => {
                 this.globalVar.loading = false;

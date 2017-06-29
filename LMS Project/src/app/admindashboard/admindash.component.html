@@ -14,8 +14,7 @@
     </div>
     <!-- /.row -->
     <div class="panel-group" id="accordion">
-        <div *ngIf="currentUser.designationId == 1 || currentUser.designationId == 2 || currentUser.designationId == 3 "
-            class="panel panel-default">
+        <div *ngIf="currentUser.designationId == 1 || currentUser.designationId == 2 || currentUser.designationId == 3 " class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
                     <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Leave Requests</a>
@@ -97,21 +96,26 @@
                                     </th>
                                 </tr>
                                 <tr>
-                                    <th style="width: 20%">
-                                        <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                                    <th style="width: 15%">
+                                        <mfDefaultSorter by="name">First Name</mfDefaultSorter>
                                     </th>
-                                    <th style="width: 50%">
+                                    <th style="width: 15%">
+                                        <mfDefaultSorter by="name">Last Name</mfDefaultSorter>
+                                    </th>
+                                    <th style="width: 20%">
                                         <mfDefaultSorter by="email">Email</mfDefaultSorter>
                                     </th>
+                                    <th style="align:right;width: 50%"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr *ngFor="let item of mf.data">
-                                    <td>{{item.firstName}} {{item.lastName}}</td>
-                                    <td>{{item.email}}</td>
-                                    <td>
+                                    <td>{{item.firstName}}</td>
+                                    <td>{{item.lastName}}</td>
+                                    <td>{{item.username}}</td>
+                                    <td style="text-align:center;width: 50%">
                                         <button (click)="openUserUpdateModel(item.id)" class="btn btn-info">Update</button>
-                                        <button (click)="openUserUpdateModel(item.id)" class="btn btn-info">Remove</button>
+                                        <button (click)="OpenDeleteUserModal(item.id)" class="btn btn-info">Remove</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -156,7 +160,8 @@
                     <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
                             <label for="firstName">First Name</label>
-                            <input type="text" class="form-control" name="firstName" [(ngModel)]="userModel.firstName" #firstName="ngModel" required />
+                            <input type="text" class="form-control" name="firstName" [(ngModel)]="userModel.firstName" #firstName="ngModel" required
+                            />
                             <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
                         </div>
                         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
@@ -181,8 +186,6 @@
                             <div *ngIf="f.submitted && !reportingToId.valid" class="help-block">Reporting to lead is required
                             </div>
                         </div>
-
-
                         <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !designationId.valid }">
                             <label>Designation</label>
                             <select [(ngModel)]="model.designationId" name="designationId" #designationId="ngModel" class="form-control" required>
@@ -193,8 +196,6 @@
                             <div *ngIf="f.submitted && !designationId.valid" class="help-block">Designation is required
                             </div>
                         </div>
-
-
                         <div class="form-group">
                             <button [disabled]="loading" class="btn btn-primary">Register</button>
                             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
@@ -210,5 +211,19 @@
             </modal-footer>
         </modal>
 
+        <modal #DeleteUserPopup>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Warning</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+                    <p class="alert alert-warning">Are you sure you want to delete this user</p>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="DeleteUserPopup" (click)="DeleteUserPopup.close(); deleteUser()">Remove</button>
+                <button type="button" class="btn btn-primary" (click)="DeleteUserPopup.close();">Cancel</button>
+            </modal-footer>
+        </modal>
     </div>
     <div *ngIf="globalVar.loading == true" class="loading">Loading..</div>
