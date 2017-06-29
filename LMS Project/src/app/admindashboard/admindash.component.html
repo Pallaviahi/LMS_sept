@@ -14,7 +14,7 @@
     </div>
     <!-- /.row -->
     <div class="panel-group" id="accordion">
-        <div *ngIf="currentUser.designationTypeId == 1 || currentUser.designationTypeId == 2 || currentUser.designationTypeId == 3 "
+        <div *ngIf="currentUser.designationId == 1 || currentUser.designationId == 2 || currentUser.designationId == 3 "
             class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">
@@ -79,72 +79,136 @@
             </div>
         </div>
 
-       <div class="panel-group" id="users">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#users" href="#collapse4">Users</a>
-                </h4>
-            </div>
-            <div id="collapse4" class="panel-collapse collapse">
-                <div class="panel-body">
-                    <table class="table table-striped" [mfData]="adminUsers" #mf="mfDataTable" [mfRowsOnPage]="5">
-                        <thead>
-                            <tr>
-                                <th colspan="5">
-                                    Filter by reason:
-                                    <input class="form-control" [(ngModel)]="filterQuery" />
-                                </th>
-                            </tr>
-                            <tr>
-                                <th style="width: 20%">
-                                    <mfDefaultSorter by="name">Name</mfDefaultSorter>
-                                </th>
-                                <th style="width: 50%">
-                                    <mfDefaultSorter by="email">Email</mfDefaultSorter>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let item of mf.data">
-                                <td>{{item.firstName}} {{item.lastName}}</td>
-                                <td>{{item.email}}</td>
-                                <td>
-                                    <button (click)="open(item.id)" class="btn btn-info">Update</button>
-                                    <button (click)="open(item.id)" class="btn btn-info">Remove</button>
-                                </td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="4">
-                                    <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
+        <div class="panel-group" id="users">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#users" href="#collapse4">Users</a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table table-striped" [mfData]="adminUsers" #mf="mfDataTable" [mfRowsOnPage]="5">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        Filter by reason:
+                                        <input class="form-control" [(ngModel)]="filterQuery" />
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="width: 20%">
+                                        <mfDefaultSorter by="name">Name</mfDefaultSorter>
+                                    </th>
+                                    <th style="width: 50%">
+                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of mf.data">
+                                    <td>{{item.firstName}} {{item.lastName}}</td>
+                                    <td>{{item.email}}</td>
+                                    <td>
+                                        <button (click)="openUserUpdateModel(item.id)" class="btn btn-info">Update</button>
+                                        <button (click)="openUserUpdateModel(item.id)" class="btn btn-info">Remove</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
                 </div>
             </div>
-        </div>     
+
+        </div>
+        <!--Popup-->
+        <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
+        <modal #myModal>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Leave Request</h4>
+            </modal-header>
+            <modal-body>
+
+                <div class="form-group">
+                    <label for="textbox">Remarks</label>
+                    <textarea autofocus type="text" [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
+                <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(3)">Accept</button>
+            </modal-footer>
+        </modal>
+
+        <modal #updateUser>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Update User</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+                    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
+                            <label for="firstName">First Name</label>
+                            <input type="text" class="form-control" name="firstName" [(ngModel)]="userModel.firstName" #firstName="ngModel" required />
+                            <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
+                            <label for="lastName">Last Name</label>
+                            <input type="text" class="form-control" name="lastName" [(ngModel)]="userModel.lastName" #lastName="ngModel" required />
+                            <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
+                        </div>
+
+                        <!--<div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                            <label for="password">Password</label>
+                            <input type="password" class="form-control" name="password" [(ngModel)]="userModel.password" #password="ngModel" required />
+                            <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+                        </div>-->
+
+                        <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !reportingToId.valid }">
+                            <label>Reporting To</label>
+                            <select [(ngModel)]="model.reportingToId" name="reportingToId" #reportingToId="ngModel" class="form-control" required>
+         <option *ngFor="let lead of ReportingLeadsList" [selected]="userModel.reportingToId" value= {{lead.id}}>
+            {{lead.firstName}} {{lead.lastName}} 
+         </option>
+         </select>
+                            <div *ngIf="f.submitted && !reportingToId.valid" class="help-block">Reporting to lead is required
+                            </div>
+                        </div>
+
+
+                        <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !designationId.valid }">
+                            <label>Designation</label>
+                            <select [(ngModel)]="model.designationId" name="designationId" #designationId="ngModel" class="form-control" required>
+         <option *ngFor="let designation of DesignationList" [selected]="userModel.designationId" value= {{designation.Id}}>
+            {{designation.designationType}} 
+         </option>
+         </select>
+                            <div *ngIf="f.submitted && !designationId.valid" class="help-block">Designation is required
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <button [disabled]="loading" class="btn btn-primary">Register</button>
+                            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                            />
+                            <!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->
+                        </div>
+                    </form>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateUser.close();updateUserInfo();">Update</button>
+                <button type="button" class="btn btn-primary" (click)="updateUser.close();">Cancel</button>
+            </modal-footer>
+        </modal>
 
     </div>
-    <!--Popup-->
-    <!--<ngui-popup #popup>Hello Popup</ngui-popup>-->
-    <modal #myModal>
-        <modal-header [show-close]="true">
-            <h4 class="modal-title">Leave Request</h4>
-        </modal-header>
-        <modal-body>
-
-            <div class="form-group">
-                <label for="textbox">Remarks</label>
-                <textarea autofocus type="text" [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
-            </div>
-        </modal-body>
-        <modal-footer>
-            <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(2)">Reject</button>
-            <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(3)">Accept</button>
-        </modal-footer>
-    </modal>
-</div>
-<div *ngIf="globalVar.loading == true" class="loading">Loading..</div>
+    <div *ngIf="globalVar.loading == true" class="loading">Loading..</div>

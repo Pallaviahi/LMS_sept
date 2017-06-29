@@ -26,8 +26,8 @@ export class AdminService {
 
 
     updateLeaveApplicationService(approvedleaveModel: approvedLeaveModel) {
-        let  headers = new Headers({ 'Content-Type': 'application/json' });
-        let  options = new RequestOptions({ headers: headers });
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
         return this.http.post(this._baseUrl + '/admin/ApprovedLeave', approvedleaveModel, options)
             .map((response: Response) => {
                 //   console.log(response);
@@ -55,6 +55,60 @@ export class AdminService {
                 let users = response.json();
                 // console.log(leaverequests);
                 return users;
+            });
+    }
+
+    LoadUpdateUserDetails(empId: number) {   
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });    
+        return this.http.get(this._baseUrl +'/admin/LoadUpdateUserDetails/' + empId,options)
+            .map((response: Response) => {
+                let user = response.json();
+                return user;
+            });
+    }
+
+    LoadReportingLeads() {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this._baseUrl + '/admin/ReportingLeads', options)
+            .map((response: Response) => {
+                let leads = response.json();
+                //   console.log(listofApprovers);
+                return leads;
+            });
+    }
+
+    LoadDesignation() {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this._baseUrl + '/admin/Designations', options)
+            .map((response: Response) => {
+                let designation = response.json();
+                //   console.log(listofApprovers);
+                return designation;
+            });
+    }
+
+    RegisterUser(user:User) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + '/admin/RegisterUser',user, options)
+            .map((response: Response) => {
+                //let designation = response.json();
+                //   console.log(listofApprovers);
+                return response;
+            });
+    }
+
+    UpdateUser(user:User) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + '/admin/UpdateUser',user, options)
+            .map((response: Response) => {
+                //let designation = response.json();
+                //   console.log(listofApprovers);
+                return response;
             });
     }
 

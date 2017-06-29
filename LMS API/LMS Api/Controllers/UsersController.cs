@@ -42,7 +42,7 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                User user = db.Users.Where(x => x.email == userCredentails.email && x.password == userCredentails.password).FirstOrDefault();
+                User user = db.Users.Where(x => x.email == userCredentails.username && x.password == userCredentails.password).FirstOrDefault();
                 if (user == null)
                 {
                     return NotFound();
@@ -51,14 +51,15 @@ namespace LMS_Api.Controllers
                 {
                     UserModel usermodel = new UserModel();
                     usermodel.id = user.Id;
-                    usermodel.email = user.email;
-                    usermodel.designationTypeId = user.designationTypeId;
+                    usermodel.username = user.email;
+                    usermodel.firstName = user.firstName;
+                    usermodel.designationId = user.designationTypeId;
                     usermodel.lastName = user.lastName;
-                    usermodel.reportingToUserId = user.reportingToUserId;
+                    usermodel.reportingToId = user.reportingToUserId;
                     return Ok(usermodel);
                 }
             }
-            catch (Exception  e)
+            catch (Exception e)
             {
                 throw;
             }

@@ -68,6 +68,36 @@ namespace LMS_Api.Controllers
             }
         }
 
+        // GET: api/Users/5
+        [HttpGet]
+        [Route("LoadUpdateUserDetails/{empId}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult LoadUpdateUserDetails(int empId)
+        {
+            try
+            {
+                User user = db.Users.Where(x => x.Id == empId).FirstOrDefault();
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    UserModel usermodel = new UserModel();
+                    usermodel.id = user.Id;
+                    usermodel.username = user.email;
+                    usermodel.firstName = user.firstName;
+                    usermodel.designationId = user.designationTypeId;
+                    usermodel.lastName = user.lastName;
+                    usermodel.reportingToId = user.reportingToUserId;
+                    return Ok(usermodel);
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
 
         //Leaveapproved
         [HttpPost]
@@ -152,11 +182,139 @@ namespace LMS_Api.Controllers
                     objuser.id = item.Id;
                     objuser.firstName = item.firstName;
                     objuser.lastName = item.lastName;
-                    objuser.email = item.email;
+                    objuser.username = item.email;
                     listofUsers.Add(objuser);
                 }
 
                 return Ok(listofUsers);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("ReportingLeads")]
+        [ResponseType(typeof(List<User>))]
+        public IHttpActionResult ReportingLeads()
+        {
+            var ReportingLeads = db.Users.Where(x => x.designationTypeId != 4 && x.designationTypeId != 5).ToList();
+            if (ReportingLeads == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                List<Models.UserModel> listofReportingLeads = new List<Models.UserModel>();
+                foreach (var item in ReportingLeads)
+                {
+                    UserModel objuser = new UserModel();
+                    objuser.id = item.Id;
+                    objuser.firstName = item.firstName;
+                    objuser.lastName = item.lastName;
+                    listofReportingLeads.Add(objuser);
+                }
+
+                return Ok(listofReportingLeads);
+            }
+        }
+
+        [HttpGet]
+        [Route("Designations")]
+        [ResponseType(typeof(List<User>))]
+        public IHttpActionResult Designation()
+        {
+            var designationList = db.Designations.ToList();
+            if (designationList == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                List<Designation> listofDesignation = new List<Designation>();
+                foreach (var item in designationList)
+                {
+                    Designation objDesignation = new Designation();
+                    objDesignation.Id = item.Id;
+                    objDesignation.designationType = item.designationType;
+
+                    listofDesignation.Add(objDesignation);
+                }
+
+                return Ok(listofDesignation);
+            }
+        }
+
+        //Register User
+        [HttpPost]
+        [Route("RegisterUser")]
+        [ResponseType(typeof(string))]
+        public IHttpActionResult RegisterUser(UserModel objUser)
+        {
+            try
+            {
+                var user = db.Users.FirstOrDefault(x => x.email == objUser.username);
+
+                if (user == null)
+                {
+
+                    User newUser = new User();
+                    newUser.firstName = objUser.firstName;
+                    newUser.lastName = objUser.lastName;
+                    newUser.email = objUser.username;
+                    newUser.password = objUser.password;
+                    newUser.designationTypeId = objUser.designationId;
+                    newUser.reportingToUserId = objUser.reportingToId;
+                    newUser.createdDate = DateTime.Now;
+                    newUser.updatedDate = DateTime.Now;
+
+                    db.Users.Add(newUser);
+
+                    db.SaveChanges();
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok("User Already Exists");
+                }
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+        //Update User
+        [HttpPost]
+        [Route("UpdateUser")]
+        [ResponseType(typeof(string))]
+        public IHttpActionResult UpdateUser(UserModel objUser)
+        {
+            try
+            {
+                var user = db.Users.FirstOrDefault(x => x.email == objUser.username);
+
+                if (user != null)
+                {
+                    user.firstName = objUser.firstName;
+                    user.lastName = objUser.lastName;
+                    //user.email = objUser.username;
+                    //user.password = objUser.password;
+                    user.designationTypeId = objUser.designationId;
+                    user.reportingToUserId = objUser.reportingToId;
+                    //userer.createdDate = DateTime.Now;
+                    user.updatedDate = DateTime.Now;
+
+                    db.SaveChanges();
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok("User does not exists");
+                }
             }
             catch (Exception e)
             {

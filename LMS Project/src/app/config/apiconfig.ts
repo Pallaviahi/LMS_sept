@@ -8,6 +8,7 @@ export class ConfigService {
     constructor() {
         //This should be changed accourding to API Url.
         this._apiURI = 'http://localhost:60227/api/';
+        //this._apiURI = 'http://lms.gear.host/api/';
      }
 
      getApiURI() {

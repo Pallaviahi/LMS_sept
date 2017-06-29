@@ -4,4 +4,6 @@
     password: string;
     firstName: string;
     lastName: string;
+    reportingToId:Number;
+    designationId:Number;
 }

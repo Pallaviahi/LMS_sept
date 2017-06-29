@@ -23,7 +23,8 @@ export class AdminSettingsComponent implements OnInit {
         this.LoadAdminSettings();
     }
 
-    constructor(private adminService: AdminService,public toastr: ToastsManager) {
+    constructor(private adminService: AdminService,public toastr: ToastsManager,vcr: ViewContainerRef) {
+        this.toastr.setRootViewContainerRef(vcr);
         //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
 

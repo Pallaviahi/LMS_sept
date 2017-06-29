@@ -9,7 +9,7 @@ namespace LMS_Api.Models
     {
         public int id { get; set; }
 
-        public string email { get; set; }
+        public string username { get; set; }
 
         public string firstName { get; set; }
 
@@ -17,8 +17,8 @@ namespace LMS_Api.Models
 
         public string password { get; set; }
 
-        public int designationTypeId { get; set; }
+        public int designationId { get; set; }
 
-        public int? reportingToUserId { get; set; }
+        public int? reportingToId { get; set; }
     }
 }
