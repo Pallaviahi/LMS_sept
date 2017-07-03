@@ -8,6 +8,7 @@ export class User {
     lastName: string;
     reportingToId:Number;
     designationId:Number;
-    DateOfJoining : DateModel;
+    DateOfJoiningModel : DateModel;
+    DateOfJoining : string;
     Gender : string;
 }

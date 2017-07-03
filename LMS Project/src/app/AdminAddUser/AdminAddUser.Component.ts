@@ -58,7 +58,7 @@ export class AdminAddUserComponent implements OnInit {
 
     register() {
         this.globalVar.loading = true;
-        this.model.DateOfJoining = this.model.DateOfJoining.formatted;
+        this.model.DateOfJoining = this.model.DateOfJoiningModel.formatted;
         this.adminService.RegisterUser(this.model)
             .subscribe(
             data => {

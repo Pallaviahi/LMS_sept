@@ -33,12 +33,12 @@
             <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
         </div>
 
-        <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !DateOfJoining.valid }">
+        <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !DateOfJoiningModel.valid }">
             <label>Date Of Joining</label>
             <div>
-                <ng2-datepicker [options]="options" required name="DateOfJoining" #DateOfJoining="ngModel" [(ngModel)]="model.DateOfJoining"></ng2-datepicker>
+                <ng2-datepicker [options]="options" required name="DateOfJoiningModel" #DateOfJoiningModel="ngModel" [(ngModel)]="model.DateOfJoiningModel"></ng2-datepicker>
             </div>
-            <div *ngIf="f.submitted && !DateOfJoining.valid" class="help-block">Date Of Joining is required
+            <div *ngIf="f.submitted && !DateOfJoiningModel.valid" class="help-block">Date Of Joining is required
             </div>
         </div>
 
