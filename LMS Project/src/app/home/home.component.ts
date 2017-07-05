@@ -24,6 +24,11 @@ export class HomeComponent implements OnInit {
         //this.loadAllUsers();
     }
 
+    logout(){
+        // clear token remove user from local storage to log user out
+        localStorage.removeItem('currentUser');
+    }
+
     // deleteUser(id: number) {
     //     this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
     // }
