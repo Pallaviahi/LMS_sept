@@ -23,6 +23,9 @@ namespace LMS_Api
     
         public int Id { get; set; }
         public string LeaveType1 { get; set; }
+        public Nullable<double> MinValue { get; set; }
+        public Nullable<double> MaxValue { get; set; }
+        public Nullable<double> TotalValue { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Leave_Approval_Matrix> Leave_Approval_Matrix { get; set; }

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
-import { User, types, applyLeaveModel, approvedLeaveModel } from '../_models/index';
+import { User, types, applyLeaveModel, approvedLeaveModel,newLeave } from '../_models/index';
 import { ConfigService } from '../config/apiconfig';
 import { Observable } from 'rxjs/Observable';
 
@@ -94,6 +94,17 @@ export class AdminService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this._baseUrl + '/admin/RegisterUser',user, options)
+            .map((response: Response) => {
+                //let designation = response.json();
+                //   console.log(listofApprovers);
+                return response;
+            });
+    }
+
+    RegisterLeave(newleave:newLeave) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + '/admin/RegisterLeave',newleave, options)
             .map((response: Response) => {
                 //let designation = response.json();
                 //   console.log(listofApprovers);

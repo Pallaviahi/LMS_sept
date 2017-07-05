@@ -287,6 +287,45 @@ namespace LMS_Api.Controllers
             }
         }
 
+
+        //Register Leave
+        [HttpPost]
+        [Route("RegisterLeave")]
+        [ResponseType(typeof(string))]
+        public IHttpActionResult RegisterLeave(registerleave objUser)
+        {
+            try
+            {
+               var leavetype = db.LeaveTypes.FirstOrDefault(x => x.LeaveType1 == objUser.leavename);
+
+                if (leavetype == null)
+                {
+
+                    LeaveType newLeave = new LeaveType();
+
+                    newLeave.LeaveType1 = objUser.leavename;
+                    newLeave.MaxValue = objUser.maxLeave;
+                    newLeave.MinValue = objUser.minLeave;
+                    newLeave.TotalValue = objUser.totalLeave;
+
+                    db.LeaveTypes.Add(newLeave);
+
+                    db.SaveChanges();
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok("Leave Already Exists");
+                }
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+
         //Update User
         [HttpPost]
         [Route("UpdateUser")]

@@ -71,6 +71,7 @@ export class UserComponent implements OnInit {
         var errMessage = '';
         this.model.id = this.leaveRequestId;
         this.model.status = LeaveStatus;
+
         this.globalVar.loading = true;
 
         this.userService.updateLeaveApplicationService(this.model)
@@ -126,6 +127,7 @@ export class UserComponent implements OnInit {
                      if (v.status == 5) { v.status = "Ist Level Rejected" }
                     this.leaveRequests = [];
                     this.leaveRequests.push(v);
+                    console.log(data);
                 }
             });
     }

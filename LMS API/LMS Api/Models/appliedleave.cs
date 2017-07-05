@@ -33,6 +33,10 @@ namespace LMS_Api.Models
 
         public DateTime date { get; set; }
 
+        public DateTime enddate { get; set; }
+
+
+
         public string name { get; set; }
 
         public string leavetype { get; set; }

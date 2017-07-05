@@ -9,6 +9,7 @@ import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 import { AdminSettingsComponent } from './adminsettings/index';
 import { AdminAddUserComponent } from './AdminAddUser/index';
+import { AdminAddLeavesComponent } from './AdminAddLeaves/index';
 
 const appRoutes: Routes = [
     {
@@ -41,6 +42,10 @@ const appRoutes: Routes = [
              {
                 path: 'AdminAddUser',
                 component: AdminAddUserComponent,
+            },
+            {
+                path: 'AdminAddLeaves',
+                component: AdminAddLeavesComponent,
             }
         ]
     },

@@ -10,5 +10,7 @@ namespace LMS_Api.Models
         public int id { get; set; }
 
         public string typeOfLeave { get; set; }
+
+       
     }
 }

@@ -281,6 +281,7 @@ namespace LMS_Api.Controllers
                                                      name = u.firstName + " " + u.lastName,
                                                      email = u.email,
                                                      date = k.startDate,
+                                                     enddate = k.endDate,
                                                      leavetype = lt.LeaveType1,
                                                      reason = k.reason,
                                                      status = k.status,
@@ -305,6 +306,7 @@ namespace LMS_Api.Controllers
                     objleaveMatrix.name = item.name;
                     objleaveMatrix.email = item.email;
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");
+                    objleaveMatrix.endDate = item.enddate.ToString("dd-MM-yyyy");
                     objleaveMatrix.reason = item.reason;
                     objleaveMatrix.LeaveCategory = item.leavetype;
                     objleaveMatrix.status = item.status;

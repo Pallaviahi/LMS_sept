@@ -30,6 +30,9 @@ namespace LMS_Api
         public Nullable<int> reportingToUserId { get; set; }
         public System.DateTime createdDate { get; set; }
         public System.DateTime updatedDate { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<System.DateTime> DateOfJoining { get; set; }
+        public string Gender { get; set; }
     
         public virtual Designation Designation { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
