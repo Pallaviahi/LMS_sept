@@ -160,8 +160,9 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                bool IsAdminPermissionRequiredForLeaveApproval = db.AdminSettings.FirstOrDefault(x => x.Id == objadminsettings.id).SettingValue;
-                IsAdminPermissionRequiredForLeaveApproval = objadminsettings.IsAdminPermissionRequiredForLeaveApproval;
+                db.AdminSettings.Where(x => x.Id == objadminsettings.id).FirstOrDefault().SettingValue = objadminsettings.IsAdminPermissionRequiredForLeaveApproval;
+                db.SaveChanges();
+
                 return Ok("Updated");
             }
             catch (Exception e)
