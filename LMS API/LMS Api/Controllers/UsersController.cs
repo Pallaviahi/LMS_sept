@@ -332,8 +332,20 @@ namespace LMS_Api.Controllers
                 else
                 {
                     //approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
-                    if (objApprovedLeaveMatrix.status == 5) { approvedleave.LevelId = 2; }
-                    approvedleave.status = objApprovedLeaveMatrix.status;
+                    if (db.AdminSettings.FirstOrDefault().SettingValue == false)
+                    {
+                        if (objApprovedLeaveMatrix.status == 5 || objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
+                        approvedleave.status = objApprovedLeaveMatrix.status;
+
+                    }
+                    if (db.AdminSettings.FirstOrDefault().SettingValue == true)
+                    {
+                        //if (objApprovedLeaveMatrix.status == 5 || objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
+                        if (objApprovedLeaveMatrix.status == 4)
+                            approvedleave.status = 3;
+                        if (objApprovedLeaveMatrix.status == 5)
+                            approvedleave.status = 2;
+                    }
 
                     //adding approver comments to remarks table
                     LeaveRemark objLeaveRemark = new LeaveRemark();
