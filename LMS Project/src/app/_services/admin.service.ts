@@ -50,11 +50,23 @@ export class AdminService {
     LoadusersForAdmin() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
-        return this.http.get(this._baseUrl + '/admin/LoadusersForAdmin', options)
+        return this.http.get(this._baseUrl + '/admin/LoadUsersForAdmin', options)
             .map((response: Response) => {
                 let users = response.json();
                 // console.log(leaverequests);
                 return users;
+            });
+    }
+
+//load Types of leaves
+    LoadleavesForAdmin(){
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this._baseUrl + '/admin/LoadLeavesForAdmin', options)
+            .map((response: Response) => {
+                let leaves = response.json();
+                // console.log(leaverequests);
+                return leaves;
             });
     }
 
@@ -116,6 +128,17 @@ export class AdminService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this._baseUrl + '/admin/UpdateUser',user, options)
+            .map((response: Response) => {
+                //let designation = response.json();
+                //   console.log(listofApprovers);
+                return response;
+            });
+    }
+
+    DeleteUser(empId: number) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this._baseUrl +'/admin/DeleteUser/' + empId,options)
             .map((response: Response) => {
                 //let designation = response.json();
                 //   console.log(listofApprovers);

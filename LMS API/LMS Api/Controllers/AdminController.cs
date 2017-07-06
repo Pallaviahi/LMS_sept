@@ -34,6 +34,7 @@ namespace LMS_Api.Controllers
                                                      name = u.firstName + " " + u.lastName,
                                                      email = u.email,
                                                      date = k.startDate,
+                                                     enddate = k.endDate,
                                                      leavetype = lt.LeaveType1,
                                                      reason = k.reason,
                                                      status = k.status,
@@ -58,6 +59,7 @@ namespace LMS_Api.Controllers
                     objleaveMatrix.name = item.name;
                     objleaveMatrix.email = item.email;
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");
+                    objleaveMatrix.endDate = item.enddate.ToString("dd-MM-yyyy");
                     objleaveMatrix.reason = item.reason;
                     objleaveMatrix.LeaveCategory = item.leavetype;
                     objleaveMatrix.status = item.status;
@@ -92,6 +94,25 @@ namespace LMS_Api.Controllers
                     usermodel.reportingToId = user.reportingToUserId;
                     return Ok(usermodel);
                 }
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
+
+        // GET: api/Users/5
+        [HttpGet]
+        [Route("DeleteUser/{empId}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteUser(int empId)
+        {
+            try
+            {
+                db.Users.Where(x => x.Id == empId).FirstOrDefault().IsDeleted = true;
+                db.SaveChanges();
+                return Ok("true");
             }
             catch (Exception e)
             {
@@ -173,7 +194,7 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                var users = db.Users.ToList();
+                var users = db.Users.Where(x => x.IsDeleted != true).ToList();
 
                 List<Models.UserModel> listofUsers = new List<Models.UserModel>();
                 foreach (var item in users)
@@ -186,7 +207,36 @@ namespace LMS_Api.Controllers
                     listofUsers.Add(objuser);
                 }
 
-                return Ok(listofUsers);
+                 return Ok(listofUsers);
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+        [HttpGet]
+        [Route("LoadLeavesForAdmin")]
+        public IHttpActionResult LoadLeavesForAdmin()
+        {
+            try
+            {
+                var leavetypes = db.LeaveTypes.ToList();
+
+                List<LeaveType> listofLeaves = new List<LeaveType>();
+                foreach (var item in leavetypes)
+                {
+                    LeaveType objleave = new LeaveType();
+                    objleave.Id = item.Id;
+
+                    objleave.LeaveType1 = item.LeaveType1;
+                    objleave.MinValue = item.MinValue;
+                    objleave.MaxValue = item.MaxValue;
+                    listofLeaves.Add(objleave);
+                }
+
+                return Ok(listofLeaves);
             }
             catch (Exception e)
             {
@@ -267,6 +317,8 @@ namespace LMS_Api.Controllers
                     newUser.password = objUser.password;
                     newUser.designationTypeId = objUser.designationId;
                     newUser.reportingToUserId = objUser.reportingToId;
+                    newUser.DateOfJoining = objUser.DateOfJoining;
+                    newUser.Gender = objUser.Gender[0].ToString();
                     newUser.createdDate = DateTime.Now;
                     newUser.updatedDate = DateTime.Now;
 

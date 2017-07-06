@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild,ViewContainerRef } from '@angular/core';
 import { User } from '../_models/index';
 import { AdminService, } from '../_services/index';
 import { ApplyLeaveComponent } from '../applyleave/index';
@@ -13,36 +13,53 @@ import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
     templateUrl: 'admindash.component.html'
 })
 
-
-
 export class AdminDashComponent implements OnInit {
     currentUser: User;
 
     model: approvedLeaveModel = new approvedLeaveModel;
-    userModel : User = new User;
+    userModel: User = new User;
     public leaveRequests: any[] = [];
     public adminUsers: any[] = [];
+    public adminLeaves: any[] = [];
     public ReportingLeadsList: any[] = [];
     public DesignationList: any[] = [];
     public filterQuery = "";
     leaveRequestId: number;
+    leaveRequestStatus : number;
     userToUpdateId: number;
+    userToDeleteId: number;
     @ViewChild('myModal') modal: ModalComponent;
     @ViewChild('updateUser') updateUser: ModalComponent;
+    @ViewChild('DeleteUserPopup') DeleteUserPopup: ModalComponent;
 
-    constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager) {
+    constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager,vcr: ViewContainerRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
         //this.userModel =this.currentUser; 
+        this.toastr.setRootViewContainerRef(vcr);
     }
 
     ngOnInit() {
         this.loadLeaveRequests();
         this.LoadusersForAdmin();
+        this.LoadleavesForAdmin();
     }
 
-    open(recordId: number) {
+    // open(recordId: number) {
+    //     this.modal.open();
+    //     this.leaveRequestId = recordId;
+    // }
+
+   
+ open(recordId: number, event:any) {
         this.modal.open();
         this.leaveRequestId = recordId;
+        if(event.target.id == "btnReject"){this.leaveRequestStatus = 5}
+        if(event.target.id == "btnAccept"){this.leaveRequestStatus = 4}
+    }    
+
+    OpenDeleteUserModal(empId: number) {
+        this.DeleteUserPopup.open();
+        this.userToDeleteId = empId;
     }
 
     openUserUpdateModel(empId: number) {
@@ -54,7 +71,7 @@ export class AdminDashComponent implements OnInit {
     }
 
 
-    LoadUpdateUserDetails(){
+    LoadUpdateUserDetails() {
         this.adminService.LoadUpdateUserDetails(this.userToUpdateId)
             .subscribe(
             data => {
@@ -74,7 +91,18 @@ export class AdminDashComponent implements OnInit {
             });
     }
 
-     LoadReportingLeads() {
+ LoadleavesForAdmin() {
+        //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
+        this.adminService.LoadleavesForAdmin()
+            .subscribe(
+            data => {
+                for (var v of data) {
+                    this.adminLeaves.push(v);
+                }
+                console.log(data);
+            });
+    }
+    LoadReportingLeads() {
         this.ReportingLeadsList = [];
 
         this.adminService.LoadReportingLeads()
@@ -103,13 +131,13 @@ export class AdminDashComponent implements OnInit {
         this.adminService.LeaveRequests()
             .subscribe(
             data => {
+                this.leaveRequests = [];
                 for (var v of data) {
                     if (v.status == 1) { v.status = "Pending" }
                     if (v.status == 2) { v.status = "Rejected " }
                     if (v.status == 3) { v.status = "Approved" }
                     if (v.status == 4) { v.status = "1st Level Approved" }
                     if (v.status == 5) { v.status = "Ist Level Rejected" }
-                    this.leaveRequests = [];
                     this.leaveRequests.push(v);
                 }
                 console.log('these are leave requests');
@@ -117,12 +145,12 @@ export class AdminDashComponent implements OnInit {
             });
     }
 
-    private updateLeaveApplication(LeaveStatus: number) {
+    private updateLeaveApplication() {
         // var userDetails = JSON.parse(localStorage.getItem('currentUser'));
         //setting the required properties;  
         var errMessage = '';
         this.model.id = this.leaveRequestId;
-        this.model.status = LeaveStatus;
+        this.model.status = this.leaveRequestStatus;
         this.globalVar.loading = true;
 
         this.adminService.updateLeaveApplicationService(this.model)
@@ -151,6 +179,27 @@ export class AdminDashComponent implements OnInit {
                     this.toastr.success("User Already Exists");
                 }
                 //this.loadLeaveRequests();
+            },
+            error => {
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
+            });
+    }
+
+    deleteUser() {
+        this.globalVar.loading = true;
+        this.adminService.DeleteUser(this.userToDeleteId)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                if (data.text() == "true") {
+                    this.toastr.success('User Deleted Successfully !');
+                }
+                else {
+                    this.toastr.success("Something went wrong");
+                }
+                this.adminUsers = [];
+                this.LoadusersForAdmin();
             },
             error => {
                 this.globalVar.loading = false;

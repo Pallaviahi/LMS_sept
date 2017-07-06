@@ -42,7 +42,7 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                User user = db.Users.Where(x => x.email == userCredentails.username && x.password == userCredentails.password).FirstOrDefault();
+                User user = db.Users.Where(x => x.email == userCredentails.username && x.password == userCredentails.password && x.IsDeleted != true).FirstOrDefault();
                 if (user == null)
                 {
                     return NotFound();

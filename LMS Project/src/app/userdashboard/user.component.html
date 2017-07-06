@@ -166,8 +166,14 @@
                 <td>{{item.LeaveCategory}}</td>
                 <td>{{item.reason}}</td>
                 <td>{{item.status}}</td>
-                <td>
+                <!--<td>
                   <button (click)="open(item.id)" class="btn btn-info">Take Action</button>
+                </td>-->
+                <td>
+                  <button (click)="open(item.id,$event)" id="btnReject" class="btn btn-danger">Reject</button>
+                </td>
+                <td>
+                  <button (click)="open(item.id,$event)" id="btnAccept" class="btn btn-success">Accept</button>
                 </td>
               </tr>
             </tbody>
@@ -189,18 +195,18 @@
         <h4 class="modal-title">Leave Request</h4>
       </modal-header>
       <modal-body>
-         
+
         <div class="form-group">
-            <label for="textbox">Remarks</label>
-            <textarea autofocus type="text"  [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
-        </div> 
+          <label for="textbox">Remarks</label>
+          <textarea autofocus type="text" [(ngModel)]="model.remarks" class="form-control" id="textbox2"></textarea>
+        </div>
       </modal-body>
       <modal-footer>
-        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication(5)">Reject</button>
-        <button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(4)">Accept</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="modal.close(); updateLeaveApplication()">OK</button>
+        <!--<button type="button" class="btn btn-primary" (click)="modal.close();updateLeaveApplication(4)">Accept</button>-->
       </modal-footer>
     </modal>
-     
+
   </div>
 </div>
 <div *ngIf="globalVar.loading == true" class="loading">Loading..</div>
