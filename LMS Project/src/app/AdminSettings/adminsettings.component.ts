@@ -1,7 +1,6 @@
 
 import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+import { adminsettingsModel } from '../_models/index';
 import { LocalDataSource } from 'ng2-smart-table';
 import { approvedLeaveModel } from '../_models/index';
 import { GlobalService } from '../global';
@@ -17,13 +16,15 @@ import { AdminService, } from '../_services/index';
 export class AdminSettingsComponent implements OnInit {
 
     public adminSettings: any[] = [];
-    public IsAdminPermissionRequiredForLeaveApproval : boolean;
+    public IsAdminPermissionRequiredForLeaveApproval: boolean;
+    model: adminsettingsModel = new adminsettingsModel;
+
     ngOnInit() {
         //this.loadLeaveRequests();
         this.LoadAdminSettings();
     }
 
-    constructor(private adminService: AdminService,public toastr: ToastsManager,vcr: ViewContainerRef) {
+    constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager, vcr: ViewContainerRef) {
         this.toastr.setRootViewContainerRef(vcr);
         //this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     }
@@ -46,13 +47,36 @@ export class AdminSettingsComponent implements OnInit {
             .subscribe(
             data => {
                 for (var v of data) {
-                   if(v.Setting == 'IsAdminPermissionRequiredForLeaveApproval')
-                   {
-                        this.IsAdminPermissionRequiredForLeaveApproval = v.SettingValue;
-                   }
+                    if (v.Setting == 'IsAdminPermissionRequiredForLeaveApproval') {
+                        this.model.id = 1;
+                        this.model.IsAdminPermissionRequiredForLeaveApproval = v.SettingValue;
+                    }
                 }
-                console.log('these are admin settings');
-                console.log(this.IsAdminPermissionRequiredForLeaveApproval);
+                //console.log('these are admin settings');
+                //console.log(this.IsAdminPermissionRequiredForLeaveApproval);
+            });
+    }
+
+    public SaveAdminSettings() {
+        this.globalVar.loading = true;
+        this.adminService.UpdateAdminSettings(this.model)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                if (data.status == 200) {
+                    this.toastr.success('Setting Updated Successfully !');
+                }
+                else {
+                    this.toastr.success("Something went wrong");
+                }
+                // for (var v of data) {
+                //    if(v.Setting == 'IsAdminPermissionRequiredForLeaveApproval')
+                //    {
+                //         this.IsAdminPermissionRequiredForLeaveApproval = v.SettingValue;
+                //    }
+                // }
+                // console.log('these are admin settings');
+                // console.log(this.IsAdminPermissionRequiredForLeaveApproval);
             });
     }
 }

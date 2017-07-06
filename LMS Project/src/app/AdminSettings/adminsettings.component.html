@@ -3,11 +3,15 @@
         <label class="col-md-4">
         Is Admin(2nd Level Approval Required? 
      </label>
-        <label class="col-md-6 checkbox"><input type="checkbox" name="AdminPermissionRequiredForLeaveApproval" [(ngModel)]="IsAdminPermissionRequiredForLeaveApproval" value=""></label>
+        <input type="hidden" name="id" [(ngModel)]="model.id">
+        <label class="col-md-6 checkbox">
+            <input type="checkbox" name="AdminPermissionRequiredForLeaveApproval" [(ngModel)]="model.IsAdminPermissionRequiredForLeaveApproval" value="">
+        </label>
     </div>
     <br><br>
     <div class="row">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Save Settings</button>
+        <button type="button" class="btn btn-success" (click)="SaveAdminSettings()" data-dismiss="modal">Save Settings</button>
         <button type="button" class="btn btn-primary">Reset</button>
     </div>
 </form>
+<div *ngIf="globalVar.loading == true" class="loading">Loading..</div>
