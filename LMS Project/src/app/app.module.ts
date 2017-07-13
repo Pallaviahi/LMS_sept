@@ -2,7 +2,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
- 
+
 import { fakeBackendProvider } from './_helpers/index';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { BaseRequestOptions } from '@angular/http';
@@ -24,7 +24,7 @@ import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 import { AdminSettingsComponent } from './adminsettings/index';
 import { DatePickerModule } from 'ng2-datepicker';
-
+import { AdminUploadFileComponent } from './AdminUploadPDF/index';
 import { AdminAddUserComponent } from './AdminAddUser/index';
 import { DataTableModule } from "angular2-datatable";
 import { DataFilterPipe } from './_helpers/data-filter.pipe';
@@ -77,7 +77,8 @@ export class CustomOptions extends ToastOptions {
         AdminSettingsComponent,
         LeaveTypesFilterPipe,
         AppliedLeaveFilterPipe,
-        AdminAddUserComponent
+        AdminAddUserComponent,
+        AdminUploadFileComponent
     ],
     providers: [
         AuthGuard,

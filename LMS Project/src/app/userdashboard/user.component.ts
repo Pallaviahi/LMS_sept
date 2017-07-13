@@ -24,7 +24,7 @@ export class UserComponent implements OnInit {
     public leaveRequests: any[] = [];
     public filterQuery = "";
     leaveRequestId: number;
-    leaveRequestStatus : number;
+    leaveRequestStatus: number;
 
     message: string;
     @ViewChild('myModal') modal: ModalComponent;
@@ -45,14 +45,14 @@ export class UserComponent implements OnInit {
         // 
     }
 
-    open(recordId: number, event:any) {
+    open(recordId: number, event: any) {
         this.modal.open();
         this.leaveRequestId = recordId;
-        if(event.target.id == "btnReject"){this.leaveRequestStatus = 5}
-        if(event.target.id == "btnAccept"){this.leaveRequestStatus = 4}
+        if (event.target.id == "btnReject") { this.leaveRequestStatus = 5 }
+        if (event.target.id == "btnAccept") { this.leaveRequestStatus = 4 }
     }
 
-    
+
     private loadUserLeaves() {
         this.userService.loadUserLeaves(this.currentUser.id).subscribe(data => {
             for (var v of data) {
@@ -119,7 +119,7 @@ export class UserComponent implements OnInit {
                     if (v.status == 2) { v.status = "Rejected" }
                     if (v.status == 3) { v.status = "Approved" }
                     if (v.status == 4) { v.status = "1st Level Approved" }
-                     if (v.status == 5) { v.status = "Ist Level Rejected" }
+                    if (v.status == 5) { v.status = "Ist Level Rejected" }
                     this.leaveRequests = [];
                     this.leaveRequests.push(v);
                 }

@@ -9,6 +9,7 @@ import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 import { AdminSettingsComponent } from './adminsettings/index';
 import { AdminAddUserComponent } from './AdminAddUser/index';
+import { AdminUploadFileComponent } from './AdminUploadPDF/index';
 
 const appRoutes: Routes = [
     {
@@ -38,9 +39,13 @@ const appRoutes: Routes = [
                 path: 'adminsettings',
                 component: AdminSettingsComponent,
             },
-             {
+            {
                 path: 'AdminAddUser',
                 component: AdminAddUserComponent,
+            },
+            {
+                path: 'AdminUploadPDF',
+                component: AdminUploadFileComponent,
             }
         ]
     },

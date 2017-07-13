@@ -134,6 +134,16 @@ export class AdminService {
             });
     }
 
+    //Upload Files
+    uploadFiles(formData: any) {
+        let headers = new Headers();
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl +'/admin/UploadFileApi/', formData,options)
+            .map((response: Response) => {
+                return response;
+            });
+    }
+
     // private helper methods
     private jwt() {
         // create authorization header with jwt token
