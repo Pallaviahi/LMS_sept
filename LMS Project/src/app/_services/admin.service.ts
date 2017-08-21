@@ -157,6 +157,7 @@ export class AdminService {
             });
     }
 
+
     DeleteLeave(leaveId: number) {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
@@ -164,6 +165,14 @@ export class AdminService {
             .map((response: Response) => {
                 //let designation = response.json();
                 //   console.log(listofApprovers);
+            });
+    }
+    //Upload Files
+    uploadFiles(formData: any) {
+        let headers = new Headers();
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl +'/admin/UploadFileApi/', formData,options)
+            .map((response: Response) => {
                 return response;
             });
     }

@@ -10,6 +10,7 @@ import { AdminDashComponent } from './admindashboard/index';
 import { AdminSettingsComponent } from './adminsettings/index';
 import { AdminAddUserComponent } from './AdminAddUser/index';
 import { AdminAddLeavesComponent } from './AdminAddLeaves/index';
+import { AdminUploadFileComponent } from './AdminUploadPDF/index';
 
 const appRoutes: Routes = [
     {
@@ -39,13 +40,18 @@ const appRoutes: Routes = [
                 path: 'adminsettings',
                 component: AdminSettingsComponent,
             },
-             {
+            {
                 path: 'AdminAddUser',
                 component: AdminAddUserComponent,
             },
             {
+<<<<<<< HEAD
                 path: 'AdminAddLeaves',
                 component: AdminAddLeavesComponent,
+=======
+                path: 'AdminUploadPDF',
+                component: AdminUploadFileComponent,
+>>>>>>> 265baaad8570a8eca7a525c291bdcd6d28f4c15f
             }
         ]
     },
