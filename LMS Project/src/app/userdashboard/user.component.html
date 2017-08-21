@@ -44,8 +44,8 @@
             </thead>
             <tbody>
               <tr *ngFor="let item of mf2.data">
-                <td>{{item.LeaveType1}}</td>
-                <td>{{item.Count}}</td>
+                <td>{{item.LeaveName}}</td>
+                <td>{{item.AccruedLeaves}}</td>
                 <td>{{item.LeaveBalance}}</td>
               </tr>
             </tbody>
@@ -81,6 +81,9 @@
                   <mfDefaultSorter by="startDate">Start Date</mfDefaultSorter>
                 </th>
                 <th style="width: 20%">
+                  <mfDefaultSorter by="startDate">End Date</mfDefaultSorter>
+                </th>
+                <th style="width: 20%">
                   <mfDefaultSorter by="reason">Reason</mfDefaultSorter>
                 </th>
                 <th style="width: 20%">
@@ -97,6 +100,7 @@
             <tbody>
               <tr *ngFor="let item of mf.data">
                 <td>{{item.startDate}}</td>
+                <td>{{item.endDate}}</td>
                 <td>{{item.reason}}</td>
                 <td>{{item.Approver}}</td>
                 <td>{{item.LeaveCategory}}</td>

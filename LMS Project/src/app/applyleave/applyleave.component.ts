@@ -44,7 +44,7 @@ export class ApplyLeaveComponent implements OnInit {
                 for (var v of data) {
                     this.testTypes.push(v);
                 }
-                this.model.leaveTypeId = this.testTypes[0];
+               // this.model.leaveTypeId = this.testTypes[0];
             });
 
     }

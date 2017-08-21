@@ -157,6 +157,17 @@ export class AdminService {
             });
     }
 
+    DeleteLeave(leaveId: number) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.get(this._baseUrl +'/admin/DeleteLeave/' + leaveId,options)
+            .map((response: Response) => {
+                //let designation = response.json();
+                //   console.log(listofApprovers);
+                return response;
+            });
+    }
+
     // private helper methods
     private jwt() {
         // create authorization header with jwt token

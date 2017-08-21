@@ -154,32 +154,264 @@ namespace LMS_Api.Controllers
         //[ResponseType(typeof(List<leaveType>))]
         public IHttpActionResult AvailableLeavesDetails(int userId)
         {
-            var availableLeaves = from lt in db.LeaveTypes
-                                  join lam in db.Leave_Approval_Matrix on lt.Id equals lam.LeaveTypeId
-                                  join tlc in db.TotalLeaveCounts on lam.LeaveTypeId equals tlc.LeaveTypeId
-                                  where lam.userId == userId
-                                  group new { lt.LeaveType1, tlc.Count, lam.daysCount } by new { lt.LeaveType1, tlc.Count, lam.daysCount } into g
-                                  select new
-                                  {
-                                      g.Key.LeaveType1,
-                                      g.Key.Count,
-                                      LeaveBalance = g.Key.Count - g.Sum(x => x.daysCount)
-                                  };
-            if (availableLeaves.Count() == 0)
-            {
-                var avaliableLeave = from tlc in db.TotalLeaveCounts
-                                     join lt in db.LeaveTypes on tlc.LeaveTypeId equals lt.Id into g
-                                     select new
-                                     {
-                                         LeaveType1 = tlc.LeaveType.LeaveType1,
-                                         Count = tlc.Count,
-                                         LeaveBalance = tlc.Count
-                                     };
-                return Ok(avaliableLeave);
-            }
+            double AllotedLeaves = 0;
+            double balance = 0;
+            List<leaveBalance> objListLeaveBalance = new List<leaveBalance>();
+            var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
 
-            return Ok(availableLeaves);
+            if (user != null)
+            {
+                var typeOfLeave = db.LeaveTypes.ToList();
+               //// var typeOfleavestatus = (from lt in db.LeaveTypes
+               //                         join lam in db.Leave_Approval_Matrix on lt.Id equals lam.LeaveTypeId
+               //                         group new { lt.LeaveType1, lam.status,lt.Id } by new { lt.LeaveType1, lam.status, lt.Id } into g
+               //                          select new
+               //                            {
+               //                                g.Key.LeaveType1,  
+               //                                g.Key.status,
+               //                                g.Key.Id
+               //                          });
+                 var leaveStatus = db.Leave_Approval_Matrix.ToList();
+
+                 DateTime? date = user.DateOfJoining;
+                if (date.Value.Day < 15) { AllotedLeaves = 0.58; }
+                else { AllotedLeaves = 0.29; }
+                var year = DateTime.Now.Year - date.Value.Year;
+                var month = DateTime.Now.Month - date.Value.Month;
+                //var days = DateTime.Now.Day;
+
+                if (year > 0) { AllotedLeaves = AllotedLeaves + year * 12 * 0.58; }
+                AllotedLeaves = Math.Round(( AllotedLeaves + month * 0.58),2);
+
+                foreach (var item in typeOfLeave)
+                {
+                    //foreach(var items in leaveStatus)
+                    //{ 
+                    if (item.LeaveType1 == "Casual Leave" ) 
+                    {
+                        var appliedleaves = db.Leave_Approval_Matrix.Where(x => x.userId == userId && x.LeaveTypeId == item.Id).ToList();
+                        if (appliedleaves.Count > 0) { 
+                        foreach (var items in appliedleaves)
+                        {
+                            if (items.status == 3)
+                                balance = Math.Round(AllotedLeaves - appliedleaves.Sum(x => x.daysCount), 2);
+                            else
+                               balance = Math.Round(AllotedLeaves, 2);
+                        }
+                        }
+                        else {
+                            balance = AllotedLeaves;
+                        }
+                        //Calculation Casual Leave Balance
+                        leaveBalance objleaveBalance = new leaveBalance();
+                        objleaveBalance.LeaveName = item.LeaveType1;
+                        objleaveBalance.AccruedLeaves = AllotedLeaves;
+                        objleaveBalance.LeaveBalance = balance;
+                        objListLeaveBalance.Add(objleaveBalance);
+                       
+                    }
+                    if (item.LeaveType1 == "Sick Leave" )
+                    {
+                        var appliedleaves = db.Leave_Approval_Matrix.Where(x => x.userId == userId && x.LeaveTypeId == item.Id).ToList();
+                        if (appliedleaves.Count > 0)
+                        {
+                            foreach (var items in appliedleaves)
+                            {
+                                if (items.status == 3)
+                                    balance = Math.Round(AllotedLeaves - appliedleaves.Sum(x => x.daysCount), 2);
+                                else
+                                    balance = Math.Round(AllotedLeaves, 2);
+                            }
+                        }
+                        else
+                        {
+                            balance = AllotedLeaves;
+                        }
+                        //Calculation Casual Leave Balance
+                        leaveBalance objleaveBalance = new leaveBalance();
+                        objleaveBalance.LeaveName = item.LeaveType1;
+                        objleaveBalance.AccruedLeaves = AllotedLeaves;
+                        objleaveBalance.LeaveBalance = balance;
+                        objListLeaveBalance.Add(objleaveBalance);
+
+                    }
+                    if ( item.LeaveType1 == "Earned Leave")
+                    {
+                        var appliedleaves = db.Leave_Approval_Matrix.Where(x => x.userId == userId && x.LeaveTypeId == item.Id).ToList();
+                        if (appliedleaves.Count > 0 )
+                        {
+                            foreach (var items in appliedleaves)
+                            {
+                                if (items.status == 3)
+                                    balance = Math.Round(AllotedLeaves - appliedleaves.Sum(x => x.daysCount), 2);
+                                else
+                                    balance = Math.Round(AllotedLeaves, 2);
+                            }
+                        }
+                        else
+                        {
+                            balance = AllotedLeaves;
+                        }
+                        //Calculation Casual Leave Balance
+                        leaveBalance objleaveBalance = new leaveBalance();
+                        objleaveBalance.LeaveName = item.LeaveType1;
+                        objleaveBalance.AccruedLeaves = AllotedLeaves;
+                        objleaveBalance.LeaveBalance = balance;
+                        objListLeaveBalance.Add(objleaveBalance);
+
+                    }
+                    if (item.LeaveType1=="optional leave" )
+                    {
+                        var appliedleaves = db.Leave_Approval_Matrix.Where(x => x.userId == userId && x.LeaveTypeId == item.Id).ToList();
+
+                        //Calculation optional Leave Balance
+                        leaveBalance objleaveBalance = new leaveBalance();
+                        objleaveBalance.LeaveName = item.LeaveType1;
+                        objleaveBalance.AccruedLeaves = 2;
+                        objleaveBalance.LeaveBalance = objleaveBalance.AccruedLeaves - appliedleaves.Sum(x => x.daysCount);
+
+                        objListLeaveBalance.Add(objleaveBalance);
+                    }
+                    if (user.Gender == "F" && item.LeaveType1 == "Maternity Leave" )
+                    {
+                        var appliedleaves = db.Leave_Approval_Matrix.Where(x => x.userId == userId && x.LeaveTypeId == item.Id).ToList();
+
+                        //Calculation Casual Leave Balance
+                        leaveBalance objleaveBalance = new leaveBalance();
+                        objleaveBalance.LeaveName = item.LeaveType1;
+                        objleaveBalance.AccruedLeaves = 183;
+                        objleaveBalance.LeaveBalance = objleaveBalance.AccruedLeaves - appliedleaves.Sum(x => x.daysCount);
+
+                        objListLeaveBalance.Add(objleaveBalance);
+                    }
+                    if (user.Gender == "M" && item.LeaveType1 == "Paternity Leave" )
+                    {
+                        var appliedleaves = db.Leave_Approval_Matrix.Where(x => x.userId == userId && x.LeaveTypeId == item.Id).ToList();
+
+                        //Calculation Casual Leave Balance
+                        leaveBalance objleaveBalance = new leaveBalance();
+                        objleaveBalance.LeaveName = item.LeaveType1;
+                        objleaveBalance.AccruedLeaves = 5;
+                        objleaveBalance.LeaveBalance = objleaveBalance.AccruedLeaves - appliedleaves.Sum(x => x.daysCount);
+
+                        objListLeaveBalance.Add(objleaveBalance);
+                    }
+               // }
+            }
+            }
+            return Ok(objListLeaveBalance);
         }
+
+        //DateTime date = System.DateTime.Now;
+
+        //var firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
+        //var lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+        //if (date == lastDayOfMonth)
+        //{
+
+        //    var dOJ = (from k in db.Users
+        //               where k.Id == userId
+        //               select new
+        //               {
+        //                   dateOfJoining = k.DateOfJoining
+        //               });
+        //    //var dateOfJoining = db.Users.Where(x => x.Id == userId);
+        //    String currentMonth = DateTime.Now.ToString("MM");
+        //    String monthOnly = Convert.ToDateTime(dOJ).Month.ToString();
+        //    double CL = 0;
+        //    double SL = 0;
+        //    if (monthOnly.Equals(currentMonth))
+        //    {
+        //        DateTime dateOnly = Convert.ToDateTime(dOJ).Date;
+        //        if (dateOnly.Equals(15))
+        //        {
+        //            CL = +.58;
+        //            SL = +.58;
+        //        }
+        //        else
+        //        {
+        //            CL = CL + .29;
+        //            SL = SL + .29;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        CL = CL + .58;
+        //        SL = SL + .58;
+        //    }
+
+        //    var availableLeaves = from lt in db.LeaveTypes
+        //                          join lam in db.Leave_Approval_Matrix on lt.Id equals lam.LeaveTypeId
+        //                          join tlc in db.AccruedLeaveCounts on lam.LeaveTypeId equals tlc.LeaveTypeId
+        //                          where lam.userId == userId
+        //                          group new { lt.LeaveType1, tlc.Count, lam.daysCount } by new { lt.LeaveType1, tlc.Count, lam.daysCount } into g
+        //                          select new
+        //                          {
+        //                              g.Key.LeaveType1,
+        //                              g.Key.Count,
+        //                              LeaveBalance = g.Key.Count - g.Sum(x => x.daysCount)
+        //                          };
+        //    AccruedLeaveCount objLeave_Leavecount = new AccruedLeaveCount();
+        //    objLeave_Leavecount.Count = CL;
+        //    db.AccruedLeaveCounts.Add(objLeave_Leavecount);
+
+        //    db.SaveChanges();
+        //    return Ok("Saved");
+
+        //}
+        //else
+        //{
+
+        //    var appliedLeaves = from lt in db.LeaveTypes
+        //                        join lam in db.Leave_Approval_Matrix on lt.Id equals lam.LeaveTypeId
+        //                        //join tlc in db.AccruedLeaveCounts on lam.LeaveTypeId equals tlc.LeaveTypeId
+        //                        where lam.userId == userId
+        //                        group new { lt.LeaveType1, lam.daysCount, lam.userId } by new { lt.LeaveType1, lam.daysCount, lam.userId } into g
+        //                        select new
+        //                        {
+        //                            g.Key.userId,
+        //                            g.Key.LeaveType1,
+        //                            g.Key.daysCount,
+        //                            //  LeaveBalance = g.Key.Count - g.Sum(x => x.daysCount)
+        //                        };
+        //    var accruedLeaves = (from al in db.AccruedLeaveCounts
+        //                         where al.UserId == userId
+        //                         select new
+        //                         {
+        //                             userId = al.UserId,
+        //                             LeavetypeId = al.LeaveTypeId,
+        //                             count = al.Count
+        //                         });
+
+        //    if (accruedLeaves == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    else
+        //    {
+        //        List<AccruedLeaveCount> objLeave_Leavecount = new List<AccruedLeaveCount>();
+        //        foreach (var item in accruedLeaves.Where(n => n.userId == userId))
+        //        {
+        //            AccruedLeaveCount objleavebal = new AccruedLeaveCount();
+        //            objleavebal.LeaveTypeId = item.LeavetypeId;
+        //            //   objleavebal.LeaveTypeId = item.userId;
+        //            objleavebal.Count = 3;
+        //            // objleavebal.Count = item.Count;
+        //            // db.AccruedLeaveCounts.Add(objleavebal);
+        //            objLeave_Leavecount.Add(objleavebal);
+
+        //        }
+
+        //        // db.AccruedLeaveCounts.Add(objLeave_Leavecount);
+
+        //        // db.AccruedLeaveCounts.SaveChanges();
+        //        return Ok("Saved");
+        //    }
+
+
+
+        //  return Ok();
+
 
         //GET: api/approverlist
         [HttpGet]
@@ -225,6 +457,7 @@ namespace LMS_Api.Controllers
                                 select new
                                 {
                                     date = k.startDate,
+                                    endDate = k.endDate,
                                     leaveCategory = lt.LeaveType1,
                                     approver = "",//u.firstName + " " + u.lastName,
                                     reason = k.reason,
@@ -246,6 +479,7 @@ namespace LMS_Api.Controllers
                     //objleaveMatrix.id = item.Id;
                     //objleaveMatrix.userId = item.userId;
                     objleaveMatrix.startDate = item.date.ToString("dd-MM-yyyy");
+                    objleaveMatrix.endDate = item.endDate.ToString("dd-MM-yyyy");
                     objleaveMatrix.reason = item.reason;
 
                     var user = db.Users.Where(x => x.Id == item.approverId).FirstOrDefault();
@@ -274,7 +508,7 @@ namespace LMS_Api.Controllers
                                                  join u in db.Users on k.userId equals u.Id
                                                  //join ls in db.LeaveStatus on k.status equals ls.Id
                                                  join al in db.ApprovalLevels on k.LevelId equals al.Id
-                                                 where k.approverId == userId
+                                                 where k.approverId == userId && k.status == 1 || k.status == 5 || k.status == 4
                                                  select new appliedleave
                                                  {
                                                      id = k.Id,
@@ -334,13 +568,13 @@ namespace LMS_Api.Controllers
                 else
                 {
                     //approvedleave.Remarks = objApprovedLeaveMatrix.remarks;
-                    if (db.AdminSettings.FirstOrDefault().SettingValue == false)
+                    if (db.AdminSettings.FirstOrDefault().SettingValue == true)
                     {
                         if (objApprovedLeaveMatrix.status == 5 || objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
                         approvedleave.status = objApprovedLeaveMatrix.status;
 
                     }
-                    if (db.AdminSettings.FirstOrDefault().SettingValue == true)
+                    if (db.AdminSettings.FirstOrDefault().SettingValue == false)
                     {
                         //if (objApprovedLeaveMatrix.status == 5 || objApprovedLeaveMatrix.status == 4) { approvedleave.LevelId = 2; }
                         if (objApprovedLeaveMatrix.status == 4)

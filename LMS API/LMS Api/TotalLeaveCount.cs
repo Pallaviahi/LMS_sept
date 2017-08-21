@@ -16,7 +16,8 @@ namespace LMS_Api
     {
         public int Id { get; set; }
         public int LeaveTypeId { get; set; }
-        public int Count { get; set; }
+        public Nullable<double> Count { get; set; }
+        public Nullable<double> UserId { get; set; }
     
         public virtual LeaveType LeaveType { get; set; }
     }

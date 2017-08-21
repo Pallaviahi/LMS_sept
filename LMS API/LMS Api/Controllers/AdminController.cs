@@ -120,6 +120,25 @@ namespace LMS_Api.Controllers
             }
         }
 
+
+        // GET: api/Users/5
+        [HttpGet]
+        [Route("DeleteLeave/{leaveId}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult DeleteLeave(int leaveId)
+        {
+            try
+            {
+                db.LeaveTypes.Where(x => x.Id == leaveId).FirstOrDefault().IsDeleted = true;
+                db.SaveChanges();
+                return Ok("true");
+            }
+            catch (Exception e)
+            {
+                throw;
+            }
+        }
+
         //Leaveapproved
         [HttpPost]
         [Route("ApprovedLeave")]
@@ -208,7 +227,7 @@ namespace LMS_Api.Controllers
                     listofUsers.Add(objuser);
                 }
 
-                 return Ok(listofUsers);
+                return Ok(listofUsers);
             }
             catch (Exception e)
             {
@@ -223,7 +242,7 @@ namespace LMS_Api.Controllers
         {
             try
             {
-                var leavetypes = db.LeaveTypes.ToList();
+                var leavetypes = db.LeaveTypes.Where(x => x.IsDeleted != true).ToList();
 
                 List<LeaveType> listofLeaves = new List<LeaveType>();
                 foreach (var item in leavetypes)
@@ -349,7 +368,7 @@ namespace LMS_Api.Controllers
         {
             try
             {
-               var leavetype = db.LeaveTypes.FirstOrDefault(x => x.LeaveType1 == objUser.leavename);
+                var leavetype = db.LeaveTypes.FirstOrDefault(x => x.LeaveType1 == objUser.leavename);
 
                 if (leavetype == null)
                 {

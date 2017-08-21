@@ -28,9 +28,11 @@ export class AdminDashComponent implements OnInit {
     leaveRequestStatus : number;
     userToUpdateId: number;
     userToDeleteId: number;
+    LeaveToDeleteId:number;
     @ViewChild('myModal') modal: ModalComponent;
     @ViewChild('updateUser') updateUser: ModalComponent;
     @ViewChild('DeleteUserPopup') DeleteUserPopup: ModalComponent;
+    @ViewChild('DeleteLeavePopup') DeleteLeavePopup: ModalComponent;
 
     constructor(private adminService: AdminService, private globalVar: GlobalService, public toastr: ToastsManager,vcr: ViewContainerRef) {
         this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -53,13 +55,18 @@ export class AdminDashComponent implements OnInit {
  open(recordId: number, event:any) {
         this.modal.open();
         this.leaveRequestId = recordId;
-        if(event.target.id == "btnReject"){this.leaveRequestStatus = 5}
-        if(event.target.id == "btnAccept"){this.leaveRequestStatus = 4}
+        if(event.target.id == "btnReject"){this.leaveRequestStatus = 2}
+        if(event.target.id == "btnAccept"){this.leaveRequestStatus = 3}
     }    
 
     OpenDeleteUserModal(empId: number) {
         this.DeleteUserPopup.open();
         this.userToDeleteId = empId;
+    }
+
+    OpenDeleteLeaveModal(leaveId:number){
+      this.DeleteLeavePopup.open();
+        this.LeaveToDeleteId = leaveId;  
     }
 
     openUserUpdateModel(empId: number) {
@@ -88,6 +95,7 @@ export class AdminDashComponent implements OnInit {
                 for (var v of data) {
                     this.adminUsers.push(v);
                 }
+                 console.log(data);
             });
     }
 
@@ -102,6 +110,7 @@ export class AdminDashComponent implements OnInit {
                 console.log(data);
             });
     }
+
     LoadReportingLeads() {
         this.ReportingLeadsList = [];
 
@@ -189,6 +198,27 @@ export class AdminDashComponent implements OnInit {
     deleteUser() {
         this.globalVar.loading = true;
         this.adminService.DeleteUser(this.userToDeleteId)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                if (data.text() == "true") {
+                    this.toastr.success('User Deleted Successfully !');
+                }
+                else {
+                    this.toastr.success("Something went wrong");
+                }
+                this.adminUsers = [];
+                this.LoadusersForAdmin();
+            },
+            error => {
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
+            });
+    }
+
+    deleteLeave() {
+        this.globalVar.loading = true;
+        this.adminService.DeleteLeave(this.LeaveToDeleteId)
             .subscribe(
             data => {
                 this.globalVar.loading = false;

@@ -19,7 +19,7 @@
             <div class="form-group" [ngClass]="{ 'has-error' : f.submitted && !leaveTypeId.valid }">
                 <label>Type Of Leave</label>
                 <select [(ngModel)]="model.leaveTypeId" name="leaveTypeId" #leaveTypeId="ngModel" class="form-control" required>
-         <option *ngFor="let leavetype of testTypes" [selected]="model.leaveTypeId" value= {{leavetype.id}}>
+         <option *ngFor="let leavetype of testTypes"  value= {{leavetype.id}}>
             {{leavetype.typeOfLeave}}
          </option>
          </select>

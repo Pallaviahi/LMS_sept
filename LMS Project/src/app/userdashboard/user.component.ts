@@ -57,6 +57,7 @@ export class UserComponent implements OnInit {
         this.userService.loadUserLeaves(this.currentUser.id).subscribe(data => {
             for (var v of data) {
                 this.usersLeaves.push(v);
+                console.log(v);
             }
         });
     }
@@ -106,6 +107,7 @@ export class UserComponent implements OnInit {
                     if (v.status == 4) { v.status = "1st Level Approved" }
                     if (v.status == 5) { v.status = "Ist Level Rejected" }
                     this.appliedLeave.push(v);
+                    console.log(data);
                 }
             });
     }

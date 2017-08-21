@@ -181,8 +181,8 @@
                                     <td>{{items.MinValue}}</td>
                                     <td>{{items.TotalValue}}</td>
                                     <td style="text-align:center;width: 50%">
-                                        <button (click)="openUserUpdateModel(item.id)" class="btn btn-info">Update</button>
-                                        <button (click)="OpenDeleteUserModal(item.id)" class="btn btn-info">Remove</button>
+                                        <button (click)="openUserUpdateModel(items.Id)" class="btn btn-info">Update</button>
+                                        <button (click)="OpenDeleteLeaveModal(items.Id)" class="btn btn-info">Remove</button>
                                     </td>
                                 </tr>
                             </tbody>
@@ -295,6 +295,21 @@
             <modal-footer>
                 <button type="button" class="btn btn-default" data-dismiss="DeleteUserPopup" (click)="DeleteUserPopup.close(); deleteUser()">Remove</button>
                 <button type="button" class="btn btn-primary" (click)="DeleteUserPopup.close();">Cancel</button>
+            </modal-footer>
+        </modal>
+
+        <modal #DeleteLeavePopup>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Warning</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+                    <p class="alert alert-warning">Are you sure you want to delete this Leave</p>
+                </div>
+            </modal-body>
+            <modal-footer>
+                <button type="button" class="btn btn-default" data-dismiss="DeleteLeavePopup" (click)="DeleteLeavePopup.close(); deleteLeave()">Remove</button>
+                <button type="button" class="btn btn-primary" (click)="DeleteLeavePopup.close();">Cancel</button>
             </modal-footer>
         </modal>
     </div>
