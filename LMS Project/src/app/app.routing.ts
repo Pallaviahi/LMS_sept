@@ -45,13 +45,13 @@ const appRoutes: Routes = [
                 component: AdminAddUserComponent,
             },
             {
-<<<<<<< HEAD
+
                 path: 'AdminAddLeaves',
                 component: AdminAddLeavesComponent,
-=======
-                path: 'AdminUploadPDF',
-                component: AdminUploadFileComponent,
->>>>>>> 265baaad8570a8eca7a525c291bdcd6d28f4c15f
+
+               // path: 'AdminUploadPDF',
+                //component: AdminUploadFileComponent,
+
             }
         ]
     },

@@ -68,12 +68,12 @@
       </div>
       <div id="collapse2" class="panel-collapse collapse">
         <div class="panel-body">
-          <table class="table table-striped" [mfData]="appliedLeave | appliedLeavePipe : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="5">
+          <table class="table table-striped" [mfData]="appliedLeave | appliedLeavePipe : filterQuery1" #mf="mfDataTable" [mfRowsOnPage]="5">
             <thead>
               <tr>
                 <th colspan="5">
                   Filter by reason:
-                  <input class="form-control" [(ngModel)]="filterQuery" />
+                  <input class="form-control" [(ngModel)]="filterQuery1" />
                 </th>
               </tr>
               <tr>
@@ -127,12 +127,12 @@
       </div>
       <div id="collapse3" class="panel-collapse collapse">
         <div class="panel-body">
-          <table class="table table-striped" [mfData]="leaveRequests | dataFilter : filterQuery" #mf3="mfDataTable" [mfRowsOnPage]="5">
+          <table class="table table-striped" [mfData]="leaveRequests | dataFilter : filterQuery2" #mf3="mfDataTable" [mfRowsOnPage]="5">
             <thead>
               <tr>
                 <th colspan="5">
                   Filter by reason:
-                  <input class="form-control" [(ngModel)]="filterQuery" />
+                  <input class="form-control" [(ngModel)]="filterQuery2" />
                 </th>
               </tr>
               <tr>

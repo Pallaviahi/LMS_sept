@@ -24,12 +24,9 @@ import { UserComponent } from './userdashboard/index';
 import { AdminDashComponent } from './admindashboard/index';
 import { AdminSettingsComponent } from './adminsettings/index';
 import { DatePickerModule } from 'ng2-datepicker';
-<<<<<<< HEAD
-
 import { AdminAddLeavesComponent } from './AdminAddLeaves/index';
-=======
-import { AdminUploadFileComponent } from './AdminUploadPDF/index';
->>>>>>> 265baaad8570a8eca7a525c291bdcd6d28f4c15f
+//import { AdminUploadFileComponent } from './AdminUploadPDF/index';
+
 import { AdminAddUserComponent } from './AdminAddUser/index';
 import { DataTableModule } from "angular2-datatable";
 import { DataFilterPipe } from './_helpers/data-filter.pipe';

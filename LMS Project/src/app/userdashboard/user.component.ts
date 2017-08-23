@@ -23,6 +23,8 @@ export class UserComponent implements OnInit {
     public testTypes: any[] = [];
     public leaveRequests: any[] = [];
     public filterQuery = "";
+    public filterQuery1 = "";
+    public filterQuery2 = "";
     leaveRequestId: number;
     leaveRequestStatus: number;
 

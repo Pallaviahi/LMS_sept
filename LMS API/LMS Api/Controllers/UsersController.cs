@@ -19,7 +19,7 @@ namespace LMS_Api.Controllers
     [RoutePrefix("api/user")]
     public class UsersController : ApiController
     {
-        private Entities db = new Entities();
+        private pllmsEntities db = new pllmsEntities();
 
         // GET: api/Users
         public IQueryable<User> GetUsers()

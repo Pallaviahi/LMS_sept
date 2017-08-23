@@ -13,7 +13,7 @@ namespace LMS_Api.Controllers
     [RoutePrefix("api/admin")]
     public class AdminController : ApiController
     {
-        private Entities db = new Entities();
+        private pllmsEntities db = new pllmsEntities();
 
         //GET: api/LeaveRequests
         [HttpGet]

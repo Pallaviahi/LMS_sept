@@ -8,8 +8,8 @@ export class LeaveTypesFilterPipe implements PipeTransform {
 
     transform(array: any[], query: string): any {
         if (query) {
-            console.log(_.filter(array, row=>row.LeaveType1.indexOf(query) > -1));
-            return _.filter(array, row=>row.LeaveType1.indexOf(query) > -1);
+            console.log(_.filter(array, row=>row.LeaveName.indexOf(query) > -1));
+            return _.filter(array, row=>row.LeaveName.indexOf(query) > -1);
         }
         return array;
     }
