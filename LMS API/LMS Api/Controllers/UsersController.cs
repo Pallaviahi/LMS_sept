@@ -56,6 +56,8 @@ namespace LMS_Api.Controllers
                     usermodel.designationId = user.designationTypeId;
                     usermodel.lastName = user.lastName;
                     usermodel.reportingToId = user.reportingToUserId;
+                    usermodel.email = user.email.ToString();
+                    
                     return Ok(usermodel);
                 }
             }
@@ -68,11 +70,25 @@ namespace LMS_Api.Controllers
 
         //GET: api/LeaveTypes
         [HttpGet]
-        [Route("LeaveTypes")]
+        [Route("LeaveTypes/{userId}")]
         [ResponseType(typeof(List<leaveType>))]
-        public IHttpActionResult getLeaveTypes()
+        public IHttpActionResult getLeaveTypes(int userId)
         {
-            var leaveType = db.LeaveTypes.ToList();
+            //var leaveType = db.LeaveTypes.ToList();
+           
+            // var user = db.Users.ToList();
+            //var leaveType = new LeaveType();
+            var user = db.Users.Where(x => x.Id == userId).FirstOrDefault();
+            string genderLeave = string.Empty;
+            if(user.Gender=="F")
+            {
+                genderLeave = "Paternity Leave";
+            }
+            else
+            {
+                genderLeave = "Maternity Leave";
+            }
+            var leaveType = db.LeaveTypes.Where(x => x.LeaveType1 != genderLeave.ToString()).ToList();
             if (leaveType == null)
             {
                 return NotFound();

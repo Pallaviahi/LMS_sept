@@ -34,7 +34,8 @@ export class ApplyLeaveComponent implements OnInit {
 
     loadLeaveTypes() {
         //var test = this.userService.leaveTypes().subscribe(res => this.testTypes = res);
-        this.userService.leaveTypes()
+         var userDetails = JSON.parse(localStorage.getItem('currentUser'));
+        this.userService.leaveTypes(userDetails.id)
             .subscribe(
             data  =>  {
                 for (var  v  of  data) {

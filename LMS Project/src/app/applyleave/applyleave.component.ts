@@ -37,8 +37,10 @@ export class ApplyLeaveComponent implements OnInit {
         this.loadapproverList();
     }
 
+
     loadLeaveTypes() {
-        this.userService.leaveTypes()
+          var userDetails = JSON.parse(localStorage.getItem('currentUser'));
+        this.userService.leaveTypes(userDetails.id)
             .subscribe(
             data => {
                 for (var v of data) {
@@ -66,7 +68,18 @@ export class ApplyLeaveComponent implements OnInit {
         this.model.remarks = null;
         this.model.startDate = this.model.startDateModel.formatted;//this.model.startDate.momentObj.toDate();
         this.model.endDate = this.model.endDateModel.formatted;//this.model.endDate.momentObj.toDate();
-
+        if (this.model.startDate != '' && this.model.endDate !='') {
+           if (Date.parse(this.model.startDate) > Date.parse(this.model.endDate)) {
+              // $("txttodate").val('');
+              document.getElementById('dateValidat').style.display ="block";
+              document.getElementById('dateValidat').style.color ="#a94442";
+              document.getElementById('dateValidat').innerHTML = "Start date should not be greater than end date";
+               //alert("Start date should not be greater than end date");
+               return false;
+           }
+       }
+     
+   
         this.globalVar.loading = true;
 
         this.userService.leaveApplication(this.model)

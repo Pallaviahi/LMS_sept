@@ -52,10 +52,10 @@ export class UserService {
     //         });
     // }
 
-   leaveTypes() {   
+   leaveTypes(userId : number) {   
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });   
-        return this.http.get(this._baseUrl +'/user/LeaveTypes',options)
+        return this.http.get(this._baseUrl +'/user/LeaveTypes/'+ userId,options)
             .map((response: Response) => {
                 let typeOfLeaves = response.json();
               //  console.log(typeOfLeaves);
