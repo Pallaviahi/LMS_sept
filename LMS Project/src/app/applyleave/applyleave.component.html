@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-lg-12">
         <h1 class="page-header">
-            Forms
+            XYZ
         </h1>
         <ol class="breadcrumb">
             <li>
@@ -57,11 +57,14 @@
                 <div>
                     <ng2-datepicker [options]="options" name="endDate" #endDate="ngModel" [(ngModel)]="model.endDateModel" required></ng2-datepicker>
                 </div>
-                <div *ngIf="f.submitted && !endDate.valid" class="help-block">End Date is required
+                <div *ngIf="f.submitted && !endDate.valid" class="help-block" id="enddate">End Date is required
                 </div>
+                <div id="dateValidat" style="display:none;"></div>
             </div>
+            
             <button type="submit" class="btn btn-lg btn-success">Submit</button>
             <button type="reset" class="btn btn-lg btn-danger">Cancel</button>
+            
             <!--<simple-notifications [options]="options"></simple-notifications>-->
         </div>
         <!-- /.row -->
