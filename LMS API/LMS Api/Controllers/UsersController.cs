@@ -115,13 +115,21 @@ namespace LMS_Api.Controllers
         [ResponseType(typeof(string))]
         public IHttpActionResult LeaveApplication(appliedleave objLeaveMatrix)
         {
+            var statusMessages = new List<string>();
             try
             {
                 Leave_Approval_Matrix objLeave_Approval_Matrix = new Leave_Approval_Matrix();
                 objLeave_Approval_Matrix.userId = objLeaveMatrix.userId;
                 objLeave_Approval_Matrix.startDate = Convert.ToDateTime(objLeaveMatrix.startDate);
                 objLeave_Approval_Matrix.endDate = Convert.ToDateTime(objLeaveMatrix.endDate);
-                objLeave_Approval_Matrix.daysCount = (objLeave_Approval_Matrix.endDate - objLeave_Approval_Matrix.startDate).Days + 1;
+
+                DateTime fromDate = objLeave_Approval_Matrix.startDate;
+                DateTime toDate = objLeave_Approval_Matrix.endDate;
+                DateTime[] dates = Enumerable.Range(0, (int)toDate.Subtract(fromDate).TotalDays + 1)
+                    .Select(i => fromDate.AddDays(i))
+                    .Where(i => (i.DayOfWeek == DayOfWeek.Monday || i.DayOfWeek == DayOfWeek.Tuesday || i.DayOfWeek == DayOfWeek.Wednesday || i.DayOfWeek == DayOfWeek.Thursday || i.DayOfWeek == DayOfWeek.Friday)).ToArray();
+
+                objLeave_Approval_Matrix.daysCount = dates.Count();
                 objLeave_Approval_Matrix.reason = objLeaveMatrix.reason;
                 objLeave_Approval_Matrix.status = 1;
                 objLeave_Approval_Matrix.approverId = objLeaveMatrix.approverId;
@@ -129,12 +137,127 @@ namespace LMS_Api.Controllers
                 objLeave_Approval_Matrix.LeaveTypeId = objLeaveMatrix.LeaveTypeId;
                 objLeave_Approval_Matrix.createdDate = DateTime.Now;
                 objLeave_Approval_Matrix.updateDate = DateTime.Now;
+                //List<leavesummaryuser> objListLeaveSummary = new List<leavesummaryuser>();
+                var user = db.LeaveSummaryUsers.Where(x => x.userid == objLeaveMatrix.userId).FirstOrDefault();
+                if (objLeave_Approval_Matrix.LeaveTypeId == 1)
+                {
+                    Double totleavebal = Convert.ToDouble(user.CL_Balance + user.EL_Balance);
+                    if (objLeave_Approval_Matrix.daysCount > 0 && objLeave_Approval_Matrix.daysCount <= 3)
+                    {
+                        if (objLeave_Approval_Matrix.daysCount <= user.CL_Balance)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                        }
+                        else if (objLeave_Approval_Matrix.daysCount > user.CL_Balance && objLeave_Approval_Matrix.daysCount <= totleavebal)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your casual leave will deduct from Earn leave because you causal leave balance is not enough");
+                            //return Json(new
+                            //{
+                            //    status = "error",
+                            //    message = statusMessages
+                            //});
+                            // return Ok(statusMessage);
+                        }
+                        else if (objLeave_Approval_Matrix.daysCount > totleavebal)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your casual leave and earn leave are not enough then it will be loss of pay.");
+                        }
+                    }
+                    else if(objLeave_Approval_Matrix.daysCount > 3)
+                    {
+                        Double totleavebalCl = Convert.ToDouble(user.CL_Balance + user.EL_Balance);
+                        double temmcllvcnt=0;
+                        double calmgcllv=0;
 
-                db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
-                db.SaveChanges();
+                        if (user.CL_Balance >= 3)
+                        {
+                             temmcllvcnt = Convert.ToDouble(user.CL_Balance - 3);
+                             calmgcllv = Convert.ToDouble(objLeave_Approval_Matrix.daysCount - temmcllvcnt);
+                         }
+                        else if (objLeave_Approval_Matrix.daysCount > totleavebalCl)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your casual leave and earn leave are not enough then it will be loss of pay.");
+                        }
+                        else if(objLeave_Approval_Matrix.daysCount ==3 && user.CL_Balance <=3)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                        }
+                        else if(objLeave_Approval_Matrix.daysCount > 3 && calmgcllv > 0 && calmgcllv <= user.EL_Balance)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your casual leave will deduct from Earn leave because you causal leave balance is not enough");
+                        }
+                        else if (objLeave_Approval_Matrix.daysCount > 3 && calmgcllv > 0 && calmgcllv > user.EL_Balance)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your casual and earn leave are not enough so Loss of pay");
+                        }
+                    }
 
-                //////////////////////Sending Mail////////////////////////////
-                var approver_email = db.Users.Find(objLeaveMatrix.approverId).email;
+                } 
+                if (objLeave_Approval_Matrix.LeaveTypeId == 2)
+                {
+                    Double totleavebal1 = Convert.ToDouble(user.SL_Balance + user.EL_Balance);
+                    if (objLeave_Approval_Matrix.daysCount > 0)
+                    {
+                        if (objLeave_Approval_Matrix.daysCount <= user.SL_Balance)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                        }
+                        else if (objLeave_Approval_Matrix.daysCount > user.SL_Balance && objLeave_Approval_Matrix.daysCount <= totleavebal1)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your leave will deduct from Earn leave because your sick leave balance is not enough");
+                        }
+                        else if (objLeave_Approval_Matrix.daysCount > totleavebal1)
+                        {
+                            db.SaveChanges();
+                            db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                            statusMessages.Add("your sick leave and earn leave are not enough then it will be loss of pay.");
+                        }
+                    }
+                }
+
+                if (objLeave_Approval_Matrix.LeaveTypeId == 11)
+                {
+                    if (objLeave_Approval_Matrix.daysCount > 0 && objLeave_Approval_Matrix.daysCount > 2)
+                    {
+                        statusMessages.Add("You can not take optional leave more than 2 days.");
+                    }
+                    if (objLeave_Approval_Matrix.daysCount > 0 && objLeave_Approval_Matrix.daysCount <= 2)
+                    {
+
+                        db.SaveChanges();
+                        db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                    }
+                }
+                if (objLeave_Approval_Matrix.LeaveTypeId == 12)
+                {
+                    if (objLeave_Approval_Matrix.daysCount > 0 && objLeave_Approval_Matrix.daysCount <= user.EL_Balance)
+                    {
+                        db.SaveChanges();
+                        db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                    }
+                    if(objLeave_Approval_Matrix.daysCount > 0 && objLeave_Approval_Matrix.daysCount > user.EL_Balance)
+                    {
+                        db.SaveChanges();
+                        db.Leave_Approval_Matrix.Add(objLeave_Approval_Matrix);
+                    }
+                }
+                    //////////////////////Sending Mail////////////////////////////
+                    var approver_email = db.Users.Find(objLeaveMatrix.approverId).email;
 
                 using (MailMessage mail = new MailMessage())
                 {
