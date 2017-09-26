@@ -1,6 +1,7 @@
 ﻿import { Component } from '@angular/core';
 import '../assets/app.css';
 import '../assets/style.css';
+import '../assets/app1.js';
 
 @Component({
     moduleId: module.id.toString(),
@@ -11,4 +12,4 @@ import '../assets/style.css';
 
 
 
-export class AppComponent { }
+export class AppComponent {}
