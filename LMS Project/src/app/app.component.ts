@@ -12,4 +12,4 @@ import '../assets/app1.js';
 
 
 
-export class AppComponent { }
+export class AppComponent {}
