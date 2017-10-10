@@ -24,5 +24,7 @@ namespace LMS_Api.Models
         public DateTime DateOfJoining { get; set; }
 
         public string Gender { get; set; }
+
+        public string email { get; set; }
     }
 }

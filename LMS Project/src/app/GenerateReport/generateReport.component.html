@@ -1,0 +1,62 @@
+<div>
+    <span>Generate Report</span>
+    <input type="file" id="btnUpload" value="Upload" (change)="uploadFiles($event)" class="upload" />
+    
+
+
+
+            <div class="panel panel-default" id="users">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a >UsersLeaveBalance</a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table class="table table-striped" [mfData]="adminUsers" #mf1="mfDataTable" [mfRowsOnPage]="5">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">
+                                        Filter by reason:
+                                        <input class="form-control" [(ngModel)]="filterQuery" />
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th style="width: 15%">
+                                        <mfDefaultSorter by="name">First Name</mfDefaultSorter>
+                                    </th>
+                                    <th style="width: 15%">
+                                        <mfDefaultSorter by="name">Last Name</mfDefaultSorter>
+                                    </th>
+                                    <th style="width: 20%">
+                                        <mfDefaultSorter by="email">Email</mfDefaultSorter>
+                                    </th>
+                                     <th style="width: 20%">
+                                        <mfDefaultSorter by="email">Designation</mfDefaultSorter>
+                                    </th>
+                                    <th style="text-align:right;width: 50%"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let item of mf1.data">
+                                    <td>{{item.firstName}}</td>
+                                    <td>{{item.lastName}}</td>
+                                    <td>{{item.username}}</td>
+                                    <td style="text-align:center;width: 50%">
+                                        <button (click)="openUserUpdateModel(item.id)" class="btn btn-info">Update</button>
+                                        <button (click)="OpenDeleteUserModal(item.id)" class="btn btn-info">Remove</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="4">
+                                        <mfBootstrapPaginator [rowsOnPageSet]="[5,10,25]"></mfBootstrapPaginator>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </div>

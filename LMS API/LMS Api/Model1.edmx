@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="pllmsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccruedLeaveCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="LeaveTypeId" Type="int" />
+          <Property Name="Count" Type="float" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AdminSettings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Setting" Type="nvarchar" MaxLength="50" />
+          <Property Name="SettingValue" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApprovalLevels">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Level" Type="int" Nullable="false" />
+          <Property Name="Approver" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="designationType" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Leave_Approval_Matrix">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="startDate" Type="datetime" Nullable="false" />
+          <Property Name="endDate" Type="datetime" Nullable="false" />
+          <Property Name="daysCount" Type="int" Nullable="false" />
+          <Property Name="reason" Type="varchar" MaxLength="50" />
+          <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="approverId" Type="int" Nullable="false" />
+          <Property Name="LeaveTypeId" Type="int" Nullable="false" />
+          <Property Name="LevelId" Type="int" />
+          <Property Name="LeaveRemarksId" Type="int" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="updateDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LeaveRemarks">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveId" Type="int" Nullable="false" />
+          <Property Name="remarks" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="LeaveStatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LeaveSummaryUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userid" Type="int" />
+          <Property Name="CL_Allotted" Type="float" />
+          <Property Name="CL_Balance" Type="float" />
+          <Property Name="SL_Allotted" Type="float" />
+          <Property Name="SL_Balance" Type="float" />
+          <Property Name="PL_Allotted" Type="float" />
+          <Property Name="PL_Balance" Type="float" />
+          <Property Name="ML_Allotted" Type="float" />
+          <Property Name="ML_Balance" Type="float" />
+          <Property Name="OL_Allotted" Type="float" />
+          <Property Name="OL_Balance" Type="float" />
+          <Property Name="EL_Allotted" Type="float" />
+          <Property Name="EL_Balance" Type="float" />
+          <Property Name="status" Type="int" />
+          <Property Name="createddate" Type="datetime" />
+          <Property Name="createdby" Type="int" />
+          <Property Name="modifieddate" Type="datetime" />
+          <Property Name="modifiedby" Type="int" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="MinValue" Type="float" />
+          <Property Name="MaxValue" Type="float" />
+          <Property Name="TotalValue" Type="float" />
+          <Property Name="IsDeleted" Type="bit" />
+        </EntityType>
+        <EntityType Name="TotalLeaveCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LeaveTypeId" Type="int" Nullable="false" />
+          <Property Name="Count" Type="float" />
+          <Property Name="UserId" Type="float" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="designationTypeId" Type="int" Nullable="false" />
+          <Property Name="reportingToUserId" Type="int" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="updatedDate" Type="datetime" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" />
+          <Property Name="DateOfJoining" Type="datetime" />
+          <Property Name="Gender" Type="char" MaxLength="1" />
+        </EntityType>
+        <Association Name="FK_AppliedUser">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApproverUser">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="approverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Approval_Matrix_LeaveStatus">
+          <End Role="LeaveStatus" Type="Self.LeaveStatus" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveType">
+          <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+          <End Role="TotalLeaveCount" Type="Self.TotalLeaveCount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TotalLeaveCount">
+              <PropertyRef Name="LeaveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Level_LeaveMarrixApproval">
+          <End Role="ApprovalLevels" Type="Self.ApprovalLevels" Multiplicity="0..1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalLevels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLeaveType">
+          <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="LeaveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Designation">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="designationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pllmsModelStoreContainer">
+          <EntitySet Name="AccruedLeaveCount" EntityType="Self.AccruedLeaveCount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AdminSettings" EntityType="Self.AdminSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ApprovalLevels" EntityType="Self.ApprovalLevels" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Designation" EntityType="Self.Designation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leave_Approval_Matrix" EntityType="Self.Leave_Approval_Matrix" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveRemarks" EntityType="Self.LeaveRemarks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveStatus" EntityType="Self.LeaveStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveSummaryUser" EntityType="Self.LeaveSummaryUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LeaveType" EntityType="Self.LeaveType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TotalLeaveCount" EntityType="Self.TotalLeaveCount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AppliedUser" Association="Self.FK_AppliedUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApproverUser" Association="Self.FK_ApproverUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Approval_Matrix_LeaveStatus" Association="Self.FK_Leave_Approval_Matrix_LeaveStatus">
+            <End Role="LeaveStatus" EntitySet="LeaveStatus" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveType" Association="Self.FK_LeaveType">
+            <End Role="LeaveType" EntitySet="LeaveType" />
+            <End Role="TotalLeaveCount" EntitySet="TotalLeaveCount" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Level_LeaveMarrixApproval" Association="Self.FK_Level_LeaveMarrixApproval">
+            <End Role="ApprovalLevels" EntitySet="ApprovalLevels" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLeaveType" Association="Self.FK_UserLeaveType">
+            <End Role="LeaveType" EntitySet="LeaveType" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Designation" Association="Self.FK_Users_Designation">
+            <End Role="Designation" EntitySet="Designation" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pllmsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AccruedLeaveCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="LeaveTypeId" Type="Int32" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="UserId" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="AdminSetting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Setting" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SettingValue" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ApprovalLevel">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Level" Type="Int32" Nullable="false" />
+          <Property Name="Approver" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Leave_Approval_Matrix" Relationship="Self.FK_Level_LeaveMarrixApproval" FromRole="ApprovalLevels" ToRole="Leave_Approval_Matrix" />
+        </EntityType>
+        <EntityType Name="Designation">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="designationType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_Users_Designation" FromRole="Designation" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Leave_Approval_Matrix">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="daysCount" Type="Int32" Nullable="false" />
+          <Property Name="reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="approverId" Type="Int32" Nullable="false" />
+          <Property Name="LeaveTypeId" Type="Int32" Nullable="false" />
+          <Property Name="LevelId" Type="Int32" />
+          <Property Name="LeaveRemarksId" Type="Int32" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ApprovalLevel" Relationship="Self.FK_Level_LeaveMarrixApproval" FromRole="Leave_Approval_Matrix" ToRole="ApprovalLevels" />
+          <NavigationProperty Name="User" Relationship="Self.FK_AppliedUser" FromRole="Leave_Approval_Matrix" ToRole="Users" />
+          <NavigationProperty Name="User1" Relationship="Self.FK_ApproverUser" FromRole="Leave_Approval_Matrix" ToRole="Users" />
+          <NavigationProperty Name="LeaveStatu" Relationship="Self.FK_Leave_Approval_Matrix_LeaveStatus" FromRole="Leave_Approval_Matrix" ToRole="LeaveStatus" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_UserLeaveType" FromRole="Leave_Approval_Matrix" ToRole="LeaveType" />
+        </EntityType>
+        <EntityType Name="LeaveRemark">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveId" Type="Int32" Nullable="false" />
+          <Property Name="remarks" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LeaveStatu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Leave_Approval_Matrix" Relationship="Self.FK_Leave_Approval_Matrix_LeaveStatus" FromRole="LeaveStatus" ToRole="Leave_Approval_Matrix" />
+        </EntityType>
+        <EntityType Name="LeaveType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveType1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MinValue" Type="Double" />
+          <Property Name="MaxValue" Type="Double" />
+          <Property Name="TotalValue" Type="Double" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Leave_Approval_Matrix" Relationship="Self.FK_UserLeaveType" FromRole="LeaveType" ToRole="Leave_Approval_Matrix" />
+          <NavigationProperty Name="TotalLeaveCounts" Relationship="Self.FK_LeaveType" FromRole="LeaveType" ToRole="TotalLeaveCount" />
+        </EntityType>
+        <EntityType Name="TotalLeaveCount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LeaveTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Count" Type="Double" />
+          <Property Name="UserId" Type="Double" />
+          <NavigationProperty Name="LeaveType" Relationship="Self.FK_LeaveType" FromRole="TotalLeaveCount" ToRole="LeaveType" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="firstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="designationTypeId" Type="Int32" Nullable="false" />
+          <Property Name="reportingToUserId" Type="Int32" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="updatedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="DateOfJoining" Type="DateTime" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <NavigationProperty Name="Designation" Relationship="Self.FK_Users_Designation" FromRole="Users" ToRole="Designation" />
+          <NavigationProperty Name="Leave_Approval_Matrix" Relationship="Self.FK_AppliedUser" FromRole="Users" ToRole="Leave_Approval_Matrix" />
+          <NavigationProperty Name="Leave_Approval_Matrix1" Relationship="Self.FK_ApproverUser" FromRole="Users" ToRole="Leave_Approval_Matrix" />
+        </EntityType>
+        <Association Name="FK_Level_LeaveMarrixApproval">
+          <End Role="ApprovalLevels" Type="Self.ApprovalLevel" Multiplicity="0..1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ApprovalLevels">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="LevelId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users_Designation">
+          <End Role="Designation" Type="Self.Designation" Multiplicity="1" />
+          <End Role="Users" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Designation">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="designationTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AppliedUser">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ApproverUser">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="approverId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Leave_Approval_Matrix_LeaveStatus">
+          <End Role="LeaveStatus" Type="Self.LeaveStatu" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveStatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="status" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLeaveType">
+          <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+          <End Role="Leave_Approval_Matrix" Type="Self.Leave_Approval_Matrix" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Leave_Approval_Matrix">
+              <PropertyRef Name="LeaveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LeaveType">
+          <End Role="LeaveType" Type="Self.LeaveType" Multiplicity="1" />
+          <End Role="TotalLeaveCount" Type="Self.TotalLeaveCount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LeaveType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TotalLeaveCount">
+              <PropertyRef Name="LeaveTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="pllmsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccruedLeaveCounts" EntityType="Self.AccruedLeaveCount" />
+          <EntitySet Name="AdminSettings" EntityType="Self.AdminSetting" />
+          <EntitySet Name="ApprovalLevels" EntityType="Self.ApprovalLevel" />
+          <EntitySet Name="Designations" EntityType="Self.Designation" />
+          <EntitySet Name="Leave_Approval_Matrix" EntityType="Self.Leave_Approval_Matrix" />
+          <EntitySet Name="LeaveRemarks" EntityType="Self.LeaveRemark" />
+          <EntitySet Name="LeaveStatus" EntityType="Self.LeaveStatu" />
+          <EntitySet Name="LeaveTypes" EntityType="Self.LeaveType" />
+          <EntitySet Name="TotalLeaveCounts" EntityType="Self.TotalLeaveCount" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Level_LeaveMarrixApproval" Association="Self.FK_Level_LeaveMarrixApproval">
+            <End Role="ApprovalLevels" EntitySet="ApprovalLevels" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users_Designation" Association="Self.FK_Users_Designation">
+            <End Role="Designation" EntitySet="Designations" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AppliedUser" Association="Self.FK_AppliedUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ApproverUser" Association="Self.FK_ApproverUser">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Leave_Approval_Matrix_LeaveStatus" Association="Self.FK_Leave_Approval_Matrix_LeaveStatus">
+            <End Role="LeaveStatus" EntitySet="LeaveStatus" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLeaveType" Association="Self.FK_UserLeaveType">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="Leave_Approval_Matrix" EntitySet="Leave_Approval_Matrix" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LeaveType" Association="Self.FK_LeaveType">
+            <End Role="LeaveType" EntitySet="LeaveTypes" />
+            <End Role="TotalLeaveCount" EntitySet="TotalLeaveCounts" />
+          </AssociationSet>
+          <EntitySet Name="LeaveSummaryUsers" EntityType="pllmsModel.LeaveSummaryUser" />
+        </EntityContainer>
+        <EntityType Name="LeaveSummaryUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="CL_Allotted" Type="Double" />
+          <Property Name="CL_Balance" Type="Double" />
+          <Property Name="SL_Allotted" Type="Double" />
+          <Property Name="SL_Balance" Type="Double" />
+          <Property Name="PL_Allotted" Type="Double" />
+          <Property Name="PL_Balance" Type="Double" />
+          <Property Name="ML_Allotted" Type="Double" />
+          <Property Name="ML_Balance" Type="Double" />
+          <Property Name="OL_Allotted" Type="Double" />
+          <Property Name="OL_Balance" Type="Double" />
+          <Property Name="EL_Allotted" Type="Double" />
+          <Property Name="EL_Balance" Type="Double" />
+          <Property Name="status" Type="Int32" />
+          <Property Name="createddate" Type="DateTime" Precision="3" />
+          <Property Name="createdby" Type="Int32" />
+          <Property Name="modifieddate" Type="DateTime" Precision="3" />
+          <Property Name="modifiedby" Type="Int32" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pllmsModelStoreContainer" CdmEntityContainer="pllmsEntities">
+          <EntitySetMapping Name="AccruedLeaveCounts">
+            <EntityTypeMapping TypeName="pllmsModel.AccruedLeaveCount">
+              <MappingFragment StoreEntitySet="AccruedLeaveCount">
+                <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdminSettings">
+            <EntityTypeMapping TypeName="pllmsModel.AdminSetting">
+              <MappingFragment StoreEntitySet="AdminSettings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Setting" ColumnName="Setting" />
+                <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ApprovalLevels">
+            <EntityTypeMapping TypeName="pllmsModel.ApprovalLevel">
+              <MappingFragment StoreEntitySet="ApprovalLevels">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Level" ColumnName="Level" />
+                <ScalarProperty Name="Approver" ColumnName="Approver" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Designations">
+            <EntityTypeMapping TypeName="pllmsModel.Designation">
+              <MappingFragment StoreEntitySet="Designation">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="designationType" ColumnName="designationType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leave_Approval_Matrix">
+            <EntityTypeMapping TypeName="pllmsModel.Leave_Approval_Matrix">
+              <MappingFragment StoreEntitySet="Leave_Approval_Matrix">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="daysCount" ColumnName="daysCount" />
+                <ScalarProperty Name="reason" ColumnName="reason" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="approverId" ColumnName="approverId" />
+                <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+                <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+                <ScalarProperty Name="LeaveRemarksId" ColumnName="LeaveRemarksId" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveRemarks">
+            <EntityTypeMapping TypeName="pllmsModel.LeaveRemark">
+              <MappingFragment StoreEntitySet="LeaveRemarks">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
+                <ScalarProperty Name="remarks" ColumnName="remarks" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveStatus">
+            <EntityTypeMapping TypeName="pllmsModel.LeaveStatu">
+              <MappingFragment StoreEntitySet="LeaveStatus">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveTypes">
+            <EntityTypeMapping TypeName="pllmsModel.LeaveType">
+              <MappingFragment StoreEntitySet="LeaveType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LeaveType1" ColumnName="LeaveType" />
+                <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+                <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TotalLeaveCounts">
+            <EntityTypeMapping TypeName="pllmsModel.TotalLeaveCount">
+              <MappingFragment StoreEntitySet="TotalLeaveCount">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="pllmsModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="designationTypeId" ColumnName="designationTypeId" />
+                <ScalarProperty Name="reportingToUserId" ColumnName="reportingToUserId" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LeaveSummaryUsers">
+            <EntityTypeMapping TypeName="pllmsModel.LeaveSummaryUser">
+              <MappingFragment StoreEntitySet="LeaveSummaryUser">
+                <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+                <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+                <ScalarProperty Name="createdby" ColumnName="createdby" />
+                <ScalarProperty Name="createddate" ColumnName="createddate" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="EL_Balance" ColumnName="EL_Balance" />
+                <ScalarProperty Name="EL_Allotted" ColumnName="EL_Allotted" />
+                <ScalarProperty Name="OL_Balance" ColumnName="OL_Balance" />
+                <ScalarProperty Name="OL_Allotted" ColumnName="OL_Allotted" />
+                <ScalarProperty Name="ML_Balance" ColumnName="ML_Balance" />
+                <ScalarProperty Name="ML_Allotted" ColumnName="ML_Allotted" />
+                <ScalarProperty Name="PL_Balance" ColumnName="PL_Balance" />
+                <ScalarProperty Name="PL_Allotted" ColumnName="PL_Allotted" />
+                <ScalarProperty Name="SL_Balance" ColumnName="SL_Balance" />
+                <ScalarProperty Name="SL_Allotted" ColumnName="SL_Allotted" />
+                <ScalarProperty Name="CL_Balance" ColumnName="CL_Balance" />
+                <ScalarProperty Name="CL_Allotted" ColumnName="CL_Allotted" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

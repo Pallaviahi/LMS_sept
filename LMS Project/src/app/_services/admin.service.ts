@@ -79,6 +79,15 @@ export class AdminService {
                 return user;
             });
     }
+     LoadUpdateLeaveDetails(Id: number) {   
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });    
+        return this.http.get(this._baseUrl +'/admin/LoadLeavesForAdminDetails/' + Id,options)
+            .map((response: Response) => {
+                let user = response.json();
+                return user;
+            });
+    }
 
     LoadReportingLeads() {
         let headers = new Headers({ 'Content-Type': 'application/json' });
@@ -128,6 +137,17 @@ export class AdminService {
         let headers = new Headers({ 'Content-Type': 'application/json' });
         let options = new RequestOptions({ headers: headers });
         return this.http.post(this._baseUrl + '/admin/UpdateUser',user, options)
+            .map((response: Response) => {
+                //let designation = response.json();
+                //   console.log(listofApprovers);
+                return response;
+            });
+    }
+
+    updateLeave(type:types) {
+        let headers = new Headers({ 'Content-Type': 'application/json' });
+        let options = new RequestOptions({ headers: headers });
+        return this.http.post(this._baseUrl + '/admin/UpdateLeaveType',type, options)
             .map((response: Response) => {
                 //let designation = response.json();
                 //   console.log(listofApprovers);

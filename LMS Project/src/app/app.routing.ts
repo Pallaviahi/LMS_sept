@@ -11,7 +11,7 @@ import { AdminSettingsComponent } from './adminsettings/index';
 import { AdminAddUserComponent } from './AdminAddUser/index';
 import { AdminAddLeavesComponent } from './AdminAddLeaves/index';
 import { AdminUploadFileComponent } from './AdminUploadPDF/index';
-
+import { GenerateReportComponent } from './GenerateReport/index';
 const appRoutes: Routes = [
     {
         path: '', component: HomeComponent, canActivate: [AuthGuard],
@@ -48,9 +48,15 @@ const appRoutes: Routes = [
 
                 path: 'AdminAddLeaves',
                 component: AdminAddLeavesComponent,
+            },
+            {
+                path: 'AdminUploadPDF',
+                component: AdminUploadFileComponent,
 
-               // path: 'AdminUploadPDF',
-                //component: AdminUploadFileComponent,
+            },
+             {
+                path: 'GenerateReport',
+                component: GenerateReportComponent,
 
             }
         ]

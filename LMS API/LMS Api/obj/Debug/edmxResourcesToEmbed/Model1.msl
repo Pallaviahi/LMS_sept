@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="pllmsModelStoreContainer" CdmEntityContainer="pllmsEntities">
+    <EntitySetMapping Name="AccruedLeaveCounts">
+      <EntityTypeMapping TypeName="pllmsModel.AccruedLeaveCount">
+        <MappingFragment StoreEntitySet="AccruedLeaveCount">
+          <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AdminSettings">
+      <EntityTypeMapping TypeName="pllmsModel.AdminSetting">
+        <MappingFragment StoreEntitySet="AdminSettings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Setting" ColumnName="Setting" />
+          <ScalarProperty Name="SettingValue" ColumnName="SettingValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ApprovalLevels">
+      <EntityTypeMapping TypeName="pllmsModel.ApprovalLevel">
+        <MappingFragment StoreEntitySet="ApprovalLevels">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Level" ColumnName="Level" />
+          <ScalarProperty Name="Approver" ColumnName="Approver" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Designations">
+      <EntityTypeMapping TypeName="pllmsModel.Designation">
+        <MappingFragment StoreEntitySet="Designation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="designationType" ColumnName="designationType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Leave_Approval_Matrix">
+      <EntityTypeMapping TypeName="pllmsModel.Leave_Approval_Matrix">
+        <MappingFragment StoreEntitySet="Leave_Approval_Matrix">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="daysCount" ColumnName="daysCount" />
+          <ScalarProperty Name="reason" ColumnName="reason" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="approverId" ColumnName="approverId" />
+          <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+          <ScalarProperty Name="LevelId" ColumnName="LevelId" />
+          <ScalarProperty Name="LeaveRemarksId" ColumnName="LeaveRemarksId" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updateDate" ColumnName="updateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaveRemarks">
+      <EntityTypeMapping TypeName="pllmsModel.LeaveRemark">
+        <MappingFragment StoreEntitySet="LeaveRemarks">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LeaveId" ColumnName="LeaveId" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaveStatus">
+      <EntityTypeMapping TypeName="pllmsModel.LeaveStatu">
+        <MappingFragment StoreEntitySet="LeaveStatus">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaveTypes">
+      <EntityTypeMapping TypeName="pllmsModel.LeaveType">
+        <MappingFragment StoreEntitySet="LeaveType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LeaveType1" ColumnName="LeaveType" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="TotalValue" ColumnName="TotalValue" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TotalLeaveCounts">
+      <EntityTypeMapping TypeName="pllmsModel.TotalLeaveCount">
+        <MappingFragment StoreEntitySet="TotalLeaveCount">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LeaveTypeId" ColumnName="LeaveTypeId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="pllmsModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="designationTypeId" ColumnName="designationTypeId" />
+          <ScalarProperty Name="reportingToUserId" ColumnName="reportingToUserId" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="updatedDate" ColumnName="updatedDate" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="DateOfJoining" ColumnName="DateOfJoining" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LeaveSummaryUsers">
+      <EntityTypeMapping TypeName="pllmsModel.LeaveSummaryUser">
+        <MappingFragment StoreEntitySet="LeaveSummaryUser">
+          <ScalarProperty Name="modifiedby" ColumnName="modifiedby" />
+          <ScalarProperty Name="modifieddate" ColumnName="modifieddate" />
+          <ScalarProperty Name="createdby" ColumnName="createdby" />
+          <ScalarProperty Name="createddate" ColumnName="createddate" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="EL_Balance" ColumnName="EL_Balance" />
+          <ScalarProperty Name="EL_Allotted" ColumnName="EL_Allotted" />
+          <ScalarProperty Name="OL_Balance" ColumnName="OL_Balance" />
+          <ScalarProperty Name="OL_Allotted" ColumnName="OL_Allotted" />
+          <ScalarProperty Name="ML_Balance" ColumnName="ML_Balance" />
+          <ScalarProperty Name="ML_Allotted" ColumnName="ML_Allotted" />
+          <ScalarProperty Name="PL_Balance" ColumnName="PL_Balance" />
+          <ScalarProperty Name="PL_Allotted" ColumnName="PL_Allotted" />
+          <ScalarProperty Name="SL_Balance" ColumnName="SL_Balance" />
+          <ScalarProperty Name="SL_Allotted" ColumnName="SL_Allotted" />
+          <ScalarProperty Name="CL_Balance" ColumnName="CL_Balance" />
+          <ScalarProperty Name="CL_Allotted" ColumnName="CL_Allotted" />
+          <ScalarProperty Name="userid" ColumnName="userid" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

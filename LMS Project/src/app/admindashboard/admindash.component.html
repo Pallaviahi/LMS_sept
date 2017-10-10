@@ -181,7 +181,7 @@
                                     <td>{{items.MinValue}}</td>
                                     <td>{{items.TotalValue}}</td>
                                     <td style="text-align:center;width: 50%">
-                                        <button (click)="openUserUpdateModel(items.Id)" class="btn btn-info">Update</button>
+                                        <button (click)="openLeaveUpdateModel(items.Id)" class="btn btn-info">Update</button>
                                         <button (click)="OpenDeleteLeaveModal(items.Id)" class="btn btn-info">Remove</button>
                                     </td>
                                 </tr>
@@ -282,6 +282,56 @@
                 <button type="button" class="btn btn-primary" (click)="updateUser.close();">Cancel</button>
             </modal-footer>
         </modal>
+
+
+        <modal #updateLeave>
+            <modal-header [show-close]="true">
+                <h4 class="modal-title">Update Leave</h4>
+            </modal-header>
+            <modal-body>
+                <div class="form-group">
+                    <form name="form" (ngSubmit)="f.form.valid" #f="ngForm" novalidate>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !LeaveType1.valid }">
+                            <label for="LeaveType1">Leave Type</label>
+                            <input type="text" class="form-control" name="LeaveType1" [(ngModel)]="leavetypeModel.LeaveType1" #LeaveType1="ngModel" required
+                            />
+                            <div *ngIf="f.submitted && !MaxValue.valid" class="help-block">Leave Type is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !MaxValue.valid }">
+                            <label for="MaxValue">Max Value</label>
+                            <input type="text" class="form-control" name="MaxValue" [(ngModel)]="leavetypeModel.MaxValue" #MaxValue="ngModel" required
+                            />
+                            <div *ngIf="f.submitted && !MinValue.valid" class="help-block">Max Value is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !MinValue.valid }">
+                            <label for="MinValue">Min Value</label>
+                            <input type="text" class="form-control" name="MinValue" [(ngModel)]="leavetypeModel.MinValue" #MinValue="ngModel" required
+                            />
+                            <div *ngIf="f.submitted && !MinValue.valid" class="help-block">Min Value is required</div>
+                        </div>
+                        <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !TotalValue.valid }">
+                            <label for="TotalValue">Total Value</label>
+                            <input type="text" class="form-control" name="TotalValue" [(ngModel)]="leavetypeModel.TotalValue" #TotalValue="ngModel" required
+                            />
+                            <div *ngIf="f.submitted && !TotalValue.valid" class="help-block">Total Value is required</div>
+                        </div>
+
+                        <div class="form-group">
+                            <button [disabled]="loading" class="btn btn-primary">Register</button>
+                            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                            />
+                            <!--<a [routerLink]="['/login']" class="btn btn-link">Cancel</a>-->
+                        </div>
+                    </form>
+                </div>
+            </modal-body>
+            <modal-footer>
+                
+                <button type="button" class="btn btn-default" data-dismiss="modal" (click)="updateLeave.close();updateLeaveType();">Update</button>
+                <button type="button" class="btn btn-primary" (click)="updateLeave.close();">Cancel</button>
+            </modal-footer>
+        </modal>
+
 
         <modal #DeleteUserPopup>
             <modal-header [show-close]="true">

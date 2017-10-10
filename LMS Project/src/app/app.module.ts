@@ -25,8 +25,8 @@ import { AdminDashComponent } from './admindashboard/index';
 import { AdminSettingsComponent } from './adminsettings/index';
 import { DatePickerModule } from 'ng2-datepicker';
 import { AdminAddLeavesComponent } from './AdminAddLeaves/index';
-//import { AdminUploadFileComponent } from './AdminUploadPDF/index';
-
+import { AdminUploadFileComponent } from './AdminUploadPDF/index';
+import { GenerateReportComponent } from './GenerateReport/index';
 import { AdminAddUserComponent } from './AdminAddUser/index';
 import { DataTableModule } from "angular2-datatable";
 import { DataFilterPipe } from './_helpers/data-filter.pipe';
@@ -80,8 +80,9 @@ export class CustomOptions extends ToastOptions {
         LeaveTypesFilterPipe,
         AppliedLeaveFilterPipe,
         AdminAddUserComponent,
-        AdminAddLeavesComponent
-       // AdminUploadFileComponent
+        AdminAddLeavesComponent,
+       AdminUploadFileComponent,
+       GenerateReportComponent
  ],
     providers: [
         AuthGuard,

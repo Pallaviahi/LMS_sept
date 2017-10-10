@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild,ViewContainerRef } from '@angular/core';
+import { types } from '../_models/index';
 import { User } from '../_models/index';
 import { AdminService, } from '../_services/index';
 import { ApplyLeaveComponent } from '../applyleave/index';
@@ -18,6 +19,8 @@ export class AdminDashComponent implements OnInit {
 
     model: approvedLeaveModel = new approvedLeaveModel;
     userModel: User = new User;
+    leavetypeModel: types = new types;
+   
     public leaveRequests: any[] = [];
     public adminUsers: any[] = [];
     public adminLeaves: any[] = [];
@@ -29,8 +32,10 @@ export class AdminDashComponent implements OnInit {
     userToUpdateId: number;
     userToDeleteId: number;
     LeaveToDeleteId:number;
+    LeavetoUpdateId: number;
     @ViewChild('myModal') modal: ModalComponent;
     @ViewChild('updateUser') updateUser: ModalComponent;
+    @ViewChild('updateLeave') updateLeave: ModalComponent;
     @ViewChild('DeleteUserPopup') DeleteUserPopup: ModalComponent;
     @ViewChild('DeleteLeavePopup') DeleteLeavePopup: ModalComponent;
 
@@ -75,6 +80,18 @@ export class AdminDashComponent implements OnInit {
         this.LoadReportingLeads();
         this.LoadDesignation();
         this.LoadUpdateUserDetails();
+       
+    }
+  
+
+    openLeaveUpdateModel(Id: number) {
+        this.updateLeave.open();
+         this.LeavetoUpdateId = Id;
+        this.LoadUpdateLeaveDetails();
+        // this.userToUpdateId = empId;
+        // this.LoadReportingLeads();
+        // this.LoadDesignation();
+        // this.LoadUpdateUserDetails();
     }
 
 
@@ -84,6 +101,14 @@ export class AdminDashComponent implements OnInit {
             data => {
                 this.userModel = data;
                 console.log(this.userModel);
+            });
+    }
+     LoadUpdateLeaveDetails() {
+        this.adminService.LoadUpdateLeaveDetails(this.LeavetoUpdateId)
+            .subscribe(
+            data => {
+                this.leavetypeModel = data;
+                console.log(this.leavetypeModel);
             });
     }
 
@@ -186,6 +211,26 @@ export class AdminDashComponent implements OnInit {
                 }
                 else {
                     this.toastr.success("User Already Exists");
+                }
+                //this.loadLeaveRequests();
+            },
+            error => {
+                this.globalVar.loading = false;
+                this.toastr.error('Something went wrong !');
+            });
+    }
+
+    updateLeaveType() {
+        this.globalVar.loading = true;
+        this.adminService.updateLeave(this.leavetypeModel)
+            .subscribe(
+            data => {
+                this.globalVar.loading = false;
+                if (data.text() == "true") {
+                    this.toastr.success('Leave Type Successfully !');
+                }
+                else {
+                    this.toastr.success("Leave Type Already Exists");
                 }
                 //this.loadLeaveRequests();
             },

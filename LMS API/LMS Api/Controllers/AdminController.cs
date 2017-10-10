@@ -71,6 +71,8 @@ namespace LMS_Api.Controllers
             }
         }
 
+
+
         // GET: api/Users/5
         [HttpGet]
         [Route("LoadUpdateUserDetails/{empId}")]
@@ -225,6 +227,7 @@ namespace LMS_Api.Controllers
                     objuser.firstName = item.firstName;
                     objuser.lastName = item.lastName;
                     objuser.username = item.email;
+                  //  objuser.designation = item.Designation;
                     listofUsers.Add(objuser);
                 }
 
@@ -254,6 +257,7 @@ namespace LMS_Api.Controllers
                     objleave.LeaveType1 = item.LeaveType1;
                     objleave.MinValue = item.MinValue;
                     objleave.MaxValue = item.MaxValue;
+                    objleave.TotalValue = item.TotalValue;
                     listofLeaves.Add(objleave);
                 }
 
@@ -263,6 +267,71 @@ namespace LMS_Api.Controllers
             {
                 return Ok(e.InnerException);
 
+            }
+        }
+
+        [HttpPost]
+        [Route("UpdateLeaveType")]
+        [ResponseType(typeof(string))]
+        public IHttpActionResult UpdateLeaveType(LeaveType objLeaveType)
+        {
+            try
+            {
+                var leavetype = db.LeaveTypes.FirstOrDefault(x => x.Id == objLeaveType.Id);
+
+                if (leavetype != null)
+                {
+                    leavetype.LeaveType1 = objLeaveType.LeaveType1;
+                    leavetype.MaxValue = objLeaveType.MaxValue;
+                    leavetype.MinValue = objLeaveType.MinValue;
+                    leavetype.TotalValue = objLeaveType.TotalValue;
+                   // db.LeaveTypes.Add(leavetype);
+                    db.SaveChanges();
+                    return Ok(true);
+                }
+                else
+                {
+                    return Ok("Leave type does not exists");
+                }
+            }
+            catch (Exception e)
+            {
+                return Ok(e.InnerException);
+
+            }
+        }
+
+        // GET: api/Users/5
+        [HttpGet]
+        [Route("LoadLeavesForAdminDetails/{Id}")]
+        [ResponseType(typeof(User))]
+        public IHttpActionResult LoadLeavesForAdminDetails(int Id)
+        {
+            try
+            {
+                var leavetypes = db.LeaveTypes.Where(x => x.Id == Id).FirstOrDefault();
+
+               // List<LeaveType> listofLeaves = new List<LeaveType>();
+               
+                if (leavetypes == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    LeaveType objleave = new LeaveType();
+                    objleave.Id = leavetypes.Id;
+
+                    objleave.LeaveType1 = leavetypes.LeaveType1;
+                    objleave.MinValue = leavetypes.MinValue;
+                    objleave.MaxValue = leavetypes.MaxValue;
+                    objleave.TotalValue = leavetypes.TotalValue;
+                    return Ok(objleave);
+                }
+            }
+            catch (Exception e)
+            {
+                throw;
             }
         }
 
@@ -346,6 +415,24 @@ namespace LMS_Api.Controllers
                     db.Users.Add(newUser);
 
                     db.SaveChanges();
+
+                    var Userdetails = db.Users.Where(x => x.email == objUser.username).FirstOrDefault();
+                   if(Userdetails !=null)
+                    {
+                        LeaveSummaryUser LMU = new LeaveSummaryUser();
+                        LMU.userid = Userdetails.Id;
+                        LMU.status = 1;
+                        LMU.createddate = DateTime.Now;
+                        LMU.createdby = 3;
+                        db.LeaveSummaryUsers.Add(LMU);
+                        db.SaveChanges();
+                        //LMU.CL_Allotted = 0;
+                        //LMU.CL_Balance = 0;
+                        //LMU.SL_Allotted = 0;
+                        //LMU.SL_Balance = 0;
+                        //LMU.PL_Allotted = 0;
+
+                    }
                     return Ok(true);
                 }
                 else

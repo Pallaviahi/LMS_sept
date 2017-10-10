@@ -292,3 +292,199 @@ C:\Official\Code LMS Current\LMS API\LMS Api\bin\System.Web.Http.WebHost.xml
 C:\Official\Code LMS Current\LMS API\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
 C:\Official\Code LMS Current\LMS API\LMS Api\obj\Debug\LMS Api.dll
 C:\Official\Code LMS Current\LMS API\LMS Api\obj\Debug\LMS Api.pdb
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\obj\Debug\LMS Api.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\obj\Debug\LMS Api.pdb
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csc.exe
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csc.exe.config
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csc.rsp
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csi.exe
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csi.rsp
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.AppContext.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe.config
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\vbc.rsp
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\LMS Api.dll.config
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\LMS Api.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\LMS Api.pdb
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Cors.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.dll
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.xml
+D:\LMS\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csc.exe
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csc.exe.config
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csc.rsp
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csi.exe
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\csi.rsp
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.AppContext.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe.config
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\vbc.rsp
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\LMS Api.dll.config
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\LMS Api.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\LMS Api.pdb
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Cors.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.xml
+O:\GITLMSV2\LMS\LMS API\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+O:\GITLMSV2\LMS\LMS API\LMS Api\obj\Debug\LMS Api.dll
+O:\GITLMSV2\LMS\LMS API\LMS Api\obj\Debug\LMS Api.pdb
+D:\LMS\LMS API\LMS Api\bin\roslyn\csc.exe
+D:\LMS\LMS API\LMS Api\bin\roslyn\csc.exe.config
+D:\LMS\LMS API\LMS Api\bin\roslyn\csc.rsp
+D:\LMS\LMS API\LMS Api\bin\roslyn\csi.exe
+D:\LMS\LMS API\LMS Api\bin\roslyn\csi.rsp
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\LMS\LMS API\LMS Api\bin\roslyn\System.AppContext.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+D:\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe
+D:\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe.config
+D:\LMS\LMS API\LMS Api\bin\roslyn\vbc.rsp
+D:\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe
+D:\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+D:\LMS\LMS API\LMS Api\bin\LMS Api.dll.config
+D:\LMS\LMS API\LMS Api\bin\LMS Api.dll
+D:\LMS\LMS API\LMS Api\bin\LMS Api.pdb
+D:\LMS\LMS API\LMS Api\bin\EntityFramework.dll
+D:\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.dll
+D:\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.dll
+D:\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.dll
+D:\LMS\LMS API\LMS Api\bin\System.Web.Cors.dll
+D:\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.dll
+D:\LMS\LMS API\LMS Api\bin\System.Web.Http.dll
+D:\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.dll
+D:\LMS\LMS API\LMS Api\bin\EntityFramework.xml
+D:\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.xml
+D:\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.xml
+D:\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.xml
+D:\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.xml
+D:\LMS\LMS API\LMS Api\bin\System.Web.Http.xml
+D:\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.xml
+D:\LMS\LMS API\LMS Api\obj\Debug\LMS Api.dll
+D:\LMS\LMS API\LMS Api\obj\Debug\LMS Api.pdb
+D:\LMS\LMS API\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\csc.exe
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\csc.exe.config
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\csc.rsp
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\csi.exe
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\csi.rsp
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.CSharp.Core.targets
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\Microsoft.VisualBasic.Core.targets
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\System.AppContext.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\System.Collections.Immutable.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\System.Diagnostics.StackTrace.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\System.IO.FileSystem.Primitives.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\System.Reflection.Metadata.dll
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\vbc.exe.config
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\vbc.rsp
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe
+O:\New\LMS\LMS API\LMS Api\bin\roslyn\VBCSCompiler.exe.config
+O:\New\LMS\LMS API\LMS Api\bin\LMS Api.dll.config
+O:\New\LMS\LMS API\LMS Api\bin\LMS Api.dll
+O:\New\LMS\LMS API\LMS Api\bin\LMS Api.pdb
+O:\New\LMS\LMS API\LMS Api\bin\EntityFramework.dll
+O:\New\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.dll
+O:\New\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+O:\New\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.dll
+O:\New\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.dll
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Cors.dll
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.dll
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Http.dll
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.dll
+O:\New\LMS\LMS API\LMS Api\bin\EntityFramework.xml
+O:\New\LMS\LMS API\LMS Api\bin\EntityFramework.SqlServer.xml
+O:\New\LMS\LMS API\LMS Api\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Http.Cors.xml
+O:\New\LMS\LMS API\LMS Api\bin\Newtonsoft.Json.xml
+O:\New\LMS\LMS API\LMS Api\bin\System.Net.Http.Formatting.xml
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Http.xml
+O:\New\LMS\LMS API\LMS Api\bin\System.Web.Http.WebHost.xml
+O:\New\LMS\LMS API\LMS Api\obj\Debug\LMS Api.csprojResolveAssemblyReference.cache
+O:\New\LMS\LMS API\LMS Api\obj\Debug\LMS Api.dll
+O:\New\LMS\LMS API\LMS Api\obj\Debug\LMS Api.pdb
